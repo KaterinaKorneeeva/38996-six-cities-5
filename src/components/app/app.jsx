@@ -9,22 +9,25 @@ import OfferPage from "../offer-page/offer-page";
 const App = (props) => {
   const {offersCount, offers} = props;
 
-
-
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainPage offersCount={offersCount}  offers={offers} />
+          <MainPage
+            offersCount={offersCount}
+            offers={offers}
+          />
         </Route>
         <Route exact path="/login">
           <AuthPage />
         </Route>
         <Route exact path="/favorites">
-          <FavoritesPage />
+          <FavoritesPage
+            offers={offers}
+          />
         </Route>
         <Route exact path="/offer/:id">
-        <OfferPage
+          <OfferPage
             offer={offers[0]}
           />
         </Route>

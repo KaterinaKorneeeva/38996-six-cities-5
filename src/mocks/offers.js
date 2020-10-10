@@ -5,7 +5,6 @@ export default [
   {
     id: 0,
     rating: `5`,
-    isArchive: Boolean(1),
     pictures: [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
@@ -32,13 +31,12 @@ export default [
       `Baby seat`,
       `Kitchen`,
       `Dishwasher`
-  ],
+    ],
     host: {
       name: `Simon`,
       status: `Pro`,
       photo: `${AVATAR_URL}/${Math.random()}`,
     },
-
     reviews: [
       {
         text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -57,16 +55,12 @@ export default [
             photo: `${AVATAR_URL}/${Math.random()}`,
           },
         data: `2020-10-09`,
-
       }
     ]
-
-
   },
   {
     id: 1,
     rating: `5`,
-    isArchive: Boolean(1),
     pictures: [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
@@ -87,7 +81,6 @@ export default [
       status: `Pro`,
       photo: `${AVATAR_URL}/${Math.random()}`,
     },
-
     reviews: [
       {
         text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -106,14 +99,13 @@ export default [
   {
     id: 2,
     rating: `5`,
-    isArchive: Boolean(0),
     pictures: [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
     ],
-    isPremium:  Boolean(1),
+    isPremium: Boolean(1),
     title: `Nice, cozy, warm big bed apartment`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     price: `180`,
@@ -133,13 +125,12 @@ export default [
       `Baby seat`,
       `Kitchen`,
       `Dishwasher`
-  ],
+    ],
     host: {
       name: `Angelina`,
       status: `Pro`,
       photo: `${AVATAR_URL}/${Math.random()}`,
     },
-
     reviews: [
       {
         text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -158,7 +149,6 @@ export default [
   {
     id: 3,
     rating: `5`,
-    isArchive: Boolean(1),
     pictures: [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
@@ -179,7 +169,6 @@ export default [
       status: `Pro`,
       photo: `${AVATAR_URL}/${Math.random()}`,
     },
-
     reviews: [
       {
         text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,

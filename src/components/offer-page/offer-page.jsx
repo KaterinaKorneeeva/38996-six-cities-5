@@ -6,7 +6,6 @@ import Moment from 'react-moment';
 const OfferPage = (props) => {
 
   const {offer} = props;
-  console.log('offer',offer);
 
   return (
     <React.Fragment>
@@ -51,10 +50,11 @@ const OfferPage = (props) => {
             <div className="property__container container">
               <div className="property__wrapper">
                 {offer.isPremium
-                ? <div className="property__mark">
+                  ?
+                  <div className="property__mark">
                     <span>Premium</span>
                   </div>
-                : null
+                  : null
                 }
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
@@ -118,34 +118,32 @@ const OfferPage = (props) => {
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{offer.reviews.length}</span></h2>
                   <ul className="reviews__list">
-                  {offer.reviews.map((review, i) => (
-                    <li key={i} className="reviews__item">
-                      <div className="reviews__user user">
-                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                          <img className="reviews__avatar user__avatar" src={review.author.photo} width="54" height="54" alt="Reviews avatar"/>
-                        </div>
-                        <span className="reviews__user-name">
-                          {review.author.name}
-                        </span>
-                      </div>
-                      <div className="reviews__info">
-                        <div className="reviews__rating rating">
-                          <div className="reviews__stars rating__stars">
-                            <span style={{width: `100%`}}></span>
-                            <span className="visually-hidden">Rating</span>
+                    {offer.reviews.map((review, i) => (
+                      <li key={i} className="reviews__item">
+                        <div className="reviews__user user">
+                          <div className="reviews__avatar-wrapper user__avatar-wrapper">
+                            <img className="reviews__avatar user__avatar" src={review.author.photo} width="54" height="54" alt="Reviews avatar"/>
                           </div>
+                          <span className="reviews__user-name">
+                            {review.author.name}
+                          </span>
                         </div>
-                        <p className="reviews__text">
-                          {review.text}
-                        </p>
-                        <Moment className="reviews__time" date={review.date} format="MMMM/DD">
+                        <div className="reviews__info">
+                          <div className="reviews__rating rating">
+                            <div className="reviews__stars rating__stars">
+                              <span style={{width: `100%`}}></span>
+                              <span className="visually-hidden">Rating</span>
+                            </div>
+                          </div>
+                          <p className="reviews__text">
+                            {review.text}
+                          </p>
+                          <Moment className="reviews__time" date={review.date} format="MMMM/DD">
                             {review.date}
-                        </Moment>
-                      </div>
-                    </li>
-                      )
-                    )
-                  }
+                          </Moment>
+                        </div>
+                      </li>
+                    ))}
                   </ul>
                   <ReviewsForm />
                 </section>
@@ -264,9 +262,8 @@ const OfferPage = (props) => {
 OfferPage.propTypes = {
   offer: PropTypes.shape({
     rating: PropTypes.string.isRequired,
-    isArchive: PropTypes.bool.isRequired,
     pictures: PropTypes.array.isRequired,
-    isPremium:PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
@@ -284,7 +281,7 @@ OfferPage.propTypes = {
     reviews: PropTypes.arrayOf(PropTypes.shape({
       text: PropTypes.string.isRequired,
       data: PropTypes.string.isRequired,
-      author:  PropTypes.shape({
+      author: PropTypes.shape({
         name: PropTypes.string.isRequired,
         photo: PropTypes.string.isRequired,
       }).isRequired,

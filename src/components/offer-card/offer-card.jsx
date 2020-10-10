@@ -4,29 +4,32 @@ import {Link} from "react-router-dom";
 
 
 const OfferCard = (props) => {
+
+
   const {offer, id, onOfferCardHover} = props;
   const offerUrl = `offer/` + id;
 
   return (
     <React.Fragment>
-      <article  key={`${id}-${offer.title}`}
+      <article
+        key={`${id}-${offer.title}`}
         className="cities__place-card place-card"
         onMouseOver={(evt) => {
           evt.preventDefault();
           onOfferCardHover(id);
         }}
       >
-
         {offer.isPremium
-        ? <div className="place-card__mark">
+          ?
+          <div className="place-card__mark">
             <span>Premium</span>
           </div>
-        : null
+          : null
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={offerUrl}>
+          <Link to={offerUrl}>
             <img className="place-card__image" src={offer.pictures[0]} width="260" height="200" alt="Place image" />
-        </Link>
+          </Link>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
@@ -61,10 +64,11 @@ const OfferCard = (props) => {
 
 OfferCard.propTypes = {
   onOfferCardHover: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
   offer: PropTypes.shape({
     rating: PropTypes.string.isRequired,
     pictures: PropTypes.array.isRequired,
-    isPremium:PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,

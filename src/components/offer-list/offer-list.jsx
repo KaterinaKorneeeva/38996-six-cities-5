@@ -22,16 +22,16 @@ class OfferList extends PureComponent {
 
     const {offers} = this.props;
     return (
-    <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer, i) => (
-        <OfferCard
-          key = {offer.id}
-          offer = {offer}
-          id = {offer.id}
-          onOfferCardHover={this._handleOfferCardHover}
-        />
-      ))}
-    </div>
+      <div className="cities__places-list places__list tabs__content">
+        {offers.map((offer) => (
+          <OfferCard
+            key = {offer.id}
+            offer = {offer}
+            id = {offer.id}
+            onOfferCardHover={this._handleOfferCardHover}
+          />
+        ))}
+      </div>
     );
   }
 }
