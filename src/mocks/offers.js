@@ -12,17 +12,29 @@ export default [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
     ],
-    isPremium: Boolean(0),
+    isPremium: Boolean(1),
     title: `Wood and stone place`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     price: `60`,
     type: `room`,
     city: `amsterdam`,
     rooms: `4`,
-    guests: `4`,
-    features: [`wifi`, `heating`, `kitchen`, `cableTV`],
+    guests: `3`,
+    features: [
+      `wifi`,
+      `heating`,
+      `kitchen`,
+      `cableTV`,
+      `Washing machine`,
+      `Towels`,
+      `Heating`,
+      `Coffee machine`,
+      `Baby seat`,
+      `Kitchen`,
+      `Dishwasher`
+  ],
     host: {
-      name: `Angelina`,
+      name: `Simon`,
       status: `Pro`,
       photo: `${AVATAR_URL}/${Math.random()}`,
     },
@@ -35,7 +47,16 @@ export default [
             name: `Max`,
             photo: `${AVATAR_URL}/${Math.random()}`,
           },
-        data: `April 2019`,
+        data: `2020-10-10`,
+      },
+      {
+        text: `We booked at very short notice and Simon was quick to respond which was very helpful a long with details on how to check in. Accommodation is in a very good spot, within walking distance to tourist attractions like London eye etc. Apartment looked bigger in photos but was very cosy and had what we needed, would have loved if there was a tv even for some back ground noise. Over all good experience :)`,
+        author:
+          {
+            name: `Annie`,
+            photo: `${AVATAR_URL}/${Math.random()}`,
+          },
+        data: `2020-10-09`,
 
       }
     ]
@@ -77,7 +98,7 @@ export default [
 
             rating: `4`,
           },
-        data: `April 2019`,
+        data: `2020-10-10`,
 
       }
     ]
@@ -100,7 +121,19 @@ export default [
     city: `amsterdam`,
     rooms: `4`,
     guests: `4`,
-    features: [`wifi`, `heating`, `kitchen`, `cableTV`],
+    features: [
+      `wifi`,
+      `heating`,
+      `kitchen`,
+      `cableTV`,
+      `Washing machine`,
+      `Towels`,
+      `Heating`,
+      `Coffee machine`,
+      `Baby seat`,
+      `Kitchen`,
+      `Dishwasher`
+  ],
     host: {
       name: `Angelina`,
       status: `Pro`,
@@ -117,7 +150,7 @@ export default [
 
             rating: `4`,
           },
-        data: `April 2019`,
+        data: `2020-10-10`,
 
       }
     ]

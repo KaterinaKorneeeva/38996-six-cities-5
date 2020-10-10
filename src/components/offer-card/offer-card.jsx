@@ -53,7 +53,6 @@ const OfferCard = (props) => {
           <p className="place-card__type">{offer.type}</p>
         </div>
       </article>
-
     </React.Fragment>
 
   );
@@ -64,32 +63,11 @@ OfferCard.propTypes = {
   onOfferCardHover: PropTypes.func.isRequired,
   offer: PropTypes.shape({
     rating: PropTypes.string.isRequired,
-    isArchive: PropTypes.bool.isRequired,
     pictures: PropTypes.array.isRequired,
     isPremium:PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-    rooms: PropTypes.string.isRequired,
-    guests: PropTypes.string.isRequired,
-    features: PropTypes.array.isRequired,
-    host: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      photo: PropTypes.string.isRequired,
-    }).isRequired,
-
-    reviews: PropTypes.arrayOf(PropTypes.shape({
-      text: PropTypes.string.isRequired,
-      data: PropTypes.string.isRequired,
-      author:  PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        // rating: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
-      }).isRequired,
-    })).isRequired,
   }).isRequired,
 };
 
