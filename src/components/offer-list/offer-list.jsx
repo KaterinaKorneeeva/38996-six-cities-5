@@ -12,9 +12,9 @@ class OfferList extends PureComponent {
 
   }
 
-  _handleOfferCardHover(offer) {
+  _handleOfferCardHover(offerId) {
     this.setState({
-      offerActive: offer
+      offerActive: offerId
     });
   }
 
@@ -26,8 +26,9 @@ class OfferList extends PureComponent {
       {offers.map((offer, i) => (
         <OfferCard
           key = {offer.id}
-          offer ={offer}
+          offer = {offer}
           id = {offer.id}
+          onOfferCardHover={this._handleOfferCardHover}
         />
       ))}
     </div>

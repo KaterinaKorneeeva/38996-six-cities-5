@@ -106,6 +106,7 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   offersCount: PropTypes.number.isRequired,
+  offers: PropTypes.array.isRequired,
 };
 
 export default MainPage;

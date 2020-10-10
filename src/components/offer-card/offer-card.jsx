@@ -1,13 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+
 
 const OfferCard = (props) => {
-  const {offer, id} = props;
-  console.log('dddd',typeof offer.isArchive);
+  const {offer, id, onOfferCardHover} = props;
+  const offerUrl = `offer/` + id;
 
   return (
     <React.Fragment>
-      <article  key={`${id}-${offer.title}`} className="cities__place-card place-card">
+      <article  key={`${id}-${offer.title}`}
+        className="cities__place-card place-card"
+        onMouseOver={(evt) => {
+          evt.preventDefault();
+          onOfferCardHover(id);
+        }}
+      >
 
         {offer.isPremium
         ? <div className="place-card__mark">
@@ -15,11 +23,10 @@ const OfferCard = (props) => {
           </div>
         : null
         }
-
         <div className="cities__image-wrapper place-card__image-wrapper">
-          <a href="#">
+        <Link to={offerUrl}>
             <img className="place-card__image" src={offer.pictures[0]} width="260" height="200" alt="Place image" />
-          </a>
+        </Link>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
@@ -41,7 +48,7 @@ const OfferCard = (props) => {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{offer.title}</a>
+            <Link to={offerUrl}>{offer.title}</Link>
           </h2>
           <p className="place-card__type">{offer.type}</p>
         </div>
@@ -54,6 +61,7 @@ const OfferCard = (props) => {
 
 
 OfferCard.propTypes = {
+  onOfferCardHover: PropTypes.func.isRequired,
   offer: PropTypes.shape({
     rating: PropTypes.string.isRequired,
     isArchive: PropTypes.bool.isRequired,
