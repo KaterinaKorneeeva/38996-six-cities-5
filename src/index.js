@@ -1,14 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app";
-
-const Settings = {
-  OFFERS_COUNT: 123
-};
+import offers from "./mocks/offers";
 
 ReactDOM.render(
     <App
-      offersCount={Settings.OFFERS_COUNT}
+      offersCount={offers.length}
+      offers={offers}
     />,
     document.querySelector(`#root`)
 );

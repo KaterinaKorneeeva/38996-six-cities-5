@@ -7,23 +7,29 @@ import FavoritesPage from "../favorites-page/favorites-page";
 import OfferPage from "../offer-page/offer-page";
 
 const App = (props) => {
-  const {offersCount} = props;
-
+  const {offersCount, offers} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainPage offersCount={offersCount} />
+          <MainPage
+            offersCount={offersCount}
+            offers={offers}
+          />
         </Route>
         <Route exact path="/login">
           <AuthPage />
         </Route>
         <Route exact path="/favorites">
-          <FavoritesPage />
+          <FavoritesPage
+            offers={offers}
+          />
         </Route>
         <Route exact path="/offer/:id">
-          <OfferPage />
+          <OfferPage
+            offer={offers[0]}
+          />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -32,6 +38,7 @@ const App = (props) => {
 
 App.propTypes = {
   offersCount: PropTypes.number.isRequired,
+  offers: PropTypes.array.isRequired,
 };
 
 export default App;
