@@ -1,11 +1,16 @@
+import {getRandomInteger} from "../utils.js";
+
 const PIC_URL = `https://picsum.photos/200/300?random=`;
-const AVATAR_URL = `https://api.adorable.io/avatars/128`;
+const AVATAR_URL = `https://api.adorable.io/avatars`;
 
 export default [
   {
     id: 0,
     rating: `5`,
     pictures: [
+      `${PIC_URL}${Math.random()}`,
+      `${PIC_URL}${Math.random()}`,
+      `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
@@ -17,6 +22,7 @@ export default [
     price: `60`,
     type: `room`,
     city: `amsterdam`,
+    coords: [52.3909553943508, 4.85309666406198],
     rooms: `4`,
     guests: `3`,
     features: [
@@ -35,7 +41,7 @@ export default [
     host: {
       name: `Simon`,
       status: `Pro`,
-      photo: `${AVATAR_URL}/${Math.random()}`,
+      photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
     },
     reviews: [
       {
@@ -43,7 +49,7 @@ export default [
         author:
           {
             name: `Max`,
-            photo: `${AVATAR_URL}/${Math.random()}`,
+            photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
           },
         data: `2020-10-10`,
       },
@@ -52,7 +58,7 @@ export default [
         author:
           {
             name: `Annie`,
-            photo: `${AVATAR_URL}/${Math.random()}`,
+            photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
           },
         data: `2020-10-09`,
       }
@@ -73,13 +79,14 @@ export default [
     price: `120`,
     type: `Apartment`,
     city: `amsterdam`,
+    coords: [52.369553943508, 4.85309666406198],
     rooms: `4`,
     guests: `4`,
     features: [`wifi`, `heating`, `kitchen`, `cableTV`],
     host: {
       name: `Angelina`,
       status: `Pro`,
-      photo: `${AVATAR_URL}/${Math.random()}`,
+      photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
     },
     reviews: [
       {
@@ -87,7 +94,7 @@ export default [
         author:
           {
             name: `Max`,
-            photo: `${AVATAR_URL}/${Math.random()}`,
+            photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
 
             rating: `4`,
           },
@@ -111,6 +118,7 @@ export default [
     price: `180`,
     type: `house`,
     city: `amsterdam`,
+    coords: [52.3909553943508, 4.929309666406198],
     rooms: `4`,
     guests: `4`,
     features: [
@@ -129,7 +137,7 @@ export default [
     host: {
       name: `Angelina`,
       status: `Pro`,
-      photo: `${AVATAR_URL}/${Math.random()}`,
+      photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
     },
     reviews: [
       {
@@ -137,8 +145,7 @@ export default [
         author:
           {
             name: `Max`,
-            photo: `${AVATAR_URL}/${Math.random()}`,
-
+            photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
             rating: `4`,
           },
         data: `2020-10-10`,
@@ -161,13 +168,14 @@ export default [
     price: `180`,
     type: `hotel`,
     city: `amsterdam`,
+    coords: [52.3809553943508, 4.939309666406198],
     rooms: `4`,
     guests: `4`,
     features: [`wifi`, `heating`, `kitchen`, `cableTV`],
     host: {
       name: `Angelina`,
       status: `Pro`,
-      photo: `${AVATAR_URL}/${Math.random()}`,
+      photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
     },
     reviews: [
       {
@@ -175,8 +183,7 @@ export default [
         author:
           {
             name: `Max`,
-            photo: `${AVATAR_URL}/${Math.random()}`,
-
+            photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
             rating: `4`,
           },
         data: `April 2019`,

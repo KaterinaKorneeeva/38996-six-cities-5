@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
@@ -10,7 +10,7 @@ const OfferCard = (props) => {
   const offerUrl = `offer/` + id;
 
   return (
-    <React.Fragment>
+    <Fragment>
       <article
         key={`${id}-${offer.title}`}
         className="cities__place-card place-card"
@@ -56,7 +56,7 @@ const OfferCard = (props) => {
           <p className="place-card__type">{offer.type}</p>
         </div>
       </article>
-    </React.Fragment>
+    </Fragment>
 
   );
 };
