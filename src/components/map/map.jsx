@@ -1,10 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import leaflet from "leaflet";
-// import "leaflet.css"
-
-const city = [52.38333, 4.9];
-
 class Map extends PureComponent {
 
   constructor(props) {
@@ -12,7 +8,7 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const {offers} = this.props;
+    const {offers, cityCoord} = this.props;
     const offerCords = offers.map((offer) => offer.coords);
 
     const icon = leaflet.icon({
@@ -23,13 +19,13 @@ class Map extends PureComponent {
     const zoomMap = 12;
     const map = leaflet.map(`map`, {
       zoom: zoomMap,
-      center: city,
+      center: cityCoord,
 
       zoomControl: false,
       marker: true
     });
 
-    map.setView(city, zoomMap);
+    map.setView(cityCoord, zoomMap);
 
     leaflet
     .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -51,6 +47,7 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   offers: PropTypes.array.isRequired,
+  cityCoord: PropTypes.array.isRequired,
 };
 
 export default Map;
