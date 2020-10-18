@@ -4,7 +4,6 @@ import offers from "../mocks/offers";
 export const ActionType = {
   TOGGLE_CITY: `TOGGLE_CITY`,
   GET_OFFERS: `GET_OFFERS`,
-  OFFER_CARD_HOVER: `OFFER_CARD_HOVER`
 };
 
 export const ActionCreator = {
@@ -19,8 +18,5 @@ export const ActionCreator = {
 
   getOffers: () => ({
     type: ActionType.GET_OFFERS,
-  }),
-  offerCardHover: () => ({
-    type: ActionType.OFFER_CARD_HOVER,
   })
 };

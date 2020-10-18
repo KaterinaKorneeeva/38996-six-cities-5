@@ -168,7 +168,7 @@ export default [
     price: `180`,
     type: `hotel`,
     city: `Brussels`,
-    coords: [52.3809553943508, 4.939309666406198],
+    coords: [50.8488, 4.35],
     rooms: `4`,
     guests: `4`,
     features: [`wifi`, `heating`, `kitchen`, `cableTV`],

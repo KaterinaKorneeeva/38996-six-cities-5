@@ -43,6 +43,25 @@ class Map extends PureComponent {
   render() {
     return <section id="map" className="cities__map map"></section>;
   }
+  // componentDidUpdate(props) {
+  //   const zoomMap = 12;
+  //   const {cityCoord} = this.props;
+
+
+  //   map.setView(cityCoord, zoomMap);
+
+  //   leaflet
+  //   .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+  //     attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+  //   })
+  //   .addTo(map);
+
+  //   offerCords.forEach((coords) => {
+  //     leaflet
+  //       .marker(coords, {icon})
+  //       .addTo(map);
+  //   });
+  // };
 }
 
 Map.propTypes = {
