@@ -5,63 +5,58 @@ class Map extends PureComponent {
 
   constructor(props) {
     super(props);
+
+    this._map = null;
   }
 
   componentDidMount() {
-    const {offers, cityCoord} = this.props;
-    const offerCords = offers.map((offer) => offer.coords);
+    this._initMap();
+    this._updateMap();
+  }
 
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
-    });
+  render() {
+    return <section id="map" className="cities__map map"></section>;
+  }
 
+  componentDidUpdate() {
+    this._updateMap();
+  };
+
+  _initMap() {
+    const { cityCoord } = this.props;
     const zoomMap = 12;
-    const map = leaflet.map(`map`, {
+    this._map = leaflet.map(`map`, {
       zoom: zoomMap,
       center: cityCoord,
 
       zoomControl: false,
       marker: true
     });
+  }
 
-    map.setView(cityCoord, zoomMap);
+  _updateMap() {
+    const icon = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+    const zoomMap = 12;
 
-    leaflet
-    .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-    })
-    .addTo(map);
+    const { offers, cityCoord } = this.props;
+    const offerCords = offers.map((offer) => offer.coords);
+    this._map.setView(cityCoord, zoomMap);
 
     offerCords.forEach((coords) => {
       leaflet
-        .marker(coords, {icon})
-        .addTo(map);
+        .marker(coords, { icon })
+        .addTo(this._map);
     });
+
+    leaflet
+      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+      })
+      .addTo(this._map);
   }
-
-  render() {
-    return <section id="map" className="cities__map map"></section>;
-  }
-  // componentDidUpdate(props) {
-  //   const zoomMap = 12;
-  //   const {cityCoord} = this.props;
-
-
-  //   map.setView(cityCoord, zoomMap);
-
-  //   leaflet
-  //   .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-  //     attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-  //   })
-  //   .addTo(map);
-
-  //   offerCords.forEach((coords) => {
-  //     leaflet
-  //       .marker(coords, {icon})
-  //       .addTo(map);
-  //   });
-  // };
 }
 
 Map.propTypes = {
