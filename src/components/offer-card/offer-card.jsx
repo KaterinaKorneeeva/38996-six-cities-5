@@ -6,17 +6,18 @@ import {Link} from "react-router-dom";
 const OfferCard = (props) => {
 
 
-  const {offer, id, onOfferCardHover} = props;
+  const {offer, id} = props;
   const offerUrl = `offer/` + id;
+
 
   return (
     <Fragment>
       <article
         key={`${id}-${offer.title}`}
         className="cities__place-card place-card"
+        // onMouseOver={(evt) => {
         onMouseOver={(evt) => {
           evt.preventDefault();
-          onOfferCardHover(id);
         }}
       >
         {offer.isPremium
@@ -63,7 +64,6 @@ const OfferCard = (props) => {
 
 
 OfferCard.propTypes = {
-  onOfferCardHover: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   offer: PropTypes.shape({
     rating: PropTypes.string.isRequired,
