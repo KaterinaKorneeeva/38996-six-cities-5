@@ -20,10 +20,10 @@ class Map extends PureComponent {
 
   componentDidUpdate() {
     this._updateMap();
-  };
+  }
 
   _initMap() {
-    const { cityCoord } = this.props;
+    const {cityCoord} = this.props;
     const zoomMap = 12;
     this._map = leaflet.map(`map`, {
       zoom: zoomMap,
@@ -41,13 +41,13 @@ class Map extends PureComponent {
     });
     const zoomMap = 12;
 
-    const { offers, cityCoord } = this.props;
+    const {offers, cityCoord} = this.props;
     const offerCords = offers.map((offer) => offer.coords);
     this._map.setView(cityCoord, zoomMap);
 
     offerCords.forEach((coords) => {
       leaflet
-        .marker(coords, { icon })
+        .marker(coords, {icon})
         .addTo(this._map);
     });
 

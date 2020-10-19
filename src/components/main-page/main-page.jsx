@@ -113,9 +113,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getOffers() {
-    dispatch(ActionCreator.getOffers());
-  },
   toggleCity(city) {
     dispatch(ActionCreator.toggleCity(city));
   },

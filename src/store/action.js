@@ -15,8 +15,4 @@ export const ActionCreator = {
       offerList: offersByCity(selectedCity, offers)
     };
   },
-
-  getOffers: () => ({
-    type: ActionType.GET_OFFERS,
-  })
 };
