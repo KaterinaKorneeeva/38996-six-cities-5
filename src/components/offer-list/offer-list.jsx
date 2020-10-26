@@ -1,16 +1,19 @@
+
 import React from "react";
 import OfferCard from "../offer-card/offer-card";
 import PropTypes from "prop-types";
 
 const OfferList = (props) => {
-  const {offers} = props;
+  const {onOfferCardHover, offers, type} = props;
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className = {type === `cities__places` ? `cities__places-list tabs__content places__list` : `near-places__list places__list`}>
       {offers.map((offer) => (
         <OfferCard
           key = {offer.id}
           offer = {offer}
           id = {offer.id}
+          onOfferCardHover={onOfferCardHover}
+          type = {type}
         />
       ))}
     </div>
@@ -19,6 +22,8 @@ const OfferList = (props) => {
 
 OfferList.propTypes = {
   offers: PropTypes.array.isRequired,
+  onOfferCardHover: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default OfferList;

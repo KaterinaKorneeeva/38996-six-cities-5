@@ -26,6 +26,7 @@ const App = (props) => {
         <Route exact path="/offer/:id">
           <OfferPage
             offer={offers[0]}
+            offers={offers.slice(0, 3)}
           />
         </Route>
       </Switch>

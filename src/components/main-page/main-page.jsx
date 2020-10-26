@@ -6,7 +6,9 @@ import CityList from "../city-list/city-list";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 import {getCoordByCity} from "../../offers";
+import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 
+const OfferListWrapped = withActiveItem(OfferList);
 
 const MainPage = (props) => {
   const {offerList, city, toggleCity} = props;
@@ -79,8 +81,9 @@ const MainPage = (props) => {
                           <li className="places__option" tabIndex="0">Top rated first</li>
                         </ul>
                       </form>
-                      <OfferList
+                      <OfferListWrapped
                         offers={offerList}
+                        type = "cities__places"
                       />
                     </section>
                     <div className="cities__right-section">
