@@ -9,6 +9,8 @@ const OfferCard = (props) => {
   const {offer, id, onOfferCardHover} = props;
   const offerUrl = `offer/` + id;
 
+  console.log('eeeeeeee', onOfferCardHover);
+
 
   return (
     <Fragment>
@@ -17,7 +19,7 @@ const OfferCard = (props) => {
         className="cities__place-card place-card"
         onMouseOver={(evt) => {
           evt.preventDefault();
-          onOfferCardHover(id);
+          onOfferCardHover(1);
         }}
       >
         {offer.isPremium
