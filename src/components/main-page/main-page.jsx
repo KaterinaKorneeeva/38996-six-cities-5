@@ -4,14 +4,16 @@ import OfferList from "../offer-list/offer-list";
 import Map from "../map/map";
 import CityList from "../city-list/city-list";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+// import {ActionCreator} from "../../store/action";
+import {toggleCity} from "../../store/action";
+
 import {getCoordByCity} from "../../offers";
 import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 
 const OfferListWrapped = withActiveItem(OfferList);
 
 const MainPage = (props) => {
-  const {offerList, city, toggleCity} = props;
+  const {offerList, city, toggleCityAction} = props;
   const cityCoord = getCoordByCity(city);
   return (
     <Fragment>
@@ -45,7 +47,7 @@ const MainPage = (props) => {
           <h1 className="visually-hidden">Cities</h1>
           <CityList
             selectedCity = {city}
-            toggleCity = {toggleCity}
+            toggleCity = {toggleCityAction}
           />
           <div className="cities">
             {
@@ -104,20 +106,20 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  toggleCity: PropTypes.func.isRequired,
+  toggleCityAction: PropTypes.func.isRequired,
   offerList: PropTypes.array.isRequired,
   city: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  offerList: state.offerList,
-  offerId: state.offerId,
+const mapStateToProps = ({DATA}) => ({
+  city: DATA.city,
+  offerList: DATA.offerList,
+  offerId: DATA.offerId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleCity(city) {
-    dispatch(ActionCreator.toggleCity(city));
+  toggleCityAction(city) {
+    dispatch(toggleCity(city));
   },
 });
 
