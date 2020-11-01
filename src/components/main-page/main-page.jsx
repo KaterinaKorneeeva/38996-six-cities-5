@@ -87,10 +87,10 @@ const MainPage = (props) => {
                       />
                     </section>
                     <div className="cities__right-section">
-
                       <Map
                         cityCoord = {cityCoord}
                         offers={offerList}
+                        type = "cities_map"
                       />
                     </div>
                   </div>

@@ -15,7 +15,7 @@ class Map extends PureComponent {
   }
 
   render() {
-    return <section id="map" className="cities__map map"></section>;
+    return <section id="map" className = {this.props.type === `cities_map` ? `cities__map map` : `property__map map`}></section>;
   }
 
   componentDidUpdate() {
@@ -62,6 +62,7 @@ class Map extends PureComponent {
 Map.propTypes = {
   offers: PropTypes.array.isRequired,
   cityCoord: PropTypes.array.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Map;

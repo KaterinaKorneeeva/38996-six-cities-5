@@ -2,14 +2,14 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import OfferList from "../offer-list/offer-list";
 import ReviewsForm from "../reviews-form/reviews-form";
-import Moment from 'react-moment';
+import ReviewsList from "../reviews_list/reviews_list";
 import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
-
+import Map from "../map/map";
 const OfferListWrapped = withActiveItem(OfferList);
 
 const OfferPage = (props) => {
 
-  const {offers, offer} = props;
+  const {nearOffers, offer} = props;
 
   return (
     <Fragment>
@@ -39,7 +39,6 @@ const OfferPage = (props) => {
             </div>
           </div>
         </header>
-
         <main className="page__main page__main--property">
           <section className="property">
             <div className="property__gallery-container container">
@@ -120,46 +119,24 @@ const OfferPage = (props) => {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{offer.reviews.length}</span></h2>
-                  <ul className="reviews__list">
-                    {offer.reviews.map((review, i) => (
-                      <li key={i} className="reviews__item">
-                        <div className="reviews__user user">
-                          <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                            <img className="reviews__avatar user__avatar" src={review.author.photo} width="54" height="54" alt="Reviews avatar"/>
-                          </div>
-                          <span className="reviews__user-name">
-                            {review.author.name}
-                          </span>
-                        </div>
-                        <div className="reviews__info">
-                          <div className="reviews__rating rating">
-                            <div className="reviews__stars rating__stars">
-                              <span style={{width: `100%`}}></span>
-                              <span className="visually-hidden">Rating</span>
-                            </div>
-                          </div>
-                          <p className="reviews__text">
-                            {review.text}
-                          </p>
-                          <Moment className="reviews__time" date={review.date} format="MMMM/DD">
-                            {review.date}
-                          </Moment>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
+                  <ReviewsList
+                    reviews={offer.reviews}
+                  />
                   <ReviewsForm />
                 </section>
               </div>
             </div>
-            <section className="property__map map"></section>
+            <Map
+              cityCoord = {offer.coords}
+              offers={nearOffers}
+              type = "property_map"
+            />
           </section>
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <OfferListWrapped
-                offers={offers}
+                offers={nearOffers}
                 type = "near-places"
               />
             </section>
@@ -181,25 +158,18 @@ OfferPage.propTypes = {
     price: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
+    coords: PropTypes.array.isRequired,
     rooms: PropTypes.string.isRequired,
     guests: PropTypes.string.isRequired,
     features: PropTypes.array.isRequired,
+    reviews: PropTypes.array.isRequired,
     host: PropTypes.shape({
       name: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
       photo: PropTypes.string.isRequired,
     }).isRequired,
-
-    reviews: PropTypes.arrayOf(PropTypes.shape({
-      text: PropTypes.string.isRequired,
-      data: PropTypes.string.isRequired,
-      author: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
-      }).isRequired,
-    })).isRequired,
   }).isRequired,
-  offers: PropTypes.array.isRequired,
+  nearOffers: PropTypes.array.isRequired,
 };
 
 export default OfferPage;

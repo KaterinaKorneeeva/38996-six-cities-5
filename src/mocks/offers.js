@@ -45,22 +45,24 @@ export default [
     },
     reviews: [
       {
+        id: 8,
         text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
         author:
           {
             name: `Max`,
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
           },
-        data: `2020-10-10`,
+        date: `2020-10-10`,
       },
       {
+        id: 9,
         text: `We booked at very short notice and Simon was quick to respond which was very helpful a long with details on how to check in. Accommodation is in a very good spot, within walking distance to tourist attractions like London eye etc. Apartment looked bigger in photos but was very cosy and had what we needed, would have loved if there was a tv even for some back ground noise. Over all good experience :)`,
         author:
           {
             name: `Annie`,
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
           },
-        data: `2020-10-09`,
+        date: `2020-10-09`,
       }
     ]
   },
@@ -90,6 +92,7 @@ export default [
     },
     reviews: [
       {
+        id: 1,
         text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
         author:
           {
@@ -98,7 +101,7 @@ export default [
 
             rating: `4`,
           },
-        data: `2020-10-10`,
+        date: `2020-10-10`,
 
       }
     ]
@@ -141,6 +144,7 @@ export default [
     },
     reviews: [
       {
+        id: 2,
         text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
         author:
           {
@@ -148,7 +152,7 @@ export default [
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
             rating: `4`,
           },
-        data: `2020-10-10`,
+        date: `2020-10-10`,
 
       }
     ]
@@ -179,6 +183,7 @@ export default [
     },
     reviews: [
       {
+        id: 3,
         text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
         author:
           {
@@ -186,7 +191,7 @@ export default [
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
             rating: `4`,
           },
-        data: `April 2019`,
+        date: `April 2019`,
 
       }
     ]
@@ -217,6 +222,7 @@ export default [
     },
     reviews: [
       {
+        id: 4,
         text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
         author:
           {
@@ -224,7 +230,7 @@ export default [
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
             rating: `4`,
           },
-        data: `April 2019`,
+        date: `April 2019`,
 
       }
     ]
@@ -255,6 +261,7 @@ export default [
     },
     reviews: [
       {
+        id: 5,
         text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
         author:
           {
@@ -262,7 +269,7 @@ export default [
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
             rating: `4`,
           },
-        data: `April 2019`,
+        date: `April 2019`,
 
       }
     ]
