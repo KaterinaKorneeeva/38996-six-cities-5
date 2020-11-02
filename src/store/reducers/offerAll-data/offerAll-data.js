@@ -4,22 +4,20 @@ import {offersByCity} from "../../../offers";
 import offers from "../../../mocks/offers";
 
 const initialState = {
-  selectedCity: `Paris`,
+  city: `Paris`,
   // offerList: offersByCity(`Paris`, offers),
   offerList:[],
-  offerId: 1,
-  offerListByCity: [],
+  offerId: 1
 };
 
 
 
 const offerData = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.TOGGLE_CITY:
+    case ActionType.GET_OFFERS:
       return extend(state, {
-        selectedCity: action.selectedCity,
+        city: action.city,
         offerList: action.offerList,
-        offerListByCity: action.offerListByCity,
       });
   }
 

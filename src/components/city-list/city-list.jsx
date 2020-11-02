@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import {CITY_LIST} from "../../const";
 
 const CityList = (props) => {
-  const {selectedCity, toggleCity} = props;
+  const {selectedCity, toggleCity, offerList} = props;
 
+  console.log('selectedCitydddddd', selectedCity);
 
+  console.log('offerListsssss', offerList);
   return (
     <div className="tabs">
       <section className="locations container">
@@ -15,7 +17,7 @@ const CityList = (props) => {
               className="locations__item"
               onClick={(evt) => {
                 evt.preventDefault();
-                toggleCity(city);
+                toggleCity(offerList, city);
               }}
             >
               <a className = {selectedCity === city ? `locations__item-link tabs__item tabs__item--active` : `locations__item-link tabs__item`} href="#">

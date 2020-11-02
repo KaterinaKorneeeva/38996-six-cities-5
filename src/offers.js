@@ -1,5 +1,9 @@
-export const offersByCity = (city, offers = []) => {
-  return offers.filter((item) => item.city === city);
+export const offersByCity = (offers = [], city = "Paris") => {
+
+console.log('offers',offers)
+  return offers.filter((item) => item.city.name === city
+
+  );
 };
 
 export const getCoordByCity = (city) => {

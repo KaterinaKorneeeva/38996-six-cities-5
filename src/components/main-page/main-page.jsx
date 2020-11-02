@@ -13,8 +13,10 @@ import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 const OfferListWrapped = withActiveItem(OfferList);
 
 const MainPage = (props) => {
-  const {offerList, city, toggleCityAction} = props;
-  const cityCoord = getCoordByCity(city);
+  const {offerListByCity, offerList, selectedCity, toggleCityAction} = props;
+  console.log('selectedCitymainpage',selectedCity);
+  const cityCoord = getCoordByCity(selectedCity);
+  console.log('cityCoord',cityCoord);
   return (
     <Fragment>
       <div style={{display: `none`}}>
@@ -43,11 +45,12 @@ const MainPage = (props) => {
             </div>
           </div>
         </header>
-        <main className= {offerList.length === 0 ? `page__main page__main--index page__main--index-empty` : `page__main page__main--index`}>
+        <main className= {props.offerListByCity.length === 0 ? `page__main page__main--index page__main--index-empty` : `page__main page__main--index`}>
           <h1 className="visually-hidden">Cities</h1>
           <CityList
-            selectedCity = {city}
+            selectedCity = {selectedCity}
             toggleCity = {toggleCityAction}
+            offerList = {offerList}
           />
           <div className="cities">
             {
@@ -57,7 +60,7 @@ const MainPage = (props) => {
                     <section className="cities__no-places">
                       <div className="cities__status-wrapper tabs__content">
                         <b className="cities__status">No places to stay available</b>
-                        <p className="cities__status-description">We could not find any property available at the moment in {city}</p>
+                        <p className="cities__status-description">We could not find any property available at the moment in {selectedCity}</p>
                       </div>
                     </section>
                     <div className="cities__right-section"></div>
@@ -67,7 +70,7 @@ const MainPage = (props) => {
                   <div className="cities__places-container container">
                     <section className="cities__places places">
                       <h2 className="visually-hidden">Places</h2>
-                      <b className="places__found"> {offerList.length} places to stay in {city}</b>
+                      <b className="places__found"> {props.offerListByCity.length} places to stay in {selectedCity}</b>
                       <form className="places__sorting" action="#" method="get">
                         <span className="places__sorting-caption">Sort by</span>
                         <span className="places__sorting-type" tabIndex="0">
@@ -84,16 +87,16 @@ const MainPage = (props) => {
                         </ul>
                       </form>
                       <OfferListWrapped
-                        offers={offerList}
+                        offers={offerListByCity}
                         type = "cities__places"
                       />
                     </section>
                     <div className="cities__right-section">
 
-                      <Map
+                      {/* <Map
                         cityCoord = {cityCoord}
-                        offers={offerList}
-                      />
+                        offers={offerListByCity}
+                      /> */}
                     </div>
                   </div>
                 )
@@ -108,18 +111,19 @@ const MainPage = (props) => {
 MainPage.propTypes = {
   toggleCityAction: PropTypes.func.isRequired,
   offerList: PropTypes.array.isRequired,
-  city: PropTypes.string.isRequired,
+  // selectedCity: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({DATA}) => ({
-  city: DATA.city,
+  selectedCity: DATA.selectedCity,
+  offerListByCity: DATA.offerListByCity,
   offerList: DATA.offerList,
   offerId: DATA.offerId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleCityAction(city) {
-    dispatch(toggleCity(city));
+  toggleCityAction(selectedCity) {
+    dispatch(toggleCity(selectedCity));
   },
 });
 

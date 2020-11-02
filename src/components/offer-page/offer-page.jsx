@@ -11,6 +11,8 @@ const OfferPage = (props) => {
 
   const {offers, offer} = props;
 
+  console.log('offer',offer.pictures);
+
   return (
     <Fragment>
       <div style={{display: `none`}}>
@@ -44,6 +46,7 @@ const OfferPage = (props) => {
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
+                {/* {offer.pictures.map((picture, i) => ( */}
                 {offer.pictures.map((picture, i) => (
                   <div key={i} className="property__image-wrapper">
                     <img className="property__image" src={picture} alt={offer.title}/>
