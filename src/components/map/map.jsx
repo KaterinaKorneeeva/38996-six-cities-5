@@ -41,7 +41,7 @@ class Map extends PureComponent {
       iconSize: [30, 30]
     });
     const iconActive = leaflet.icon({
-      iconUrl: `img/pin.svg`,
+      iconUrl: `img/pin-active.svg`,
       iconSize: [30, 30]
     });
     const zoomMap = 12;

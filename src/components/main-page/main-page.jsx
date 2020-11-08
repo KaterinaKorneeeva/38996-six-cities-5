@@ -101,15 +101,15 @@ MainPage.propTypes = {
 const mapStateToProps = (state) => ({
   city: state.city,
   offerList: state.offerList,
-  offerId: state.offerId,
+  offerIdActive: state.offerIdActive,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCity(city) {
     dispatch(ActionCreator.toggleCity(city));
   },
-  updateOfferIdActive(offerId) {
-    dispatch(ActionCreator.updateOfferIdActive(offerId));
+  updateOfferIdActive(offerIdActive) {
+    dispatch(ActionCreator.updateOfferIdActive(offerIdActive));
   },
 });
 

@@ -30,12 +30,10 @@ const withActiveItem = (Component) => {
       );
     }
   }
-
+  withActive.propTypes = {
+    updateOfferIdActive: PropTypes.func.isRequired,
+  };
   return withActive;
-};
-
-withActiveItem.PropTypes = {
-  updateOfferIdActive: PropTypes.func.isRequired,
 };
 
 export default (withActiveItem);
