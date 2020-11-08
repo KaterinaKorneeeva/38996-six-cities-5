@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-
+import PropTypes from "prop-types";
 const withActiveItem = (Component) => {
   class withActive extends PureComponent {
     constructor(props) {
@@ -13,6 +13,7 @@ const withActiveItem = (Component) => {
     }
 
     handleOfferCardHover(offerId) {
+      this.props.updateOfferIdActive(offerId);
       this.setState({
         offerActive: offerId
       });
@@ -33,10 +34,8 @@ const withActiveItem = (Component) => {
   return withActive;
 };
 
-withActiveItem.propTypes = {
-
+withActiveItem.PropTypes = {
+  updateOfferIdActive: PropTypes.func.isRequired,
 };
 
-
-export default withActiveItem;
-
+export default (withActiveItem);

@@ -211,7 +211,7 @@ export default [
     price: 120,
     type: `hotel`,
     city: `Paris`,
-    coords: [48.88, 2.35],
+    coords: [48.88, 2.39],
     rooms: `4`,
     guests: `4`,
     features: [`wifi`, `heating`, `kitchen`, `cableTV`],

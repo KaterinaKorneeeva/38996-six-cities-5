@@ -9,6 +9,7 @@ export const ActionType = {
   SORT_HIGH_TO_LOW: `SORT_HIGH_TO_LOW`,
   SORT_POPULAR: `SORT_POPULAR`,
   SORT_TOP_RATED: `SORT_TOP_RATED`,
+  UPDATE_OFFER_ID_ACTIVE: `UPDATE_OFFER_ID_ACTIVE`,
 };
 
 export const ActionCreator = {
@@ -48,4 +49,10 @@ export const ActionCreator = {
       type: ActionType.SORT_TOP_RATED,
     };
   },
+  updateOfferIdActive: (offerIdActive) => {
+    return {
+      type: ActionType.UPDATE_OFFER_ID_ACTIVE,
+      offerIdActive,
+    };
+  }
 };

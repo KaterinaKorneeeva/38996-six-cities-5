@@ -12,7 +12,7 @@ import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 const OfferListWrapped = withActiveItem(OfferList);
 
 const MainPage = (props) => {
-  const {offerList, city, toggleCity} = props;
+  const {offerList, city, toggleCity, updateOfferIdActive} = props;
   const cityCoord = getCoordByCity(city);
   return (
     <Fragment>
@@ -71,6 +71,7 @@ const MainPage = (props) => {
                       <OfferListWrapped
                         offers={offerList}
                         type = "cities__places"
+                        updateOfferIdActive= {updateOfferIdActive}
                       />
                     </section>
                     <div className="cities__right-section">
@@ -94,6 +95,7 @@ MainPage.propTypes = {
   toggleCity: PropTypes.func.isRequired,
   offerList: PropTypes.array.isRequired,
   city: PropTypes.string.isRequired,
+  updateOfferIdActive: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -105,6 +107,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   toggleCity(city) {
     dispatch(ActionCreator.toggleCity(city));
+  },
+  updateOfferIdActive(offerId) {
+    dispatch(ActionCreator.updateOfferIdActive(offerId));
   },
 });
 

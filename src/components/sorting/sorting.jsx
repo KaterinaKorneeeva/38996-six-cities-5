@@ -10,9 +10,7 @@ class Sorting extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      sortingIsOpen: true,
-      offerList: [],
-
+      sortingIsOpen: false,
     };
     this._handleSortingClick = this._handleSortingClick.bind(this);
     this._onSortingItemClick = this._onSortingItemClick.bind(this);

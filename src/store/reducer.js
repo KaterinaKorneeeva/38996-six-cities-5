@@ -6,8 +6,8 @@ import {offersByCity} from "../offers";
 const initialState = {
   city: `Paris`,
   offerList: offersByCity(`Paris`, offers),
-  offerId: 1,
   sortingType: `POPULAR`,
+  offerIdActive: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -45,6 +45,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.SORT_TOP_RATED:
       return extend(state, {
         offerList: state.offerList.slice(0).sort((firstOffer, secondOffer) => firstOffer.rating < secondOffer.rating ? 1 : -1),
+      });
+    case ActionType.UPDATE_OFFER_ID_ACTIVE:
+      return extend(state, {
+        offerIdActive: action.offerIdActive,
       });
   }
 
