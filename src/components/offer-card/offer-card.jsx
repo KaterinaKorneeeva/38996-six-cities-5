@@ -65,11 +65,11 @@ OfferCard.propTypes = {
   onOfferCardHover: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   offer: PropTypes.shape({
-    rating: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
     pictures: PropTypes.array.isRequired,
     isPremium: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,
 };
