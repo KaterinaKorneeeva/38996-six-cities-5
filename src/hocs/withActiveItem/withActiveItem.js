@@ -13,7 +13,7 @@ const withActiveItem = (Component) => {
     }
 
     handleOfferCardHover(offerId) {
-      this.props.updateOfferIdActive(offerId);
+      this.props.updateActiveOfferId(offerId);
       this.setState({
         offerActive: offerId
       });
@@ -31,7 +31,7 @@ const withActiveItem = (Component) => {
     }
   }
   withActive.propTypes = {
-    updateOfferIdActive: PropTypes.func.isRequired,
+    updateActiveOfferId: PropTypes.func.isRequired,
   };
   return withActive;
 };

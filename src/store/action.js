@@ -49,7 +49,7 @@ export const ActionCreator = {
       type: ActionType.SORT_TOP_RATED,
     };
   },
-  updateOfferIdActive: (offerIdActive) => {
+  updateActiveOfferId: (offerIdActive) => {
     return {
       type: ActionType.UPDATE_OFFER_ID_ACTIVE,
       offerIdActive,
