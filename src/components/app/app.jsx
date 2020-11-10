@@ -5,9 +5,12 @@ import MainPage from "../main-page/main-page";
 import AuthPage from "../auth-page/auth-page";
 import FavoritesPage from "../favorites-page/favorites-page";
 import OfferPage from "../offer-page/offer-page";
+import {connect} from "react-redux";
 
 const App = (props) => {
   const {offers} = props;
+
+  console.log('props1111111111',props);
 
   return (
     <BrowserRouter>
@@ -25,7 +28,7 @@ const App = (props) => {
         </Route>
         <Route exact path="/offer/:id">
           <OfferPage
-            offer={offers[0]}
+            offer={offers[6]}
             offers={offers.slice(0, 3)}
           />
         </Route>
@@ -38,4 +41,12 @@ App.propTypes = {
   offers: PropTypes.array.isRequired,
 };
 
-export default App;
+const mapStateToProps = ({DATA}) => ({
+  // offers: DATA.selectedCity,
+  // offerListByCity: DATA.offerListByCity,
+  offers: DATA.offerList,
+  offerId: DATA.offerId,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

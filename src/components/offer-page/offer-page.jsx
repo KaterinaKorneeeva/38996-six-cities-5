@@ -11,7 +11,7 @@ const OfferPage = (props) => {
 
   const {offers, offer} = props;
 
-  console.log('offer',offer.pictures);
+  console.log('offer',offer);
 
   return (
     <Fragment>

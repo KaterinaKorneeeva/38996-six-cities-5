@@ -14,10 +14,12 @@ const initialState = {
 
 
 const offerData = (state = initialState, action) => {
+  console.log(' action.selectedCity,', state.selectedCity);
   switch (action.type) {
     case ActionType.TOGGLE_CITY:
       return extend(state, {
         selectedCity: action.selectedCity,
+        // selectedCity: action.selectedCity,
         offerList: action.offerList,
         offerListByCity: action.offerListByCity,
       });

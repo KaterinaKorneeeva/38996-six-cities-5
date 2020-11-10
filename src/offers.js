@@ -1,6 +1,6 @@
 export const offersByCity = (offers = [], city = "Paris") => {
 
-console.log('offers',offers)
+
   return offers.filter((item) => item.city.name === city
 
   );

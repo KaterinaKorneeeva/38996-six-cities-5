@@ -11,12 +11,10 @@ import {getCoordByCity} from "../../offers";
 import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 
 const OfferListWrapped = withActiveItem(OfferList);
-
 const MainPage = (props) => {
   const {offerListByCity, offerList, selectedCity, toggleCityAction} = props;
-  console.log('selectedCitymainpage',selectedCity);
+  console.log('offerListByCitymaaaaaain',offerList);
   const cityCoord = getCoordByCity(selectedCity);
-  console.log('cityCoord',cityCoord);
   return (
     <Fragment>
       <div style={{display: `none`}}>
@@ -87,16 +85,15 @@ const MainPage = (props) => {
                         </ul>
                       </form>
                       <OfferListWrapped
-                        offers={offerListByCity}
+                        offers={offerList}
                         type = "cities__places"
                       />
                     </section>
                     <div className="cities__right-section">
-
-                      {/* <Map
+                      <Map
                         cityCoord = {cityCoord}
-                        offers={offerListByCity}
-                      /> */}
+                        offers={offerList}
+                      />
                     </div>
                   </div>
                 )

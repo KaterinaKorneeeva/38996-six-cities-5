@@ -13,7 +13,7 @@ import {requireAuthorization} from "./store/action";
 import {fetchHotelList, checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
 
-console.log('fetchHotelList',fetchHotelList);
+
 
 const api = createAPI(
   () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
@@ -31,10 +31,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        offersCount={offers.length}
-        offers={offers}
-      />,
+      <App/>,
     </Provider>,
     document.querySelector(`#root`)
 );

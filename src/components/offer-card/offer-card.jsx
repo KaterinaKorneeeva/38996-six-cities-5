@@ -7,7 +7,7 @@ const OfferCard = (props) => {
   const {offer, id, onOfferCardHover, type} = props;
   const offerUrl = `offer/` + id;
 
-console.log('offer', offer);
+
   return (
     <Fragment>
       <article
