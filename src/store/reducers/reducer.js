@@ -2,14 +2,13 @@ import {extend} from "../../utils";
 import {ActionType} from "../action.js";
 import offers from "../../mocks/offers";
 import {offersByCity} from "../../offers";
-import {combineReducers} from 'redux';
 
 const initialState = {
   city: `Paris`,
   offerList: offersByCity(`Paris`, offers),
-  offerId: 1
+  sortingType: `POPULAR`,
+  offerIdActive: 0,
 };
-
 
 const reducer = (state = initialState, action) => {
 
@@ -20,14 +19,36 @@ const reducer = (state = initialState, action) => {
         offerList: action.offerList,
       });
 
-    case ActionType.GET_OFFERS:
+    case ActionType.LOAD_OFFERS:
       return extend(state, {
-        offerList: state.offerList,
+        offerList: action.offerList,
       });
 
-    case ActionType.OFFER_CARD_HOVER:
+    case ActionType.UPDATE_SORTING_TYPE:
       return extend(state, {
-        offerId: state.offerId,
+        sortingType: action.sortingType,
+      });
+
+    case ActionType.SORT_LOW_TO_HIGH:
+      return extend(state, {
+        offerList: state.offerList.slice(0).sort((firstOffer, secondOffer) => firstOffer.price > secondOffer.price ? 1 : -1),
+      });
+    case ActionType.SORT_POPULAR:
+      return extend(state, {
+        offerList: state.offerList,
+      }
+      );
+    case ActionType.SORT_HIGH_TO_LOW:
+      return extend(state, {
+        offerList: state.offerList.slice(0).sort((firstOffer, secondOffer) => firstOffer.price < secondOffer.price ? 1 : -1),
+      });
+    case ActionType.SORT_TOP_RATED:
+      return extend(state, {
+        offerList: state.offerList.slice(0).sort((firstOffer, secondOffer) => firstOffer.rating < secondOffer.rating ? 1 : -1),
+      });
+    case ActionType.UPDATE_OFFER_ID_ACTIVE:
+      return extend(state, {
+        offerIdActive: action.offerIdActive,
       });
   }
 

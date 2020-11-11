@@ -8,9 +8,12 @@ import OfferPage from "../offer-page/offer-page";
 import {connect} from "react-redux";
 
 const App = (props) => {
-  const {offers} = props;
+  const {offers, offer} = props;
 
-  console.log('props1111111111',props);
+  // console.log('props1111111111',props);
+  // componentDidMount() {
+
+  // };
 
   return (
     <BrowserRouter>
@@ -28,8 +31,8 @@ const App = (props) => {
         </Route>
         <Route exact path="/offer/:id">
           <OfferPage
-            offer={offers[6]}
-            offers={offers.slice(0, 3)}
+            offer = {offer}
+            nearOffers={offers.slice(0, 3)}
           />
         </Route>
       </Switch>
@@ -43,7 +46,8 @@ App.propTypes = {
 
 const mapStateToProps = ({DATA}) => ({
   // offers: DATA.selectedCity,
-  // offerListByCity: DATA.offerListByCity,
+  // offerListByCity: DATA.offerListByCity
+  offer: DATA.offer,
   offers: DATA.offerList,
   offerId: DATA.offerId,
 });

@@ -1,9 +1,12 @@
-export const offersByCity = (offers = [], city = "Paris") => {
+export const offersByCity = (offers = [],  city = "Paris") => {
 
-
+  console.log('city',offers);
   return offers.filter((item) => item.city.name === city
-
   );
+};
+export const offerById = (offers = [], id = 6) => {
+    console.log('ididid',id);
+    return offers.filter((item) => item.id === id)[0];
 };
 
 export const getCoordByCity = (city) => {

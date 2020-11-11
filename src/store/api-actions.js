@@ -5,6 +5,7 @@ export const fetchHotelList = () => (dispatch, _getState, api) => (
 
   api.get(`/hotels`)
     .then(({data}) => dispatch(toggleCity(data)))
+    // .then(({data}) => dispatch(loadOffers(data)))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (

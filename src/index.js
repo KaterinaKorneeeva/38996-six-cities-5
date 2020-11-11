@@ -10,9 +10,10 @@ import offers from "./mocks/offers";
 import rootReducer from "./store/reducers/root-reducer";
 
 import {requireAuthorization} from "./store/action";
+import {loadOffers} from "./store/action";
 import {fetchHotelList, checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
-
+import {composeWithDevTools} from "redux-devtools-extension";
 
 
 const api = createAPI(
@@ -20,10 +21,10 @@ const api = createAPI(
 );
 
 const store = createStore(
-    // reducer,
     rootReducer,
-    // window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
-    applyMiddleware(thunk.withExtraArgument(api)),
+    composeWithDevTools(
+      applyMiddleware(thunk.withExtraArgument(api))
+    )
   );
 
   store.dispatch(fetchHotelList()),

@@ -1,19 +1,23 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
+import Sorting from "../sorting/sorting";
 import OfferList from "../offer-list/offer-list";
 import Map from "../map/map";
 import CityList from "../city-list/city-list";
 import {connect} from "react-redux";
 // import {ActionCreator} from "../../store/action";
-import {toggleCity} from "../../store/action";
+import {toggleCity, updateActiveOfferId} from "../../store/action";
+import {loadOffers} from "../../store/action";
+
+
 
 import {getCoordByCity} from "../../offers";
 import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 
 const OfferListWrapped = withActiveItem(OfferList);
 const MainPage = (props) => {
-  const {offerListByCity, offerList, selectedCity, toggleCityAction} = props;
-  console.log('offerListByCitymaaaaaain',offerList);
+  const {offerListByCity, offerList, selectedCity, toggleCityAction, loadOffersAction, updateActiveOfferIdAction} = props;
+
   const cityCoord = getCoordByCity(selectedCity);
   return (
     <Fragment>
@@ -68,31 +72,19 @@ const MainPage = (props) => {
                   <div className="cities__places-container container">
                     <section className="cities__places places">
                       <h2 className="visually-hidden">Places</h2>
-                      <b className="places__found"> {props.offerListByCity.length} places to stay in {selectedCity}</b>
-                      <form className="places__sorting" action="#" method="get">
-                        <span className="places__sorting-caption">Sort by</span>
-                        <span className="places__sorting-type" tabIndex="0">
-                          Popular
-                          <svg className="places__sorting-arrow" width="7" height="4">
-                            <use xlinkHref="#icon-arrow-select"></use>
-                          </svg>
-                        </span>
-                        <ul className="places__options places__options--custom places__options--opened">
-                          <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                          <li className="places__option" tabIndex="0">Price: low to high</li>
-                          <li className="places__option" tabIndex="0">Price: high to low</li>
-                          <li className="places__option" tabIndex="0">Top rated first</li>
-                        </ul>
-                      </form>
+                      <b className="places__found"> {offerList.length} places to stay in {selectedCity}</b>
+                      <Sorting />
                       <OfferListWrapped
                         offers={offerList}
                         type = "cities__places"
+                        updateActiveOfferId= {updateActiveOfferId}
                       />
                     </section>
                     <div className="cities__right-section">
                       <Map
                         cityCoord = {cityCoord}
                         offers={offerList}
+                        type = "cities_map"
                       />
                     </div>
                   </div>
@@ -107,6 +99,7 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   toggleCityAction: PropTypes.func.isRequired,
+  updateActiveOfferIdAction: PropTypes.func.isRequired,
   offerList: PropTypes.array.isRequired,
   // selectedCity: PropTypes.string.isRequired,
 };
@@ -116,11 +109,30 @@ const mapStateToProps = ({DATA}) => ({
   offerListByCity: DATA.offerListByCity,
   offerList: DATA.offerList,
   offerId: DATA.offerId,
+
+  city: PropTypes.string.isRequired,
+  updateActiveOfferId: PropTypes.func.isRequired,
+  offerIdActive: DATA.offerIdActive,
 });
+
+// const mapStateToProps = (state) => ({
+//   city: state.city,
+//   offerList: state.offerList,
+//   offerIdActive: state.offerIdActive,
+// >>>>>>> module5-task2
+// });
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCityAction(selectedCity) {
     dispatch(toggleCity(selectedCity));
+  },
+
+  loadOffers() {
+    dispatch(loadOffers());
+  },
+
+  updateActiveOfferIdAction(offerIdActive) {
+    dispatch(ActionCreator.updateActiveOfferId(offerIdActive));
   },
 });
 

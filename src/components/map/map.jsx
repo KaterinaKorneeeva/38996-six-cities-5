@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import leaflet from "leaflet";
+import {connect} from 'react-redux';
 class Map extends PureComponent {
 
   constructor(props) {
@@ -15,7 +16,7 @@ class Map extends PureComponent {
   }
 
   render() {
-    return <section id="map" className="cities__map map"></section>;
+    return <section id="map" className = {this.props.type === `cities_map` ? `cities__map map` : `property__map map`}></section>;
   }
 
   componentDidUpdate() {
@@ -39,10 +40,18 @@ class Map extends PureComponent {
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
+    const iconActive = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
     const zoomMap = 12;
 
-    const {offers, cityCoord} = this.props;
-    const offerCords = offers.map((offer) => offer.location);
+    const {offers, cityCoord, offerIdActive} = this.props;
+    const offerCords = offers.filter((offer) => offer.id !== offerIdActive).map((offer) => offer.location);
+    const offerCordsActive = offers.filter((offer) => offer.id === offerIdActive).map((offer) => offer.location);
+
+
+    console.log('cityCoordmmmaaaa',cityCoord);
     this._map.setView(cityCoord, zoomMap);
 
     offerCords.forEach((coords) => {
@@ -51,6 +60,11 @@ class Map extends PureComponent {
         .addTo(this._map);
     });
 
+    offerCordsActive.forEach((coords) => {
+      leaflet
+        .marker(coords, {iconActive})
+        .addTo(this._map);
+    });
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
@@ -62,6 +76,15 @@ class Map extends PureComponent {
 Map.propTypes = {
   offers: PropTypes.array.isRequired,
   cityCoord: PropTypes.array.isRequired,
+  type: PropTypes.string.isRequired,
+  offerIdActive: PropTypes.number.isRequired
 };
 
-export default Map;
+
+const mapStateToProps = (state) => ({
+  offerIdActive: state.offerIdActive,
+});
+
+
+export {Map};
+export default connect(mapStateToProps)(Map);
