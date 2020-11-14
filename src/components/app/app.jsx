@@ -1,17 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 import MainPage from "../main-page/main-page";
 import AuthPage from "../auth-page/auth-page";
 import FavoritesPage from "../favorites-page/favorites-page";
 import OfferPage from "../offer-page/offer-page";
-import {connect} from "react-redux";
+import PrivateRoute from "../private-route/private-route";
+import browserHistory from "../../browser-history";
 
 const App = (props) => {
   const {offers, offer, offerList} = props;
 
+
+  const onLinkEmailClick = (evt, history) => {
+    evt.preventDefault();
+    history.push(authorizationStatus === AuthorizationStatus.NO_AUTH
+      ? LOGIN
+      : FAVORITE);
+  };
+
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
           <MainPage />
@@ -19,11 +28,22 @@ const App = (props) => {
         <Route exact path="/login">
           <AuthPage />
         </Route>
-        <Route exact path="/favorites">
+        <PrivateRoute
+          exact
+          path={`/favorites`}
+          render={({history}) => {
+            return (
+              <FavoritesPage
+                offers={offerList}
+              />
+            );
+          }}
+        />
+        {/* <Route exact path="/favorites">
           <FavoritesPage
             offers={offerList}
           />
-        </Route>
+        </Route> */}
 
         <Route path={"/offer/:id"} component={OfferPage} />
         <Route exact path="/offer/:id">

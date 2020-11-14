@@ -5,6 +5,7 @@ import OfferList from "../offer-list/offer-list";
 import Map from "../map/map";
 import MainPageEmpty from "../main-page-empty/main-page-empty";
 import CityList from "../city-list/city-list";
+import User from "../user/user";
 import {connect} from "react-redux";
 // import {ActionCreator} from "../../store/action";
 import {toggleCity, updateActiveOfferId} from "../../store/action";
@@ -36,13 +37,7 @@ const MainPage = (props) => {
               </div>
               <nav className="header__nav">
                 <ul className="header__nav-list">
-                  <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
-                      <div className="header__avatar-wrapper user__avatar-wrapper">
-                      </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    </a>
-                  </li>
+                  <User/>
                 </ul>
               </nav>
             </div>
