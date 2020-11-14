@@ -16,8 +16,10 @@ import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 
 const OfferListWrapped = withActiveItem(OfferList);
 const MainPage = (props) => {
-  const {offerListByCity, offerList, selectedCity, toggleCityAction, loadOffersAction, updateActiveOfferIdAction} = props;
+  const {offerListByCity, offerList, selectedCity, toggleCityAction, loadOffersAction, updateActiveOfferIdAction, offers} = props;
 
+
+  console.log('offersoffersoffersoffersoffers',offers);
   const cityCoord = getCoordByCity(selectedCity);
   return (
     <Fragment>
@@ -116,6 +118,7 @@ const mapStateToProps = ({DATA}) => ({
   selectedCity: DATA.selectedCity,
   offerListByCity: DATA.offerListByCity,
   offerList: DATA.offerListByCity,
+  offers: DATA.offerList,
   offerId: DATA.offerId,
 
   city: PropTypes.string.isRequired,

@@ -5,7 +5,6 @@ import offers from "../../../mocks/offers";
 
 const initialState = {
   selectedCity: `Paris`,
-  // offerList: offersByCity(`Paris`, offers),
   offerList:[],
   offer:[],
   offerId: 6,
@@ -20,17 +19,16 @@ const offerData = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.TOGGLE_CITY:
       return extend(state, {
-        selectedCity: action.selectedCity,
-        offerList: offersByCity(action.offerList, `Paris`),
-        offer:  offerById(action.offerList, 6),
-        offerListByCity: action.offerListByCity,
-      });
+        selectedCity: action.payload,
+        offerListByCity:  offersByCity(state.offerList, action.payload),
+      }
+    );
 
-      case ActionType.LOAD_OFFERS:
+    case ActionType.LOAD_OFFERS:
       return extend(state, {
-        offerList: action.offerList,
+        offerList: action.payload,
         offerListByCity: offersByCity(action.payload, `Paris`),
-      });
+    });
 
 
 

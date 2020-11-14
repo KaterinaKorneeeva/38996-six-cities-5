@@ -5,7 +5,7 @@ import {CITY_LIST} from "../../const";
 const CityList = (props) => {
   const {selectedCity, toggleCity, offerList} = props;
 
-  // console.log('offerListsssss', offerList);
+  console.log('offerListsssss', offerList);
   return (
     <div className="tabs">
       <section className="locations container">

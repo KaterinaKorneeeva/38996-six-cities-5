@@ -14,14 +14,9 @@ export const ActionType = {
   UPDATE_OFFER_ID_ACTIVE: `UPDATE_OFFER_ID_ACTIVE`,
 };
 
-export const toggleCity = (offers, selectedCity) => ({
+export const toggleCity = (selectedCity) => ({
   type: ActionType.TOGGLE_CITY,
-  // city: selectedCity,
-  // city: "Dusseldorf",
-  selectedCity: selectedCity,
-  offer: offers[1],
-  offerList: offers,
-  offerListByCity: offersByCity(offers)
+  payload: selectedCity,
 });
 
 
@@ -34,15 +29,6 @@ export const requireAuthorization = (status) => ({
   type: ActionType.REQUIRED_AUTHORIZATION,
   payload: status,
 });
-
-
-// toggleCity: (selectedCity) => {
-//   return {
-//     type: ActionType.TOGGLE_CITY,
-//     city: selectedCity,
-//     offerList: offersByCity(selectedCity, offers)
-//   };
-// },
 
 export const updateSortingType = (sortingType) => ({
     type: ActionType.UPDATE_SORTING_TYPE,
