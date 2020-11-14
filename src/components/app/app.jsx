@@ -10,8 +10,6 @@ import {connect} from "react-redux";
 const App = (props) => {
   const {offers, offer, offerList} = props;
 
-  console.log('propspropspropspropspropsprops',props);
-
   return (
     <BrowserRouter>
       <Switch>
