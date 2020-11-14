@@ -31,7 +31,6 @@ const App = (props) => {
           render = {() => {
             const offerId = 42;
             const offer = offerList.find((offer) => offer.id == offer.id === offerId )
-            console.log('offer',offerList);
             return  (
               <OfferPage
               offer = {offer}
