@@ -29,12 +29,12 @@ const App = (props) => {
             offers={offers}
           />
         </Route>
-        <Route exact path="/offer/:id">
+        {/* <Route exact path="/offer/:id">
           <OfferPage
             offer = {offer}
             nearOffers={offers.slice(0, 3)}
           />
-        </Route>
+        </Route> */}
       </Switch>
     </BrowserRouter>
   );

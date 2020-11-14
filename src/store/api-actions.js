@@ -1,10 +1,10 @@
-import {toggleCity, requireAuthorization} from "./action";
+import {loadOffers, requireAuthorization} from "./action";
 import {AuthorizationStatus} from "../const";
 
 export const fetchHotelList = () => (dispatch, _getState, api) => (
 
   api.get(`/hotels`)
-    .then(({data}) => dispatch(toggleCity(data)))
+    .then(({data}) => dispatch(loadOffers(data)))
     // .then(({data}) => dispatch(loadOffers(data)))
 );
 

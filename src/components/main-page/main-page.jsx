@@ -105,14 +105,23 @@ MainPage.propTypes = {
 };
 
 const mapStateToProps = ({DATA}) => ({
+  // selectedCity: DATA.selectedCity,
+  // offerListByCity: DATA.offerListByCity,
+  // offerList: DATA.offerList,
+  // offerId: DATA.offerId,
+
+  // city: PropTypes.string.isRequired,
+  // updateActiveOfferId: PropTypes.func.isRequired,
+  // offerIdActive: DATA.offerIdActive,
   selectedCity: DATA.selectedCity,
   offerListByCity: DATA.offerListByCity,
-  offerList: DATA.offerList,
+  offerList: DATA.offerListByCity,
   offerId: DATA.offerId,
 
   city: PropTypes.string.isRequired,
   updateActiveOfferId: PropTypes.func.isRequired,
   offerIdActive: DATA.offerIdActive,
+
 });
 
 // const mapStateToProps = (state) => ({

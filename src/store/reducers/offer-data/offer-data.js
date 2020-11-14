@@ -29,6 +29,7 @@ const offerData = (state = initialState, action) => {
       case ActionType.LOAD_OFFERS:
       return extend(state, {
         offerList: action.offerList,
+        offerListByCity: offersByCity(action.payload, `Paris`),
       });
 
 
