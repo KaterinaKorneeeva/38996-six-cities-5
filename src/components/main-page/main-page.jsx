@@ -18,8 +18,6 @@ const OfferListWrapped = withActiveItem(OfferList);
 const MainPage = (props) => {
   const {offerListByCity, offerList, selectedCity, toggleCityAction, loadOffersAction, updateActiveOfferIdAction, offers} = props;
 
-
-  console.log('offersoffersoffersoffersoffers',offers);
   const cityCoord = getCoordByCity(selectedCity);
   return (
     <Fragment>
@@ -49,12 +47,11 @@ const MainPage = (props) => {
             </div>
           </div>
         </header>
-        <main className= {props.offerListByCity.length === 0 ? `page__main page__main--index page__main--index-empty` : `page__main page__main--index`}>
+        <main className= {props.offerList.length === 0 ? `page__main page__main--index page__main--index-empty` : `page__main page__main--index`}>
           <h1 className="visually-hidden">Cities</h1>
           <CityList
             selectedCity = {selectedCity}
             toggleCity = {toggleCityAction}
-            offerList = {offerList}
           />
           <div className="cities">
             {
@@ -103,36 +100,18 @@ MainPage.propTypes = {
   toggleCityAction: PropTypes.func.isRequired,
   updateActiveOfferIdAction: PropTypes.func.isRequired,
   offerList: PropTypes.array.isRequired,
-  // selectedCity: PropTypes.string.isRequired,
+  selectedCity: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({DATA}) => ({
-  // selectedCity: DATA.selectedCity,
-  // offerListByCity: DATA.offerListByCity,
-  // offerList: DATA.offerList,
-  // offerId: DATA.offerId,
-
-  // city: PropTypes.string.isRequired,
-  // updateActiveOfferId: PropTypes.func.isRequired,
-  // offerIdActive: DATA.offerIdActive,
   selectedCity: DATA.selectedCity,
-  offerListByCity: DATA.offerListByCity,
   offerList: DATA.offerListByCity,
-  offers: DATA.offerList,
   offerId: DATA.offerId,
-
   city: PropTypes.string.isRequired,
   updateActiveOfferId: PropTypes.func.isRequired,
   offerIdActive: DATA.offerIdActive,
 
 });
-
-// const mapStateToProps = (state) => ({
-//   city: state.city,
-//   offerList: state.offerList,
-//   offerIdActive: state.offerIdActive,
-// >>>>>>> module5-task2
-// });
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCityAction(selectedCity) {

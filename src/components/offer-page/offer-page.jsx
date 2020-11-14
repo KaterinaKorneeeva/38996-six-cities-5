@@ -11,8 +11,9 @@ const OfferListWrapped = withActiveItem(OfferList);
 const OfferPage = (props) => {
 
   const {nearOffers, offer} = props;
+  console.log('offerofferofferofferoffer',offer);
   const cityCoord = getCoordByCity(offer.city.name);
-  console.log('offer',offer);
+
   return (
     <Fragment>
       <div style={{display: `none`}}>

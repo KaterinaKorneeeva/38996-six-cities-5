@@ -50,8 +50,6 @@ class Map extends PureComponent {
     const offerCords = offers.filter((offer) => offer.id !== offerIdActive).map((offer) => offer.location);
     const offerCordsActive = offers.filter((offer) => offer.id === offerIdActive).map((offer) => offer.location);
 
-
-    console.log('cityCoordmmmaaaa',cityCoord);
     this._map.setView(cityCoord, zoomMap);
 
     offerCords.forEach((coords) => {

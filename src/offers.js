@@ -1,12 +1,8 @@
 export const offersByCity = (offers = [],  city = "Paris") => {
-
-  console.log('offer11111s',offers);
-  console.log('city1111',city);
   return offers.filter((item) => item.city.name === city
   );
 };
 export const offerById = (offers = [], id = 6) => {
-    console.log('ididid',id);
     return offers.filter((item) => item.id === id)[0];
 };
 

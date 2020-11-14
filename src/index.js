@@ -5,12 +5,12 @@ import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {createAPI} from "./services/api";
 import App from "./components/app/app";
-import offers from "./mocks/offers";
+// import offers from "./mocks/offers";
 // import {reducer} from "./store/reducer";
 import rootReducer from "./store/reducers/root-reducer";
 
 import {requireAuthorization} from "./store/action";
-import {loadOffers} from "./store/action";
+// import {loadOffers} from "./store/action";
 import {fetchHotelList, checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
 import {composeWithDevTools} from "redux-devtools-extension";
