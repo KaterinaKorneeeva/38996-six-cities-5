@@ -44,7 +44,6 @@ const OfferPage = (props) => {
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                {/* {offer.pictures.map((picture, i) => ( */}
                 {offer.images.map((picture, i) => (
                   <div key={i} className="property__image-wrapper">
                     <img className="property__image" src={picture} alt={offer.title}/>
@@ -88,7 +87,7 @@ const OfferPage = (props) => {
                     {offer.bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max {offer.max_adults} adults
+                    Max {offer.maxAdults} adults
                   </li>
                 </ul>
 
@@ -109,8 +108,13 @@ const OfferPage = (props) => {
                 <div className="property__host">
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
-                    <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                      <img className="property__avatar user__avatar" src={offer.host.avatar_url} width="74" height="74" alt="Host avatar"/>
+                    <div className =
+                      {offer.host.isPro
+                        ? `property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper`
+                        : `property__avatar-wrapper user__avatar-wrapper`
+                      }
+                    >
+                      <img className="property__avatar user__avatar" src={offer.host.avatar} width="74" height="74" alt="Host avatar"/>
                     </div>
                     <span className="property__user-name">
                       {offer.host.name}
@@ -160,15 +164,14 @@ OfferPage.propTypes = {
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     city: PropTypes.object.isRequired,
-    // coords: PropTypes.array.isRequired,
     bedrooms: PropTypes.number.isRequired,
-    max_adults: PropTypes.number.isRequired,
+    maxAdults: PropTypes.number.isRequired,
     goods: PropTypes.array.isRequired,
     // reviews: PropTypes.array.isRequired,
     host: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      avatar_url: PropTypes.string.isRequired,
+      isPro: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   nearOffers: PropTypes.array.isRequired,

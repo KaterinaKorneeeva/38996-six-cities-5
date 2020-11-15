@@ -18,7 +18,7 @@ const OfferCard = (props) => {
           onOfferCardHover(id);
         }}
       >
-        {offer.is_premium
+        {offer.isPremium
           ?
           <div className="place-card__mark">
             <span>Premium</span>
@@ -27,7 +27,8 @@ const OfferCard = (props) => {
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <Link to={offerUrl}>
-            <img className="place-card__image" src={offer.preview_image} width="260" height="200" alt="Place image" />
+            {/* <img className="place-card__image" src={offer.pictures[0]} width="260" height="200" alt="Place image" /> */}
+            <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
           </Link>
         </div>
         <div className="place-card__info">
@@ -67,9 +68,9 @@ OfferCard.propTypes = {
   type: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     rating: PropTypes.number.isRequired,
-    preview_image: PropTypes.array.isRequired,
     images: PropTypes.array.isRequired,
-    is_premium: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    previewImage: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,

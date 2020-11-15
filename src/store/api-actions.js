@@ -1,9 +1,13 @@
 import {loadOffers, requireAuthorization} from "./action";
 import {AuthorizationStatus} from "../const";
+import {adaptData} from "../offers";
 
 export const fetchHotelList = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
-    .then(({data}) => dispatch(loadOffers(data)))
+    .then(({data}) => {
+      const adaptOffers = data.map((offer) => adaptData(offer));
+      dispatch(loadOffers(adaptOffers));
+    })
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (

@@ -25,6 +25,18 @@ export const getCoordByCity = (city) => {
     default:
       return [48.88, 2.35];
   }
+};
 
+export const adaptData = (offer) => {
+  return Object.assign({}, offer, {
+    isPremium: offer.is_premium,
+    isFavorite: offer.is_favorite,
+    maxAdults: offer.max_adults,
+    previewImage: offer.preview_image,
 
+    host: Object.assign({}, offer.host, {
+      avatar: offer.host.avatar_url,
+      isPro: offer.host.is_pro,
+    }),
+  });
 };
