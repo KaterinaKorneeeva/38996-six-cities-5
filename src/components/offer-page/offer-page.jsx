@@ -170,7 +170,7 @@ OfferPage.propTypes = {
     // reviews: PropTypes.array.isRequired,
     host: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      isPro: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
       avatar: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,

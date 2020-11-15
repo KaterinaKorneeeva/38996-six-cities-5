@@ -14,8 +14,7 @@ import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 
 const OfferListWrapped = withActiveItem(OfferList);
 const MainPage = (props) => {
-  const {offerList, selectedCity, toggleCityAction, updateActiveOfferIdAction} = props;
-
+  const {offerList, selectedCity, toggleCityAction, updateActiveOfferIdAction, handleLoginClick} = props;
   const cityCoord = getCoordByCity(selectedCity);
   return (
     <Fragment>
@@ -33,7 +32,9 @@ const MainPage = (props) => {
               </div>
               <nav className="header__nav">
                 <ul className="header__nav-list">
-                  <User/>
+                  <User
+                    handleLoginClick = {handleLoginClick}
+                  />
                 </ul>
               </nav>
             </div>
@@ -87,15 +88,17 @@ MainPage.propTypes = {
   updateActiveOfferIdAction: PropTypes.func.isRequired,
   offerList: PropTypes.array.isRequired,
   selectedCity: PropTypes.string.isRequired,
+  handleLoginClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({DATA}) => ({
+const mapStateToProps = ({DATA, USER}) => ({
   selectedCity: DATA.selectedCity,
   offerList: DATA.offerListByCity,
   offerId: DATA.offerId,
   city: PropTypes.string.isRequired,
   updateActiveOfferId: PropTypes.func.isRequired,
   offerIdActive: DATA.offerIdActive,
+  email: USER.email,
 
 });
 

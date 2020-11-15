@@ -1,9 +1,9 @@
-import {loadOffers, requireAuthorization} from "./action";
-import {AuthorizationStatus} from "../const";
+import {loadOffers, requireAuthorization, redirectToRoute} from "./action";
 import {adaptData} from "../offers";
+import {AuthorizationStatus, AppRoute, APIRoute} from "../const";
 
 export const fetchHotelList = () => (dispatch, _getState, api) => (
-  api.get(`/hotels`)
+  api.get(APIRoute.HOTELS)
     .then(({data}) => {
       const adaptOffers = data.map((offer) => adaptData(offer));
       dispatch(loadOffers(adaptOffers));
@@ -11,7 +11,7 @@ export const fetchHotelList = () => (dispatch, _getState, api) => (
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
-  api.get(`/login`)
+  api.get(APIRoute.LOGIN)
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
     .catch((err) => {
       throw err;
@@ -19,6 +19,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
-  api.post(`/login`, {email, password})
+  api.post(APIRoute.LOGIN, {email, password})
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(redirectToRoute(AppRoute.FAVORITES)))
 );
