@@ -24,7 +24,6 @@ const User = ({authorizationStatus}) => {
 
 User.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  userData: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (({USER}) => ({

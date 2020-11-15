@@ -1,17 +1,16 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import OfferList from "../offer-list/offer-list";
-import ReviewsForm from "../reviews-form/reviews-form";
-import ReviewsList from "../reviews_list/reviews_list";
+// import ReviewsForm from "../reviews-form/reviews-form";
+// import ReviewsList from "../reviews_list/reviews_list";
 import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 import Map from "../map/map";
 import {getCoordByCity} from "../../offers";
 const OfferListWrapped = withActiveItem(OfferList);
 
 const OfferPage = (props) => {
-console.log('props',props);
   const {nearOffers, offer} = props;
-  // const cityCoord = getCoordByCity(offer.city.name);
+  const cityCoord = getCoordByCity(offer.city.name);
 
   return (
     <Fragment>
@@ -129,11 +128,11 @@ console.log('props',props);
                 </section> */}
               </div>
             </div>
-            {/* <Map
+            <Map
               cityCoord = {cityCoord}
               offers={nearOffers}
               type = "property_map"
-            /> */}
+            />
           </section>
           <div className="container">
             <section className="near-places places">
@@ -155,7 +154,7 @@ OfferPage.propTypes = {
   offer: PropTypes.shape({
     rating: PropTypes.number.isRequired,
     images: PropTypes.array.isRequired,
-    is_premium: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -169,7 +168,7 @@ OfferPage.propTypes = {
     host: PropTypes.shape({
       name: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
-      photo: PropTypes.string.isRequired,
+      avatar_url: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   nearOffers: PropTypes.array.isRequired,

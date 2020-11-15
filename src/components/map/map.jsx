@@ -49,18 +49,17 @@ class Map extends PureComponent {
     const {offers, cityCoord, offerIdActive} = this.props;
     const offerCords = offers.filter((offer) => offer.id !== offerIdActive).map((offer) => offer.location);
     const offerCordsActive = offers.filter((offer) => offer.id === offerIdActive).map((offer) => offer.location);
-
     this._map.setView(cityCoord, zoomMap);
 
     offerCords.forEach((coords) => {
       leaflet
-        .marker([coords.latitude,coords.longitude], {icon})
+        .marker([coords.latitude, coords.longitude], {icon})
         .addTo(this._map);
     });
 
     offerCordsActive.forEach((coords) => {
       leaflet
-        .marker(coords, {iconActive})
+        .marker([coords.latitude, coords.longitude], {iconActive})
         .addTo(this._map);
     });
     leaflet
@@ -79,8 +78,8 @@ Map.propTypes = {
 };
 
 
-const mapStateToProps = (state) => ({
-  offerIdActive: state.offerIdActive,
+const mapStateToProps = ({DATA}) => ({
+  offerIdActive: DATA.offerIdActive,
 });
 
 

@@ -7,19 +7,15 @@ import MainPageEmpty from "../main-page-empty/main-page-empty";
 import CityList from "../city-list/city-list";
 import User from "../user/user";
 import {connect} from "react-redux";
-// import {ActionCreator} from "../../store/action";
 import {toggleCity, updateActiveOfferId} from "../../store/action";
 import {loadOffers} from "../../store/action";
-
-
-
 import {getCoordByCity} from "../../offers";
 import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 
 const OfferListWrapped = withActiveItem(OfferList);
 const MainPage = (props) => {
-  const {offerListByCity, offerList, selectedCity, toggleCityAction, loadOffersAction, updateActiveOfferIdAction, offers, email} = props;
-console.log('email',email);
+  const {offerList, selectedCity, toggleCityAction, updateActiveOfferIdAction} = props;
+
   const cityCoord = getCoordByCity(selectedCity);
   return (
     <Fragment>
@@ -66,7 +62,7 @@ console.log('email',email);
                       <OfferListWrapped
                         offers={offerList}
                         type = "cities__places"
-                        updateActiveOfferId= {updateActiveOfferId}
+                        updateActiveOfferId= {updateActiveOfferIdAction}
                       />
                     </section>
                     <div className="cities__right-section">
@@ -93,14 +89,13 @@ MainPage.propTypes = {
   selectedCity: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({DATA, USER}) => ({
+const mapStateToProps = ({DATA}) => ({
   selectedCity: DATA.selectedCity,
   offerList: DATA.offerListByCity,
   offerId: DATA.offerId,
   city: PropTypes.string.isRequired,
   updateActiveOfferId: PropTypes.func.isRequired,
   offerIdActive: DATA.offerIdActive,
-  email: USER,
 
 });
 
@@ -114,7 +109,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   updateActiveOfferIdAction(offerIdActive) {
-    dispatch(ActionCreator.updateActiveOfferId(offerIdActive));
+    dispatch(updateActiveOfferId(offerIdActive));
   },
 });
 

@@ -7,8 +7,6 @@ import {AuthorizationStatus} from "../../const";
 
 const PrivateRoute = (props) => {
   const {render, path, exact, authorizationStatus} = props;
-
-  console.log('ddddd',authorizationStatus === AuthorizationStatus.AUTH);
   return (
     <Route
       path={path}

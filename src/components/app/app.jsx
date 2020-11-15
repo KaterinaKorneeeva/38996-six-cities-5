@@ -10,9 +10,7 @@ import browserHistory from "../../browser-history";
 import {connect} from "react-redux";
 
 const App = (props) => {
-  const {offers, offer, offerList} = props;
-  console.log('offerList',offerList);
-
+  const {offerList, offerListByCity} = props;
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
@@ -25,7 +23,7 @@ const App = (props) => {
         <PrivateRoute
           exact
           path={`/favorites`}
-          render={({history}) => {
+          render={({_history}) => {
             return (
               <FavoritesPage
                 offers={offerList}
@@ -33,26 +31,19 @@ const App = (props) => {
             );
           }}
         />
-        {/* <Route exact path="/favorites">
-          <FavoritesPage
-            offers={offerList}
-          />
-        </Route> */}
+        <Route exact path="/offer/:id"
+          render={(data) => {
+            const offerId = parseInt(data.match.params.id, 10);
+            const offer = offerList.find((it) => it.id === offerId);
 
-        <Route path={"/offer/:id"} component={OfferPage} />
-        <Route exact path="/offer/:id">
-
-          render = {() => {
-            const offerId = 42;
-            const offer = offerList.find((offer) => offer.id == offer.id === offerId )
-            return  (
+            return (
               <OfferPage
-              offer = {offer}
-              nearOffers={offerList.slice(0, 3)}
-            />
-            )
+                offer = {offer}
+                nearOffers={offerListByCity.slice(0, 3)}
+              />
+            );
           }}
-
+        >
         </Route>
       </Switch>
     </BrowserRouter>
@@ -61,22 +52,13 @@ const App = (props) => {
 
 App.propTypes = {
   offerList: PropTypes.array.isRequired,
+  offerListByCity: PropTypes.array.isRequired,
 };
 
-
 const mapStateToProps = ({DATA}) => ({
-  // selectedCity: DATA.selectedCity,
   offerList: DATA.offerList,
-  offerId: DATA.offerId,
   offerListByCity: DATA.offerListByCity,
-  // city: PropTypes.string.isRequired,
-  // updateActiveOfferId: PropTypes.func.isRequired,
-  // offerIdActive: DATA.offerIdActive,
-
 });
-
-
-// export default App;
 
 export {App};
 export default connect(mapStateToProps)(App);

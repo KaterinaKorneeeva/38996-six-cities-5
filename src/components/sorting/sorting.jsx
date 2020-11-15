@@ -89,7 +89,7 @@ Sorting.propTypes = {
 };
 
 
-const mapStateToProps = ({DATA}) =>  {
+const mapStateToProps = ({DATA}) => {
   return {
     activeItem: DATA.sortingType,
   };
@@ -112,8 +112,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(sortTopRated());
   }
 });
-
-
 
 
 export {Sorting};

@@ -27,7 +27,6 @@ const OfferCard = (props) => {
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <Link to={offerUrl}>
-            {/* <img className="place-card__image" src={offer.pictures[0]} width="260" height="200" alt="Place image" /> */}
             <img className="place-card__image" src={offer.preview_image} width="260" height="200" alt="Place image" />
           </Link>
         </div>
@@ -68,6 +67,7 @@ OfferCard.propTypes = {
   type: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     rating: PropTypes.number.isRequired,
+    preview_image: PropTypes.array.isRequired,
     images: PropTypes.array.isRequired,
     is_premium: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,

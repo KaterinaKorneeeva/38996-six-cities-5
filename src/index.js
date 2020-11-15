@@ -14,18 +14,18 @@ import {composeWithDevTools} from "redux-devtools-extension";
 
 
 const api = createAPI(
-  () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
+    () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
 );
 
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-      applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api))
     )
-  );
+);
+store.dispatch(fetchHotelList());
+store.dispatch(checkAuth());
 
-  store.dispatch(fetchHotelList()),
-  store.dispatch(checkAuth()),
 
 ReactDOM.render(
     <Provider store={store}>
