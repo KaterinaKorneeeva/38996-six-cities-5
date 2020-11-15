@@ -26,7 +26,7 @@ class AuthPage extends PureComponent {
   }
 
   render() {
-    const {onReplayButtonClick} = this.props;
+
 
     return (
     <Fragment>

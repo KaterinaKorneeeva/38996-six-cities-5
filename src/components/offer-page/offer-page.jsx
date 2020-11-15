@@ -9,9 +9,9 @@ import {getCoordByCity} from "../../offers";
 const OfferListWrapped = withActiveItem(OfferList);
 
 const OfferPage = (props) => {
-
+console.log('props',props);
   const {nearOffers, offer} = props;
-  const cityCoord = getCoordByCity(offer.city.name);
+  // const cityCoord = getCoordByCity(offer.city.name);
 
   return (
     <Fragment>
@@ -129,11 +129,11 @@ const OfferPage = (props) => {
                 </section> */}
               </div>
             </div>
-            <Map
+            {/* <Map
               cityCoord = {cityCoord}
               offers={nearOffers}
               type = "property_map"
-            />
+            /> */}
           </section>
           <div className="container">
             <section className="near-places places">

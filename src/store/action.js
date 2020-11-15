@@ -32,13 +32,14 @@ export const requireAuthorization = (status) => ({
 
 export const updateSortingType = (sortingType) => ({
     type: ActionType.UPDATE_SORTING_TYPE,
-    sortingType,
+    payload: sortingType,
   });
 
   export const  sortLowToHigh = () => ({
     type: ActionType.SORT_LOW_TO_HIGH,
   });
   export const  sortHighToLow= () => ({
+
     type: ActionType.SORT_HIGH_TO_LOW,
   });
  export const  sortPopular= () => ({

@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import SortingItem from '../sorting-item/sorting-item';
 import {SortingType} from "../../const";
 import {connect} from "react-redux";
-// import {ActionCreator} from "../../store/action";
 import {updateSortingType, sortLowToHigh, sortHighToLow, sortPopular, sortTopRated} from "../../store/action";
 
 class Sorting extends PureComponent {
@@ -21,7 +20,6 @@ class Sorting extends PureComponent {
     const sortingTypeNames = Object.values(SortingType);
     const {activeItem} = this.props;
     const openClassName = this.state.sortingIsOpen ? `places__options--opened` : ``;
-
     return (
       <Fragment>
         <form className="places__sorting" action="#" method="get">
@@ -91,9 +89,9 @@ Sorting.propTypes = {
 };
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({DATA}) =>  {
   return {
-    activeItem: state.sortingType,
+    activeItem: DATA.sortingType,
   };
 };
 

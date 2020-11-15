@@ -7,17 +7,11 @@ import FavoritesPage from "../favorites-page/favorites-page";
 import OfferPage from "../offer-page/offer-page";
 import PrivateRoute from "../private-route/private-route";
 import browserHistory from "../../browser-history";
+import {connect} from "react-redux";
 
 const App = (props) => {
   const {offers, offer, offerList} = props;
-
-
-  const onLinkEmailClick = (evt, history) => {
-    evt.preventDefault();
-    history.push(authorizationStatus === AuthorizationStatus.NO_AUTH
-      ? LOGIN
-      : FAVORITE);
-  };
+  console.log('offerList',offerList);
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -70,16 +64,19 @@ App.propTypes = {
 };
 
 
-// const mapStateToProps = ({DATA}) => ({
-//   // selectedCity: DATA.selectedCity,
-//   offerList: DATA.offerListByCity,
-//   offerId: DATA.offerId,
-//   offerListByCity: DATA.offerListByCity,
-//   // city: PropTypes.string.isRequired,
-//   // updateActiveOfferId: PropTypes.func.isRequired,
-//   // offerIdActive: DATA.offerIdActive,
+const mapStateToProps = ({DATA}) => ({
+  // selectedCity: DATA.selectedCity,
+  offerList: DATA.offerList,
+  offerId: DATA.offerId,
+  offerListByCity: DATA.offerListByCity,
+  // city: PropTypes.string.isRequired,
+  // updateActiveOfferId: PropTypes.func.isRequired,
+  // offerIdActive: DATA.offerIdActive,
 
-// });
+});
 
 
-export default App;
+// export default App;
+
+export {App};
+export default connect(mapStateToProps)(App);
