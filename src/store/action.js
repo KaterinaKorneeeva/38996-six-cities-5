@@ -9,6 +9,7 @@ export const ActionType = {
   SORT_POPULAR: `SORT_POPULAR`,
   SORT_TOP_RATED: `SORT_TOP_RATED`,
   UPDATE_OFFER_ID_ACTIVE: `UPDATE_OFFER_ID_ACTIVE`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
 
 export const toggleCity = (selectedCity) => ({
@@ -47,7 +48,13 @@ export const sortTopRated = () => ({
 
   type: ActionType.SORT_TOP_RATED,
 });
+
 export const updateActiveOfferId = (offerIdActive) => ({
   type: ActionType.UPDATE_OFFER_ID_ACTIVE,
   payload: offerIdActive,
+});
+
+export const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
 });

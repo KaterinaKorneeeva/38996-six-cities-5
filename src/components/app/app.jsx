@@ -8,21 +8,37 @@ import OfferPage from "../offer-page/offer-page";
 import PrivateRoute from "../private-route/private-route";
 import browserHistory from "../../browser-history";
 import {connect} from "react-redux";
+import {AppRoute, AuthorizationStatus} from "../../const";
 
 const App = (props) => {
-  const {offerList, offerListByCity} = props;
+  const {offerList, offerListByCity, authorizationStatus} = props;
+
+  const handleLoginClick = (evt, history) => {
+    evt.preventDefault();
+    return (
+      authorizationStatus === AuthorizationStatus.NO_AUTH
+        ? history.push(AppRoute.LOGIN)
+        : history.push(AppRoute.FAVORITES)
+    );
+
+  };
+
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route exact path="/">
-          <MainPage />
+        <Route exact path={AppRoute.ROOT} render={({history}) => (
+          <MainPage
+            history = {history}
+            handleLoginClick={(evt) => handleLoginClick(evt, history)} />
+        )}>
         </Route>
-        <Route exact path="/login">
+        <Route exact
+          path = {AppRoute.LOGIN}>
           <AuthPage />
         </Route>
         <PrivateRoute
           exact
-          path={`/favorites`}
+          path={AppRoute.FAVORITES}
           render={({_history}) => {
             return (
               <FavoritesPage
@@ -53,11 +69,13 @@ const App = (props) => {
 App.propTypes = {
   offerList: PropTypes.array.isRequired,
   offerListByCity: PropTypes.array.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({DATA}) => ({
+const mapStateToProps = ({DATA, USER}) => ({
   offerList: DATA.offerList,
   offerListByCity: DATA.offerListByCity,
+  authorizationStatus: USER.authorizationStatus
 });
 
 export {App};

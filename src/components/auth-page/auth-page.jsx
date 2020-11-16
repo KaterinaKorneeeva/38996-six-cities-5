@@ -22,6 +22,7 @@ class AuthPage extends PureComponent {
     onSubmit({
       login: this.emailRef.current.value,
       password: this.passwordRef.current.value,
+
     });
   }
 
@@ -110,7 +111,6 @@ class AuthPage extends PureComponent {
 
 AuthPage.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  onReplayButtonClick: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

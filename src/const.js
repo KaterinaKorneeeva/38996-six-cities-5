@@ -10,3 +10,14 @@ export const SortingType = {
   HIGH_TO_LOW: `Price: high to low`,
   TOP_RATED: `Top rated first`
 };
+
+export const AppRoute = {
+  LOGIN: `/login`,
+  FAVORITES: `/favorites`,
+  ROOT: `/`,
+};
+
+export const APIRoute = {
+  HOTELS: `/hotels`,
+  LOGIN: `/login`,
+};
