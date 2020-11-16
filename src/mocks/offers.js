@@ -6,7 +6,7 @@ const AVATAR_URL = `https://api.adorable.io/avatars`;
 export default [
   {
     id: 0,
-    rating: `5`,
+    rating: 5,
     pictures: [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
@@ -19,7 +19,7 @@ export default [
     isPremium: Boolean(1),
     title: `Wood and stone place`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    price: `60`,
+    price: 60,
     type: `room`,
     city: `Amsterdam`,
     coords: [52.3909553943508, 4.85309666406198],
@@ -68,7 +68,7 @@ export default [
   },
   {
     id: 1,
-    rating: `5`,
+    rating: 5,
     pictures: [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
@@ -78,7 +78,7 @@ export default [
     isPremium: Boolean(0),
     title: `Beautiful & luxurious apartment at great location`,
     description: `The hostel serves a daily breakfast buffet and a set menu for dinner. There is also a bar in the hostel. There are many supermarkets in the surrounding streets, trendy bars, restaurants and shops in various squares in the Gràcia area, 15 minutes' walk away. The nearest Metro Station is Verdaguer, 500 meters from the hostel.`,
-    price: `120`,
+    price: 120,
     type: `Apartment`,
     city: `Amsterdam`,
     coords: [52.369553943508, 4.85309666406198],
@@ -99,7 +99,7 @@ export default [
             name: `Max`,
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
 
-            rating: `4`,
+            rating: 4,
           },
         date: `2020-10-10`,
 
@@ -108,7 +108,7 @@ export default [
   },
   {
     id: 2,
-    rating: `5`,
+    rating: 5,
     pictures: [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
@@ -118,7 +118,7 @@ export default [
     isPremium: Boolean(1),
     title: `Nice, cozy, warm big bed apartment`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    price: `180`,
+    price: 180,
     type: `house`,
     city: `Amsterdam`,
     coords: [52.3909553943508, 4.929309666406198],
@@ -150,7 +150,7 @@ export default [
           {
             name: `Max`,
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
-            rating: `4`,
+            rating: 4,
           },
         date: `2020-10-10`,
 
@@ -159,7 +159,7 @@ export default [
   },
   {
     id: 3,
-    rating: `5`,
+    rating: 5,
     pictures: [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
@@ -167,9 +167,9 @@ export default [
       `${PIC_URL}${Math.random()}`,
     ],
     isPremium: Boolean(0),
-    title: `Nice, cozy, warm big bed apartment`,
+    title: `5Nice, cozy, warm big bed apartment`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    price: `180`,
+    price: 180,
     type: `hotel`,
     city: `Brussels`,
     coords: [50.8488, 4.35],
@@ -189,7 +189,7 @@ export default [
           {
             name: `Max`,
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
-            rating: `4`,
+            rating: 4,
           },
         date: `April 2019`,
 
@@ -198,7 +198,7 @@ export default [
   },
   {
     id: 4,
-    rating: `5`,
+    rating: 6,
     pictures: [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
@@ -206,12 +206,12 @@ export default [
       `${PIC_URL}${Math.random()}`,
     ],
     isPremium: Boolean(0),
-    title: `Paris Beautiful & luxurious apartment at great location`,
+    title: `6Paris Beautiful & luxurious apartment at great location`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    price: `180`,
+    price: 120,
     type: `hotel`,
     city: `Paris`,
-    coords: [48.88, 2.35],
+    coords: [48.88, 2.39],
     rooms: `4`,
     guests: `4`,
     features: [`wifi`, `heating`, `kitchen`, `cableTV`],
@@ -228,7 +228,7 @@ export default [
           {
             name: `Max`,
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
-            rating: `4`,
+            rating: 4,
           },
         date: `April 2019`,
 
@@ -237,7 +237,7 @@ export default [
   },
   {
     id: 5,
-    rating: `5`,
+    rating: 7,
     pictures: [
       `${PIC_URL}${Math.random()}`,
       `${PIC_URL}${Math.random()}`,
@@ -245,9 +245,9 @@ export default [
       `${PIC_URL}${Math.random()}`,
     ],
     isPremium: Boolean(0),
-    title: `Paris Nice, cozy, warm big bed apartment`,
+    title: `7Paris Nice, cozy, warm big bed apartment`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    price: `180`,
+    price: 180,
     type: `hotel`,
     city: `Paris`,
     coords: [48.88, 2.40],
@@ -267,11 +267,50 @@ export default [
           {
             name: `Max`,
             photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
-            rating: `4`,
+            rating: 4,
           },
         date: `April 2019`,
 
       }
     ]
-  }
+  },
+  {
+    id: 6,
+    rating: 8,
+    pictures: [
+      `${PIC_URL}${Math.random()}`,
+      `${PIC_URL}${Math.random()}`,
+      `${PIC_URL}${Math.random()}`,
+      `${PIC_URL}${Math.random()}`,
+    ],
+    isPremium: Boolean(0),
+    title: `8Test Paris Beautiful & luxurious apartment at great location`,
+    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+    price: 90,
+    type: `hotel`,
+    city: `Paris`,
+    coords: [48.88, 2.35],
+    rooms: `4`,
+    guests: `4`,
+    features: [`wifi`, `heating`, `kitchen`, `cableTV`],
+    host: {
+      name: `Angelina`,
+      status: `Pro`,
+      photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
+    },
+    reviews: [
+      {
+        id: 4,
+        text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        author:
+          {
+            name: `Max`,
+            photo: `${AVATAR_URL}/${getRandomInteger(1, 100)}`,
+            rating: 4,
+          },
+        date: `April 2019`,
+
+      }
+    ]
+  },
 ];

@@ -1,19 +1,22 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
+import Sorting from "../sorting/sorting";
 import OfferList from "../offer-list/offer-list";
 import Map from "../map/map";
 import MainPageEmpty from "../main-page-empty/main-page-empty";
 import CityList from "../city-list/city-list";
+import User from "../user/user";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {toggleCity, updateActiveOfferId} from "../../store/action";
+import {loadOffers} from "../../store/action";
 import {getCoordByCity} from "../../offers";
 import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 
 const OfferListWrapped = withActiveItem(OfferList);
-
 const MainPage = (props) => {
-  const {offerList, city, toggleCity} = props;
-  const cityCoord = getCoordByCity(city);
+  const {offerList, selectedCity, toggleCityAction, updateActiveOfferIdAction} = props;
+
+  const cityCoord = getCoordByCity(selectedCity);
   return (
     <Fragment>
       <div style={{display: `none`}}>
@@ -30,55 +33,36 @@ const MainPage = (props) => {
               </div>
               <nav className="header__nav">
                 <ul className="header__nav-list">
-                  <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
-                      <div className="header__avatar-wrapper user__avatar-wrapper">
-                      </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    </a>
-                  </li>
+                  <User/>
                 </ul>
               </nav>
             </div>
           </div>
         </header>
-        <main className= {offerList.length === 0 ? `page__main page__main--index page__main--index-empty` : `page__main page__main--index`}>
+        <main className= {props.offerList.length === 0 ? `page__main page__main--index page__main--index-empty` : `page__main page__main--index`}>
           <h1 className="visually-hidden">Cities</h1>
           <CityList
-            selectedCity = {city}
-            toggleCity = {toggleCity}
+            selectedCity = {selectedCity}
+            toggleCity = {toggleCityAction}
           />
           <div className="cities">
             {
               offerList.length === 0
                 ? (
                   <MainPageEmpty
-                    city={city}
+                    city={selectedCity}
                   />
                 )
                 : (
                   <div className="cities__places-container container">
                     <section className="cities__places places">
                       <h2 className="visually-hidden">Places</h2>
-                      <b className="places__found"> {offerList.length} places to stay in {city}</b>
-                      <form className="places__sorting" action="#" method="get">
-                        <span className="places__sorting-caption">Sort by</span>
-                        <span className="places__sorting-type" tabIndex="0">
-                          Popular
-                          <svg className="places__sorting-arrow" width="7" height="4">
-                            <use xlinkHref="#icon-arrow-select"></use>
-                          </svg>
-                        </span>
-                        <ul className="places__options places__options--custom places__options--opened">
-                          <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                          <li className="places__option" tabIndex="0">Price: low to high</li>
-                          <li className="places__option" tabIndex="0">Price: high to low</li>
-                          <li className="places__option" tabIndex="0">Top rated first</li>
-                        </ul>
-                      </form>
+                      <b className="places__found"> {offerList.length} places to stay in {selectedCity}</b>
+                      <Sorting />
                       <OfferListWrapped
                         offers={offerList}
                         type = "cities__places"
+                        updateActiveOfferId= {updateActiveOfferIdAction}
                       />
                     </section>
                     <div className="cities__right-section">
@@ -99,20 +83,33 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  toggleCity: PropTypes.func.isRequired,
+  toggleCityAction: PropTypes.func.isRequired,
+  updateActiveOfferIdAction: PropTypes.func.isRequired,
   offerList: PropTypes.array.isRequired,
-  city: PropTypes.string.isRequired,
+  selectedCity: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  offerList: state.offerList,
-  offerId: state.offerId,
+const mapStateToProps = ({DATA}) => ({
+  selectedCity: DATA.selectedCity,
+  offerList: DATA.offerListByCity,
+  offerId: DATA.offerId,
+  city: PropTypes.string.isRequired,
+  updateActiveOfferId: PropTypes.func.isRequired,
+  offerIdActive: DATA.offerIdActive,
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleCity(city) {
-    dispatch(ActionCreator.toggleCity(city));
+  toggleCityAction(selectedCity) {
+    dispatch(toggleCity(selectedCity));
+  },
+
+  loadOffers() {
+    dispatch(loadOffers());
+  },
+
+  updateActiveOfferIdAction(offerIdActive) {
+    dispatch(updateActiveOfferId(offerIdActive));
   },
 });
 

@@ -1,16 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 import MainPage from "../main-page/main-page";
 import AuthPage from "../auth-page/auth-page";
 import FavoritesPage from "../favorites-page/favorites-page";
 import OfferPage from "../offer-page/offer-page";
+import PrivateRoute from "../private-route/private-route";
+import browserHistory from "../../browser-history";
+import {connect} from "react-redux";
 
 const App = (props) => {
-  const {offers} = props;
-
+  const {offerList, offerListByCity} = props;
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
           <MainPage />
@@ -18,16 +20,30 @@ const App = (props) => {
         <Route exact path="/login">
           <AuthPage />
         </Route>
-        <Route exact path="/favorites">
-          <FavoritesPage
-            offers={offers}
-          />
-        </Route>
-        <Route exact path="/offer/:id">
-          <OfferPage
-            offer={offers[0]}
-            nearOffers={offers.slice(0, 3)}
-          />
+        <PrivateRoute
+          exact
+          path={`/favorites`}
+          render={({_history}) => {
+            return (
+              <FavoritesPage
+                offers={offerList}
+              />
+            );
+          }}
+        />
+        <Route exact path="/offer/:id"
+          render={(data) => {
+            const offerId = parseInt(data.match.params.id, 10);
+            const offer = offerList.find((it) => it.id === offerId);
+
+            return (
+              <OfferPage
+                offer = {offer}
+                nearOffers={offerListByCity.slice(0, 3)}
+              />
+            );
+          }}
+        >
         </Route>
       </Switch>
     </BrowserRouter>
@@ -35,7 +51,14 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offerList: PropTypes.array.isRequired,
+  offerListByCity: PropTypes.array.isRequired,
 };
 
-export default App;
+const mapStateToProps = ({DATA}) => ({
+  offerList: DATA.offerList,
+  offerListByCity: DATA.offerListByCity,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

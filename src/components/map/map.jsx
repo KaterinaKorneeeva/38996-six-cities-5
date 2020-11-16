@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import leaflet from "leaflet";
+import {connect} from 'react-redux';
 class Map extends PureComponent {
 
   constructor(props) {
@@ -39,18 +40,28 @@ class Map extends PureComponent {
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
+    const iconActive = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
     const zoomMap = 12;
 
-    const {offers, cityCoord} = this.props;
-    const offerCords = offers.map((offer) => offer.coords);
+    const {offers, cityCoord, offerIdActive} = this.props;
+    const offerCords = offers.filter((offer) => offer.id !== offerIdActive).map((offer) => offer.location);
+    const offerCordsActive = offers.filter((offer) => offer.id === offerIdActive).map((offer) => offer.location);
     this._map.setView(cityCoord, zoomMap);
 
     offerCords.forEach((coords) => {
       leaflet
-        .marker(coords, {icon})
+        .marker([coords.latitude, coords.longitude], {icon})
         .addTo(this._map);
     });
 
+    offerCordsActive.forEach((coords) => {
+      leaflet
+        .marker([coords.latitude, coords.longitude], {iconActive})
+        .addTo(this._map);
+    });
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
@@ -63,6 +74,14 @@ Map.propTypes = {
   offers: PropTypes.array.isRequired,
   cityCoord: PropTypes.array.isRequired,
   type: PropTypes.string.isRequired,
+  offerIdActive: PropTypes.number.isRequired
 };
 
-export default Map;
+
+const mapStateToProps = ({DATA}) => ({
+  offerIdActive: DATA.offerIdActive,
+});
+
+
+export {Map};
+export default connect(mapStateToProps)(Map);

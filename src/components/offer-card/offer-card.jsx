@@ -7,6 +7,7 @@ const OfferCard = (props) => {
   const {offer, id, onOfferCardHover, type} = props;
   const offerUrl = `offer/` + id;
 
+
   return (
     <Fragment>
       <article
@@ -26,7 +27,8 @@ const OfferCard = (props) => {
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <Link to={offerUrl}>
-            <img className="place-card__image" src={offer.pictures[0]} width="260" height="200" alt="Place image" />
+            {/* <img className="place-card__image" src={offer.pictures[0]} width="260" height="200" alt="Place image" /> */}
+            <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
           </Link>
         </div>
         <div className="place-card__info">
@@ -65,11 +67,12 @@ OfferCard.propTypes = {
   onOfferCardHover: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   offer: PropTypes.shape({
-    rating: PropTypes.string.isRequired,
-    pictures: PropTypes.array.isRequired,
+    rating: PropTypes.number.isRequired,
+    images: PropTypes.array.isRequired,
     isPremium: PropTypes.bool.isRequired,
+    previewImage: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,
 };

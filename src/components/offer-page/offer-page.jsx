@@ -1,15 +1,16 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import OfferList from "../offer-list/offer-list";
-import ReviewsForm from "../reviews-form/reviews-form";
-import ReviewsList from "../reviews_list/reviews_list";
+// import ReviewsForm from "../reviews-form/reviews-form";
+// import ReviewsList from "../reviews_list/reviews_list";
 import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
 import Map from "../map/map";
+import {getCoordByCity} from "../../offers";
 const OfferListWrapped = withActiveItem(OfferList);
 
 const OfferPage = (props) => {
-
   const {nearOffers, offer} = props;
+  const cityCoord = getCoordByCity(offer.city.name);
 
   return (
     <Fragment>
@@ -43,7 +44,7 @@ const OfferPage = (props) => {
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                {offer.pictures.map((picture, i) => (
+                {offer.images.map((picture, i) => (
                   <div key={i} className="property__image-wrapper">
                     <img className="property__image" src={picture} alt={offer.title}/>
                   </div>
@@ -83,10 +84,10 @@ const OfferPage = (props) => {
                     {offer.type}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    {offer.rooms} Bedrooms
+                    {offer.bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max {offer.guests} adults
+                    Max {offer.maxAdults} adults
                   </li>
                 </ul>
 
@@ -97,7 +98,7 @@ const OfferPage = (props) => {
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {offer.features.map((feature, i) => (
+                    {offer.goods.map((feature, i) => (
                       <li key={i} className="property__inside-item">
                         {feature}
                       </li>
@@ -107,8 +108,13 @@ const OfferPage = (props) => {
                 <div className="property__host">
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
-                    <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                      <img className="property__avatar user__avatar" src={offer.host.photo} width="74" height="74" alt="Host avatar"/>
+                    <div className =
+                      {offer.host.isPro
+                        ? `property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper`
+                        : `property__avatar-wrapper user__avatar-wrapper`
+                      }
+                    >
+                      <img className="property__avatar user__avatar" src={offer.host.avatar} width="74" height="74" alt="Host avatar"/>
                     </div>
                     <span className="property__user-name">
                       {offer.host.name}
@@ -118,16 +124,16 @@ const OfferPage = (props) => {
                     {offer.description}
                   </div>
                 </div>
-                <section className="property__reviews reviews">
+                {/* <section className="property__reviews reviews">
                   <ReviewsList
                     reviews={offer.reviews}
                   />
                   <ReviewsForm />
-                </section>
+                </section> */}
               </div>
             </div>
             <Map
-              cityCoord = {offer.coords}
+              cityCoord = {cityCoord}
               offers={nearOffers}
               type = "property_map"
             />
@@ -150,23 +156,22 @@ const OfferPage = (props) => {
 
 OfferPage.propTypes = {
   offer: PropTypes.shape({
-    rating: PropTypes.string.isRequired,
-    pictures: PropTypes.array.isRequired,
+    rating: PropTypes.number.isRequired,
+    images: PropTypes.array.isRequired,
     isPremium: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-    coords: PropTypes.array.isRequired,
-    rooms: PropTypes.string.isRequired,
-    guests: PropTypes.string.isRequired,
-    features: PropTypes.array.isRequired,
-    reviews: PropTypes.array.isRequired,
+    city: PropTypes.object.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    goods: PropTypes.array.isRequired,
+    // reviews: PropTypes.array.isRequired,
     host: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      photo: PropTypes.string.isRequired,
+      isPro: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   nearOffers: PropTypes.array.isRequired,
