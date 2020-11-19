@@ -30,7 +30,7 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
 export const addReview = ({comment: comment, rating, id}) => (dispatch, _getState, api) => (
   api.post(`${APIRoute.COMMENTS}/${id}`, {comment, rating})
     .then(({data}) => {
-      const adaptCommnents = data.map((comment) => adaptCommentData(comment));
+      const adaptCommnents = data.map((it) => adaptCommentData(it));
       dispatch(loadComments(adaptCommnents));
     })
 );
