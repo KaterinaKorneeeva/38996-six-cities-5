@@ -10,6 +10,8 @@ const initialState = {
   offerListByCity: [],
   sortingType: `POPULAR`,
   offerIdActive: 0,
+  comments: [],
+  offersNearby: [],
 };
 
 const offerData = (state = initialState, action) => {
@@ -52,6 +54,17 @@ const offerData = (state = initialState, action) => {
       return extend(state, {
         offerIdActive: action.payload,
       });
+
+    case ActionType.LOAD_COMMENTS:
+      return extend(state, {
+        comments: action.payload,
+      });
+
+    case ActionType.LOAD_OFFERS_NEARBY:
+      return extend(state, {
+        offersNearby: action.payload,
+      });
+
   }
 
   return state;

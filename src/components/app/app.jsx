@@ -49,7 +49,7 @@ const App = (props) => {
         />
         <Route exact path="/offer/:id"
           render={(data) => {
-            const offerId = parseInt(data.match.params.id, 10);
+            const offerId = +data.match.params.id;
             const offer = offerList.find((it) => it.id === offerId);
 
             return (

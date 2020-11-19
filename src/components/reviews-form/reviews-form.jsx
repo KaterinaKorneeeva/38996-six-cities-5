@@ -1,4 +1,7 @@
 import React, {PureComponent} from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {addReview} from "../../store/api-actions";
 
 
 class ReviewsForm extends PureComponent {
@@ -15,7 +18,14 @@ class ReviewsForm extends PureComponent {
   }
 
   handleSubmit(evt) {
+    const {onSubmit, offerIdActive} = this.props;
     evt.preventDefault();
+
+    onSubmit({
+      comment: this.state.review,
+      id: offerIdActive,
+      rating: this.state.rating,
+    });
   }
 
   handleFieldChange(evt) {
@@ -118,4 +128,23 @@ class ReviewsForm extends PureComponent {
   }
 }
 
-export default ReviewsForm;
+ReviewsForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  userInfo: PropTypes.object.isRequired,
+  offerIdActive: PropTypes.number.isRequired,
+};
+
+
+const mapStateToProps = (({DATA, USER}) => ({
+  userInfo: USER.userInfo,
+  offerIdActive: DATA.offerIdActive,
+}));
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(reviewData) {
+    dispatch(addReview(reviewData));
+  }
+});
+
+export {ReviewsForm};
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewsForm);
