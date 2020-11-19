@@ -11,8 +11,7 @@ import {connect} from "react-redux";
 import {AppRoute, AuthorizationStatus} from "../../const";
 
 const App = (props) => {
-  const {offerList, offerListByCity, authorizationStatus} = props;
-
+  const {offerList, authorizationStatus} = props;
   const handleLoginClick = (evt, history) => {
     evt.preventDefault();
     return (
@@ -51,11 +50,9 @@ const App = (props) => {
           render={(data) => {
             const offerId = +data.match.params.id;
             const offer = offerList.find((it) => it.id === offerId);
-
             return (
               <OfferPage
                 offer = {offer}
-                nearOffers={offerListByCity.slice(0, 3)}
               />
             );
           }}
@@ -68,15 +65,15 @@ const App = (props) => {
 
 App.propTypes = {
   offerList: PropTypes.array.isRequired,
-  offerListByCity: PropTypes.array.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({DATA, USER}) => ({
   offerList: DATA.offerList,
-  offerListByCity: DATA.offerListByCity,
-  authorizationStatus: USER.authorizationStatus
+  authorizationStatus: USER.authorizationStatus,
+  offerIdActive: DATA.offerIdActive,
 });
+
 
 export {App};
 export default connect(mapStateToProps)(App);

@@ -40,3 +40,11 @@ export const adaptData = (offer) => {
     }),
   });
 };
+
+export const adaptCommentData = (comment) => {
+  return Object.assign({}, comment, {
+    user: Object.assign({}, comment.user, {
+      avatarUrl: comment.user.avatar_url
+    }),
+  });
+};

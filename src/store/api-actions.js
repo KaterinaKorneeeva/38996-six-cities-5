@@ -1,5 +1,5 @@
 import {loadOffers, requireAuthorization, redirectToRoute, updateUser, loadComments, loadOffersNearby} from "./action";
-import {adaptData} from "../offers";
+import {adaptData, adaptCommentData} from "../offers";
 import {AuthorizationStatus, AppRoute, APIRoute} from "../const";
 
 export const fetchHotelList = () => (dispatch, _getState, api) => (
@@ -37,7 +37,8 @@ export const addReview = ({comment: comment, rating, id}) => (dispatch, _getStat
 export const getCommentsByHotelId = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.COMMENTS}/${id}`)
     .then(({data}) => {
-      dispatch(loadComments(data));
+      const adaptCommnents = data.map((offer) => adaptCommentData(offer));
+      dispatch(loadComments(adaptCommnents));
     })
 );
 
@@ -45,7 +46,6 @@ export const getHotelsNearby = (id) => (dispatch, _getState, api) => (
   api.get(`hotels/${id}${APIRoute.NEARBY}`)
     .then(({data}) => {
       const adaptOffers = data.map((offer) => adaptData(offer));
-      console.log(`adaptOffers`,adaptOffers);
       dispatch(loadOffersNearby(adaptOffers));
     })
 );

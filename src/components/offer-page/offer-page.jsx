@@ -8,21 +8,21 @@ import Map from "../map/map";
 import User from "../user/user";
 import {getCoordByCity} from "../../offers";
 import {connect} from 'react-redux';
-import {loadOffersNearby} from "../../store/action";
-import {getHotelsNearby} from "../../store/api-actions";
+import {updateActiveOfferId} from "../../store/action";
+import {getHotelsNearby, getCommentsByHotelId} from "../../store/api-actions";
 const OfferListWrapped = withActiveItem(OfferList);
 
 class OfferPage extends PureComponent {
 
   componentDidMount() {
-    const {loadOffersNearby, offerIdActive} = this.props;
+    const {loadOffersNearby, offerIdActive, loadComments} = this.props;
     loadOffersNearby(offerIdActive);
+    loadComments(offerIdActive);
   }
 
   render() {
-    const {nearOffers, offer, offersNearby, handleLoginClick} = this.props;
+    const {offer, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction} = this.props;
     const cityCoord = getCoordByCity(offer.city.name);
-    console.log('offersNearbyoffersNearbyoffersNearby',offersNearby);
     return (
       <Fragment>
         <div style={{display: `none`}}>
@@ -80,7 +80,7 @@ class OfferPage extends PureComponent {
                   </div>
                   <div className="property__rating rating">
                     <div className="property__stars rating__stars">
-                      <span style={{width: `80%`}}></span>
+                      <span style={{width: `${offer.rating * 20}%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                     <span className="property__rating-value rating__value">{offer.rating}</span>
@@ -133,7 +133,7 @@ class OfferPage extends PureComponent {
                   </div>
                   <section className="property__reviews reviews">
                     <ReviewsList
-                      // reviews={comments}
+                      reviews={comments}
                     />
                     <ReviewsForm />
                   </section>
@@ -141,7 +141,7 @@ class OfferPage extends PureComponent {
               </div>
               <Map
                 cityCoord = {cityCoord}
-                offers={nearOffers}
+                offers={offersNearby}
                 type = "property_map"
               />
             </section>
@@ -149,15 +149,16 @@ class OfferPage extends PureComponent {
               <section className="near-places places">
                 <h2 className="near-places__title">Other places in the neighbourhood</h2>
                 <OfferListWrapped
-                  offers={nearOffers}
+                  offers={offersNearby}
                   type = "near-places"
+                  updateActiveOfferId= {updateActiveOfferIdAction}
                 />
               </section>
             </div>
           </main>
         </div>
       </Fragment>
-   );
+    );
   }
 }
 
@@ -182,19 +183,34 @@ OfferPage.propTypes = {
       avatar: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  nearOffers: PropTypes.array.isRequired,
+  offersNearby: PropTypes.array.isRequired,
+  loadComments: PropTypes.func.isRequired,
+  loadOffersNearby: PropTypes.func.isRequired,
+  handleLoginClick: PropTypes.func.isRequired,
+  comments: PropTypes.array.isRequired,
+  offerIdActive: PropTypes.number.isRequired,
+  updateActiveOfferIdAction: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (({USER, DATA}) => ({
+const mapStateToProps = (({DATA}) => ({
   offersNearby: DATA.offersNearby,
   offerIdActive: DATA.offerIdActive,
+  comments: DATA.comments,
+
 }));
 
 const mapDispatchToProps = ((dispatch) => ({
+
+
+  loadComments(offerIdActive) {
+    dispatch(getCommentsByHotelId(offerIdActive));
+  },
   loadOffersNearby(offerIdActive) {
-    dispatch(getHotelsNearby(offerIdActive)
-    );
-  }
+    dispatch(getHotelsNearby(offerIdActive));
+  },
+  updateActiveOfferIdAction(offerIdActive) {
+    dispatch(updateActiveOfferId(offerIdActive));
+  },
 }));
 
 export {OfferPage};
