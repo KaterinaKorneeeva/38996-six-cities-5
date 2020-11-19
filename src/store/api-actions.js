@@ -30,14 +30,15 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
 export const addReview = ({comment: comment, rating, id}) => (dispatch, _getState, api) => (
   api.post(`${APIRoute.COMMENTS}/${id}`, {comment, rating})
     .then(({data}) => {
-      dispatch(loadComments(data));
+      const adaptCommnents = data.map((comment) => adaptCommentData(comment));
+      dispatch(loadComments(adaptCommnents));
     })
 );
 
 export const getCommentsByHotelId = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.COMMENTS}/${id}`)
     .then(({data}) => {
-      const adaptCommnents = data.map((offer) => adaptCommentData(offer));
+      const adaptCommnents = data.map((comment) => adaptCommentData(comment));
       dispatch(loadComments(adaptCommnents));
     })
 );
