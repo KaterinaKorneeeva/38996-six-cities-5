@@ -9,10 +9,15 @@ import User from "../user/user";
 import {getCoordByCity} from "../../offers";
 import {connect} from 'react-redux';
 import {updateActiveOfferId} from "../../store/action";
-import {getHotelsNearby, getCommentsByHotelId} from "../../store/api-actions";
+import {getHotelsNearby, getCommentsByHotelId, addFavorite} from "../../store/api-actions";
 const OfferListWrapped = withActiveItem(OfferList);
-
+import {AuthorizationStatus} from "../../const";
 class OfferPage extends PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.handleAddFavoriteClick = this.handleAddFavoriteClick.bind(this);
+  }
 
   componentDidMount() {
     const {loadOffersNearby, offerIdActive, loadComments} = this.props;
@@ -20,8 +25,16 @@ class OfferPage extends PureComponent {
     loadComments(offerIdActive);
   }
 
+  handleAddFavoriteClick(evt) {
+    evt.preventDefault();
+    this.props.updateFavoriteOffer({
+      id: this.props.offer.id,
+      status: this.props.offer.isFavorite ? 0 : 1,
+    });
+  }
+
   render() {
-    const {offer, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction} = this.props;
+    const {offer, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction, authorizationStatus, handleFavoriteClick} = this.props;
     const cityCoord = getCoordByCity(offer.city.name);
     return (
       <Fragment>
@@ -71,7 +84,10 @@ class OfferPage extends PureComponent {
                     <h1 className="property__name">
                       {offer.title}
                     </h1>
-                    <button className="property__bookmark-button button" type="button">
+                    <button
+                      className= {offer.isFavorite ? `property__bookmark-button--active button` : `property__bookmark-button button`}
+                      type="button"
+                      onClick= {authorizationStatus === AuthorizationStatus.NO_AUTH ? handleFavoriteClick : this.handleAddFavoriteClick}>
                       <svg className="property__bookmark-icon" width="31" height="33">
                         <use xlinkHref="#icon-bookmark"></use>
                       </svg>
@@ -152,6 +168,7 @@ class OfferPage extends PureComponent {
                   offers={offersNearby}
                   type = "near-places"
                   updateActiveOfferId= {updateActiveOfferIdAction}
+                  handleFavoriteClick = {handleFavoriteClick}
                 />
               </section>
             </div>
@@ -164,8 +181,10 @@ class OfferPage extends PureComponent {
 
 OfferPage.propTypes = {
   offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     images: PropTypes.array.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     isPremium: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -175,8 +194,6 @@ OfferPage.propTypes = {
     bedrooms: PropTypes.number.isRequired,
     maxAdults: PropTypes.number.isRequired,
     goods: PropTypes.array.isRequired,
-    // reviews: PropTypes.array.isRequired,
-
     host: PropTypes.shape({
       name: PropTypes.string.isRequired,
       isPro: PropTypes.bool.isRequired,
@@ -190,13 +207,16 @@ OfferPage.propTypes = {
   comments: PropTypes.array.isRequired,
   offerIdActive: PropTypes.number.isRequired,
   updateActiveOfferIdAction: PropTypes.func.isRequired,
+  updateFavoriteOffer: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  handleFavoriteClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (({DATA}) => ({
+const mapStateToProps = (({DATA, USER}) => ({
   offersNearby: DATA.offersNearby,
   offerIdActive: DATA.offerIdActive,
   comments: DATA.comments,
-
+  authorizationStatus: USER.authorizationStatus,
 }));
 
 const mapDispatchToProps = ((dispatch) => ({
@@ -210,6 +230,9 @@ const mapDispatchToProps = ((dispatch) => ({
   },
   updateActiveOfferIdAction(offerIdActive) {
     dispatch(updateActiveOfferId(offerIdActive));
+  },
+  updateFavoriteOffer(favoriteData) {
+    dispatch(addFavorite(favoriteData));
   },
 }));
 

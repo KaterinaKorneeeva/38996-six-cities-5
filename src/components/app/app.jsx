@@ -64,6 +64,9 @@ const App = (props) => {
             return (
               <OfferPage
                 offer = {offer}
+                history = {history}
+                handleLoginClick={(evt) => handleLoginClick(evt, history)}
+                handleFavoriteClick={(evt) => handleFavoriteClick(evt, history)}
               />
             );
           }}

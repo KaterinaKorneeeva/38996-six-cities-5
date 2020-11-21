@@ -12,16 +12,16 @@ export const getCoordByCity = (city) => {
       return [48.88, 2.35];
 
     case `Brussels`:
-      return [50.8488, 4.35];
+      return [50.84, 4.35];
 
     case `Hamburg`:
-      return [53.58333, 10.0];
+      return [53.58, 10.0];
 
     case `Amsterdam`:
-      return [52.38333, 4.9];
+      return [52.38, 4.9];
 
     case `Dusseldorf`:
-      return [51.38333, 6.46];
+      return [51.22, 6.77];
     default:
       return [48.88, 2.35];
   }
