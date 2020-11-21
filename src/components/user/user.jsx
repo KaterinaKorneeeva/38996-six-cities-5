@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {AuthorizationStatus} from "../../const";
 
-const User = ({authorizationStatus, handleLoginClick}) => {
-
+const User = ({authorizationStatus, handleLoginClick, userInfo}) => {
   return (
     <li className="header__nav-item user">
       <a className="header__nav-link header__nav-link--profile" href="#" onClick={handleLoginClick}>
@@ -12,7 +11,7 @@ const User = ({authorizationStatus, handleLoginClick}) => {
         </div>
         {authorizationStatus === AuthorizationStatus.NO_AUTH
           ? <span className="header__login">Sign in</span>
-          : <span className="header__user-name user__name">test@tes.ru</span>
+          : <span className="header__user-name user__name">{userInfo.email}</span>
         }
       </a>
     </li>
@@ -22,10 +21,12 @@ const User = ({authorizationStatus, handleLoginClick}) => {
 User.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   handleLoginClick: PropTypes.func.isRequired,
+  userInfo: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (({USER}) => ({
-  authorizationStatus: USER.authorizationStatus
+  authorizationStatus: USER.authorizationStatus,
+  userInfo: USER.userInfo
 }));
 
 export {User};

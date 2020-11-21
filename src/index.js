@@ -27,7 +27,7 @@ const store = createStore(
 
 Promise.all([
   store.dispatch(fetchHotelList()),
-  store.dispatch(checkAuth()),
+  store.dispatch(checkAuth())
 ])
 .then(() => {
   ReactDOM.render(

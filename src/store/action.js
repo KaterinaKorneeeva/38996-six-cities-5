@@ -10,6 +10,9 @@ export const ActionType = {
   SORT_TOP_RATED: `SORT_TOP_RATED`,
   UPDATE_OFFER_ID_ACTIVE: `UPDATE_OFFER_ID_ACTIVE`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
+  UPDATE_USER: `UPDATE_USER`,
+  LOAD_OFFERS_NEARBY: `LOAD_OFFERS_NEARBY`,
 };
 
 export const toggleCity = (selectedCity) => ({
@@ -26,6 +29,11 @@ export const loadOffers = (offers) => ({
 export const requireAuthorization = (status) => ({
   type: ActionType.REQUIRED_AUTHORIZATION,
   payload: status,
+});
+
+export const updateUser = (userInfo) => ({
+  type: ActionType.UPDATE_USER,
+  payload: userInfo
 });
 
 export const updateSortingType = (sortingType) => ({
@@ -57,4 +65,15 @@ export const updateActiveOfferId = (offerIdActive) => ({
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,
+});
+
+export const loadComments = (comments) => ({
+  type: ActionType.LOAD_COMMENTS,
+  payload: comments,
+});
+
+
+export const loadOffersNearby = (offersNearby) => ({
+  type: ActionType.LOAD_OFFERS_NEARBY,
+  payload: offersNearby,
 });
