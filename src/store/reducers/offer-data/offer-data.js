@@ -12,6 +12,7 @@ const initialState = {
   offerIdActive: 0,
   comments: [],
   offersNearby: [],
+  favoritesOffers: []
 };
 
 const offerData = (state = initialState, action) => {
@@ -65,6 +66,15 @@ const offerData = (state = initialState, action) => {
         offersNearby: action.payload,
       });
 
+    case ActionType.UPDATE_FAVORITE_OFFER:
+      return extend(state, {
+        favoriteInfo: action.payload
+      });
+
+    case ActionType.LOAD_FAVORITES:
+      return extend(state, {
+        favoritesOffers: action.payload,
+      });
   }
 
   return state;

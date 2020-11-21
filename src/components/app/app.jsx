@@ -22,13 +22,24 @@ const App = (props) => {
 
   };
 
+  const handleFavoriteClick = (evt, history) => {
+    evt.preventDefault();
+    return (
+      authorizationStatus === AuthorizationStatus.NO_AUTH
+        ? history.push(AppRoute.LOGIN)
+        : ``
+    );
+
+  };
+
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.ROOT} render={({history}) => (
           <MainPage
             history = {history}
-            handleLoginClick={(evt) => handleLoginClick(evt, history)} />
+            handleLoginClick={(evt) => handleLoginClick(evt, history)}
+            handleFavoriteClick={(evt) => handleFavoriteClick(evt, history)} />
         )}>
         </Route>
         <Route exact

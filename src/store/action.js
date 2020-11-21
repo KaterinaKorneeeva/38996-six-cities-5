@@ -13,6 +13,8 @@ export const ActionType = {
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   UPDATE_USER: `UPDATE_USER`,
   LOAD_OFFERS_NEARBY: `LOAD_OFFERS_NEARBY`,
+  UPDATE_FAVORITE_OFFER: `UPDATE_FAVORITE_OFFER`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
 };
 
 export const toggleCity = (selectedCity) => ({
@@ -34,6 +36,16 @@ export const requireAuthorization = (status) => ({
 export const updateUser = (userInfo) => ({
   type: ActionType.UPDATE_USER,
   payload: userInfo
+});
+
+export const updateFavoriteOffer = (favoriteInfo) => ({
+  type: ActionType.UPDATE_FAVORITE_OFFER,
+  payload: favoriteInfo
+});
+
+export const loadFavorites = (favoritesOffers) => ({
+  type: ActionType.LOAD_FAVORITES,
+  payload: favoritesOffers,
 });
 
 export const updateSortingType = (sortingType) => ({
@@ -71,7 +83,6 @@ export const loadComments = (comments) => ({
   type: ActionType.LOAD_COMMENTS,
   payload: comments,
 });
-
 
 export const loadOffersNearby = (offersNearby) => ({
   type: ActionType.LOAD_OFFERS_NEARBY,
