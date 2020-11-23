@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should SortingItem render correctly 1`] = `
+<li
+  className="places__option "
+  data-sorting="Popular"
+  onClick={[Function]}
+  tabIndex="0"
+>
+  Popular
+</li>
+`;

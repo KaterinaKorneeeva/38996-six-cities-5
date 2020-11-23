@@ -130,13 +130,11 @@ class ReviewsForm extends PureComponent {
 
 ReviewsForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  userInfo: PropTypes.object.isRequired,
   offerIdActive: PropTypes.number.isRequired,
 };
 
 
-const mapStateToProps = (({DATA, USER}) => ({
-  userInfo: USER.userInfo,
+const mapStateToProps = (({DATA}) => ({
   offerIdActive: DATA.offerIdActive,
 }));
 

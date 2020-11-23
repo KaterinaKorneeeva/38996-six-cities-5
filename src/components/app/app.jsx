@@ -31,8 +31,8 @@ const App = (props) => {
     );
 
   };
-
   return (
+
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.ROOT} render={({history}) => (
@@ -85,7 +85,6 @@ App.propTypes = {
 const mapStateToProps = ({DATA, USER}) => ({
   offerList: DATA.offerList,
   authorizationStatus: USER.authorizationStatus,
-  offerIdActive: DATA.offerIdActive,
 });
 
 

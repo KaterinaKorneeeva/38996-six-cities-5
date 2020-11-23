@@ -78,11 +78,7 @@ FavoritesPage.propTypes = {
 };
 
 const mapStateToProps = (({DATA}) => ({
-  offersNearby: DATA.offersNearby,
-  offerIdActive: DATA.offerIdActive,
-  comments: DATA.comments,
   favoritesOffers: DATA.favoritesOffers,
-
 }));
 
 const mapDispatchToProps = ((dispatch) => ({
