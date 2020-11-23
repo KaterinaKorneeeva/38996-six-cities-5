@@ -7,6 +7,7 @@ it(`Should AuthPage render correctly`, () => {
   const tree = renderer
     .create(<AuthPage
       onSubmit = {noop}
+      selectedCity = 'Paris'
     />)
     .toJSON();
 

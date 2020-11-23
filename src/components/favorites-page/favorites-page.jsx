@@ -15,7 +15,7 @@ class FavoritesPage extends PureComponent {
 
   render() {
 
-    const {favoritesOffers} = this.props;
+    const {favoritesOffers, handleLoginClick, onOfferCardHover} = this.props;
     const citylList = [...new Set(favoritesOffers.map((offer) => offer.city.name))];
     const favoriteOffersCityList = citylList.map((city, index) => {
       const favoriteOffersInCity = favoritesOffers.filter((offer) => offer.city.name === city);
@@ -24,6 +24,7 @@ class FavoritesPage extends PureComponent {
           key={index}
           city={city}
           favoriteOffersInCity={favoriteOffersInCity}
+          onOfferCardHover ={onOfferCardHover}
         />
       );
     });
@@ -42,7 +43,7 @@ class FavoritesPage extends PureComponent {
                   </Link>
                 </div>
                 <ul className="header__nav-list">
-                  <User />
+                  <User handleLoginClick = {handleLoginClick} />
                 </ul>
               </div>
             </div>
@@ -75,6 +76,8 @@ class FavoritesPage extends PureComponent {
 FavoritesPage.propTypes = {
   favoritesOffers: PropTypes.array.isRequired,
   loadFavorites: PropTypes.func.isRequired,
+  handleLoginClick: PropTypes.func.isRequired,
+  onOfferCardHover: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (({DATA}) => ({

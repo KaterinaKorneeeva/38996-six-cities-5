@@ -49,10 +49,12 @@ const App = (props) => {
         <PrivateRoute
           exact
           path={AppRoute.FAVORITES}
-          render={({_history}) => {
+          render={({history}) => {
             return (
               <FavoritesPage
                 offers={offerList}
+                handleLoginClick={(evt) => handleLoginClick(evt, history)}
+                handleFavoriteClick={(evt) => handleFavoriteClick(evt, history)}
               />
             );
           }}

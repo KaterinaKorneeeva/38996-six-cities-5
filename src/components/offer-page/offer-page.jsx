@@ -36,6 +36,7 @@ class OfferPage extends PureComponent {
   render() {
     const {offer, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction, authorizationStatus, handleFavoriteClick} = this.props;
     const cityCoord = getCoordByCity(offer.city.name);
+    console.log('cityCoord',cityCoord);
     return (
       <Fragment>
         <div style={{display: `none`}}>
@@ -216,7 +217,6 @@ const mapStateToProps = (({DATA, USER}) => ({
   offersNearby: DATA.offersNearby,
   offerIdActive: DATA.offerIdActive,
   comments: DATA.comments,
-  authorizationStatus: USER.authorizationStatus,
 }));
 
 const mapDispatchToProps = ((dispatch) => ({

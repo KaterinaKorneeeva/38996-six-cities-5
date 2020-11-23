@@ -12,7 +12,8 @@
   },
   "devDependencies": {
     "eslint": "5.13.0",
-    "eslint-config-htmlacademy": "0.5.2"
+    "eslint-config-htmlacademy": "0.5.2",
+    "redux-mock-store": "^1.5.4"
   },
   "engines": {
     "node": "10"

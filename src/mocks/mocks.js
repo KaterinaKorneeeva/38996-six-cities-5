@@ -32,7 +32,8 @@ export const offerList =
          id: 25,
          name: `Angelina`,
          isPro: true,
-         avatarUrl: `img/avatar-angelina.jpg`
+         avatarUrl: `img/avatar-angelina.jpg`,
+         avatar: `img/avatar-angelina.jpg`
        },
        description: `Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.`,
        location: {
@@ -43,3 +44,30 @@ export const offerList =
        id: 1
      }
    ];
+export const comments =
+  [
+    {
+      id: 1,
+      user: {
+        id: 11,
+        isPro: false,
+        name: "Jack",
+        avatarUrl: "https://assets.htmlacademy.ru/intensives/javascript-3/avatar/2.jpg"
+      },
+      rating: 5,
+      comment: "This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.",
+      date: "2020-10-10T13:38:44.753Z"
+    },
+    {
+      id: 1,
+      user: {
+        id: 11,
+        isPro: false,
+        name: "Jack",
+        avatarUrl: "https://assets.htmlacademy.ru/intensives/javascript-3/avatar/2.jpg"
+      },
+      rating: 5,
+      comment: "This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.",
+      date: "2020-10-10T13:38:44.753Z"
+    },
+  ];
