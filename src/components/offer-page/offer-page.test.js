@@ -7,22 +7,23 @@ import {MemoryRouter} from "react-router-dom";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 
+const mockStore = configureStore()({
+  USER: {
+    authorizationStatus: AuthorizationStatus.AUTH,
+    userInfo: {
+      email: `email@mail.ru`
+    }
+  },
+  DATA: {
+    offersNearby: offerList,
+    offerIdActive: 6,
+    comments: []
+  }
+});
+jest.mock(`../map/map`, () => `Map`);
 it(`Should OfferPage render correctly`, () => {
   const noop = () => {};
-  const mockStore = configureStore()({
-    USER: {
-      authorizationStatus: AuthorizationStatus.AUTH,
-      userInfo: {
-        email: `email@mail.ru`
-      }
-    },
-    DATA: {
-      offersNearby: offerList,
-      offerIdActive: 6,
-      comments: []
-    }
-  });
-  jest.mock(`../map/map`, () => `Map`);
+
   const tree = renderer
     .create(
         <Provider store={mockStore}>
@@ -34,6 +35,10 @@ it(`Should OfferPage render correctly`, () => {
               authorizationStatus = {AuthorizationStatus.AUTH}
               cityCoord = {[48.88, 2.35]}
               type = {`property_map`}
+              loadComments ={noop}
+              loadOffersNearby ={noop}
+              updateActiveOfferIdAction ={noop}
+              updateFavoriteOffer ={noop}
             />
           </MemoryRouter>
         </Provider>)

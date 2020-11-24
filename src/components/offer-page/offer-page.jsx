@@ -36,7 +36,6 @@ class OfferPage extends PureComponent {
   render() {
     const {offer, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction, authorizationStatus, handleFavoriteClick} = this.props;
     const cityCoord = getCoordByCity(offer.city.name);
-    console.log('cityCoord',cityCoord);
     return (
       <Fragment>
         <div style={{display: `none`}}>
@@ -213,7 +212,7 @@ OfferPage.propTypes = {
   handleFavoriteClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (({DATA, USER}) => ({
+const mapStateToProps = (({DATA}) => ({
   offersNearby: DATA.offersNearby,
   offerIdActive: DATA.offerIdActive,
   comments: DATA.comments,

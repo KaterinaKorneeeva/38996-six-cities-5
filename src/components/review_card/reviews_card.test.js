@@ -4,10 +4,11 @@ import ReviewCard from "../review_card/review_card";
 import {comments} from "../../mocks/mocks";
 
 it(`Should ReviewCard render correctly`, () => {
+  const id = 1;
   const tree = renderer
      .create(<ReviewCard
        review = {comments[0]}
-       id = {`1`}
+       id = {id}
      />)
      .toJSON();
 

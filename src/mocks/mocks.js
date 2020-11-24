@@ -51,23 +51,23 @@ export const comments =
       user: {
         id: 11,
         isPro: false,
-        name: "Jack",
-        avatarUrl: "https://assets.htmlacademy.ru/intensives/javascript-3/avatar/2.jpg"
+        name: `Jack`,
+        avatarUrl: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/2.jpg`
       },
       rating: 5,
-      comment: "This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.",
-      date: "2020-10-10T13:38:44.753Z"
+      comment: `This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.`,
+      date: `2020-10-10T13:38:44.753Z`
     },
     {
-      id: 1,
+      id: 2,
       user: {
         id: 11,
         isPro: false,
-        name: "Jack",
-        avatarUrl: "https://assets.htmlacademy.ru/intensives/javascript-3/avatar/2.jpg"
+        name: `Jack`,
+        avatarUrl: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/2.jpg`
       },
       rating: 5,
-      comment: "This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.",
-      date: "2020-10-10T13:38:44.753Z"
+      comment: `This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.`,
+      date: `2020-10-10T13:38:44.753Z`
     },
   ];

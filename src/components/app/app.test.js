@@ -6,6 +6,7 @@ import {offerList} from "./../../mocks/mocks";
 import {MemoryRouter} from "react-router-dom";
 import configureStore from "redux-mock-store";
 import {AuthorizationStatus} from "../../const";
+
 import {Provider} from "react-redux";
 
 const mockStore = configureStore()({
@@ -14,19 +15,24 @@ const mockStore = configureStore()({
     userInfo: {
       email: `email@mail.ru`
     }
+  },
+  DATA: {
+    offerList,
+    offerListByCity: offerList,
+    selectedCity: `Amsterdam`,
+    sortingType: `Popular`
   }
 });
+jest.mock(`../map/map`, () => `Map`);
 
-it(`Should AuthPage render correctly`, () => {
-  const authorizationStatus = `AUTH`;
+it(`Should App render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={mockStore}>
           <MemoryRouter>
             <App
+              authorizationStatus = {AuthorizationStatus.AUTH}
               offerList = {offerList}
-              authorizationStatus = {authorizationStatus}
-              selectedCity = 'Paris'
             />
           </MemoryRouter>
         </Provider>

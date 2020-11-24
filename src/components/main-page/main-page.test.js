@@ -8,35 +8,39 @@ import {MemoryRouter} from "react-router-dom";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 
+const mockStore = configureStore()({
+  USER: {
+    authorizationStatus: AuthorizationStatus.AUTH,
+    userInfo: {
+      email: `email@mail.ru`
+    }
+  },
+  DATA: {
+    sortingType: `Popular`,
+    offerIdActive: 6,
+    selectedCity: `Paris`,
+    offerListByCity: offerList,
+  }
+});
+
+jest.mock(`../map/map`, () => `Map`);
 it(`Should MainPage render correctly`, () => {
   const noop = () => {};
-  // const type = `cities__places`;
-
-  const mockStore = configureStore()({
-    USER: {
-      authorizationStatus: AuthorizationStatus.AUTH,
-      userInfo: {
-        email: `email@mail.ru`
-      }
-    }
-  });
-
   const tree = renderer
      .create(
          <Provider store={mockStore}>
            <MemoryRouter>
-              <MainPage
-                selectedCity = {'Paris'}
-                offerList = {offerList}
-                offerId = {1}
-                toggleCityAction = {noop}
-                loadOffers = {noop}
-                updateActiveOfferIdAction = {noop}
-                handleFavoriteClick = {noop}
-                handleLoginClick = {noop}
-              />
-            </MemoryRouter>
-        </Provider>)
+             <MainPage
+               selectedCity = 'Paris'
+               offerList = {offerList}
+               toggleCityAction = {noop}
+               loadOffers = {noop}
+               updateActiveOfferIdAction = {noop}
+               handleFavoriteClick = {noop}
+               handleLoginClick = {noop}
+             />
+           </MemoryRouter>
+         </Provider>)
      .toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import Moment from "react-moment";
 
 const ReviewCard = (props) => {
-  const {review, id} = props;
+  const {review} = props;
   return (
-    <li key={id} className="reviews__item">
+    <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Reviews avatar"/>
