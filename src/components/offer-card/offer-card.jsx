@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {addFavorite} from "../../store/api-actions";
 import {connect} from 'react-redux';
-import {AuthorizationStatus} from "../../const";
+import {AuthorizationStatus, APIRoute} from "../../const";
 class OfferCard extends PureComponent {
 
   constructor(props) {
@@ -21,7 +21,6 @@ class OfferCard extends PureComponent {
 
   render() {
     const {offer, id, onOfferCardHover, type, authorizationStatus, handleFavoriteClick} = this.props;
-    const offerUrl = `offer/` + id;
 
     return (
       <Fragment>
@@ -41,7 +40,7 @@ class OfferCard extends PureComponent {
             : null
           }
           <div className="cities__image-wrapper place-card__image-wrapper">
-            <Link to={offerUrl}>
+            <Link to={`${APIRoute.OFFER}/${id}`}>
               <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
             </Link>
           </div>
@@ -53,7 +52,7 @@ class OfferCard extends PureComponent {
               </div>
 
               <button
-                className= {offer.isFavorite ? `place-card__bookmark-button--active button` : `place-card__bookmark-button button`}
+                className= {offer.isFavorite ? `place-card__bookmark-button--active place-card__bookmark-button button` : `place-card__bookmark-button button`}
                 type="button"
                 onClick= {authorizationStatus === AuthorizationStatus.NO_AUTH ? handleFavoriteClick : this.handleAddFavoriteClick}>
                 <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -70,7 +69,7 @@ class OfferCard extends PureComponent {
               </div>
             </div>
             <h2 className="place-card__name">
-              <Link to={offerUrl}>{offer.title}</Link>
+              <Link to={`${APIRoute.OFFER}/${id}`}>{offer.title}</Link>
             </h2>
             <p className="place-card__type">{offer.type}</p>
           </div>

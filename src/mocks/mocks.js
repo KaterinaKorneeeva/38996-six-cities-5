@@ -71,3 +71,8 @@ export const comments =
       date: `2020-10-10T13:38:44.753Z`
     },
   ];
+
+export const userInfo = [
+  {email: `email@mail.ru`}
+];
+

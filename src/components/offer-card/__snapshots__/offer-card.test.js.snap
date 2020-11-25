@@ -43,7 +43,7 @@ exports[`Should OfferCard render correctly 1`] = `
         </span>
       </div>
       <button
-        className="place-card__bookmark-button--active button"
+        className="place-card__bookmark-button--active place-card__bookmark-button button"
         onClick={[Function]}
         type="button"
       >

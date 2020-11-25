@@ -37,7 +37,7 @@ it(`Should OfferPage render correctly`, () => {
               type = {`property_map`}
               loadComments ={noop}
               loadOffersNearby ={noop}
-              updateActiveOfferIdAction ={noop}
+              updateActiveOfferId ={noop}
               updateFavoriteOffer ={noop}
             />
           </MemoryRouter>

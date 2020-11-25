@@ -6,6 +6,9 @@ import {connect} from 'react-redux';
 import {getFavoritesOffers} from "../../store/api-actions";
 import FavoritesList from "../favorites-list/favorites-list";
 import FavoritesPageEmpty from "../favorites-page-empty/favorites-page-empty";
+import withActiveItem from "../../hocs/withActiveItem/withActiveItem";
+import {updateActiveOfferId} from "../../store/action";
+const FavoritesListWrapped = withActiveItem(FavoritesList);
 class FavoritesPage extends PureComponent {
 
   componentDidMount() {
@@ -15,17 +18,18 @@ class FavoritesPage extends PureComponent {
 
   render() {
 
-    const {favoritesOffers, handleLoginClick, _onOfferCardHover, handleFavoriteClick} = this.props;
+    const {favoritesOffers, handleLoginClick, _onOfferCardHover, handleFavoriteClick, updateActiveOfferIdAction} = this.props;
     const citylList = [...new Set(favoritesOffers.map((offer) => offer.city.name))];
     const favoriteOffersCityList = citylList.map((city, index) => {
       const favoriteOffersInCity = favoritesOffers.filter((offer) => offer.city.name === city);
       return (
-        <FavoritesList
+        <FavoritesListWrapped
           key={index}
           city={city}
           favoriteOffersInCity={favoriteOffersInCity}
           handleFavoriteClick ={handleFavoriteClick}
-          // onOfferCardHover ={onOfferCardHover}
+          updateActiveOfferId= {updateActiveOfferIdAction}
+          type = "favorites"
         />
       );
     });
@@ -84,12 +88,15 @@ FavoritesPage.propTypes = {
 
 const mapStateToProps = (({DATA}) => ({
   favoritesOffers: DATA.favoritesOffers,
-  // onOfferCardHover: DATA.onOfferCardHover,
+  offerIdActive: DATA.offerIdActive,
 }));
 
 const mapDispatchToProps = ((dispatch) => ({
   loadFavorites() {
     dispatch(getFavoritesOffers());
+  },
+  updateActiveOfferIdAction(offerIdActive) {
+    dispatch(updateActiveOfferId(offerIdActive));
   },
 }));
 

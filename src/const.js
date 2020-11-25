@@ -22,4 +22,5 @@ export const APIRoute = {
   LOGIN: `/login`,
   COMMENTS: `/comments`,
   NEARBY: `/nearby`,
+  OFFER: `/offer`,
 };
