@@ -97,8 +97,6 @@ const mapStateToProps = ({DATA}) => ({
   selectedCity: DATA.selectedCity,
   offerList: DATA.offerListByCity,
   offerId: DATA.offerId,
-  city: PropTypes.string.isRequired,
-  updateActiveOfferId: PropTypes.func.isRequired,
   offerIdActive: DATA.offerIdActive,
 
 });

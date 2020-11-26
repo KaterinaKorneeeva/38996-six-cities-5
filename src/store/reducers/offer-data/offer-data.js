@@ -71,7 +71,7 @@ const offerData = (state = initialState, action) => {
 
       let index = getIndex(action.payload, state.offerListByCity);
       if (index !== -1) {
-        const adaptOffers = getNewArray(action.payload, state.offerListByCity, index).map((offer) => adaptData(offer))
+        const adaptOffers = getNewArray(action.payload, state.offerListByCity, index).map((offer) => adaptData(offer));
         result.offerListByCity = adaptOffers;
       }
 

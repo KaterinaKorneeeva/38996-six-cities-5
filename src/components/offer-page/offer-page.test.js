@@ -36,8 +36,8 @@ it(`Should OfferPage render correctly`, () => {
               cityCoord = {[48.88, 2.35]}
               type = {`property_map`}
               loadComments ={noop}
-              loadOffersNearby ={noop}
-              updateActiveOfferId ={noop}
+              // loadOffersNearby ={noop}
+              // updateActiveOfferId ={noop}
               updateFavoriteOffer ={noop}
             />
           </MemoryRouter>

@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card";
 const FavoritesList = (props) => {
-  const {city, favoriteOffersInCity, _onOfferCardHover, handleFavoriteClick} = props;
+  const {city, favoriteOffersInCity, onOfferCardHover, handleFavoriteClick} = props;
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -21,7 +21,7 @@ const FavoritesList = (props) => {
             id = {offer.id}
             type = {`favorites`}
             handleFavoriteClick = {handleFavoriteClick}
-            // onOfferCardHover={onOfferCardHover}
+            onOfferCardHover={onOfferCardHover}
           />
         ))}
       </div>
@@ -33,7 +33,7 @@ FavoritesList.propTypes = {
   favoriteOffersInCity: PropTypes.array.isRequired,
   city: PropTypes.string.isRequired,
   handleFavoriteClick: PropTypes.func.isRequired,
-  // onOfferCardHover
+  onOfferCardHover: PropTypes.func.isRequired,
 };
 
 export default FavoritesList;

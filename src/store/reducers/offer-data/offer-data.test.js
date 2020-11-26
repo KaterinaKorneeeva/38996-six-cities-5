@@ -1,14 +1,17 @@
 import {offerData} from "./offer-data";
 import {ActionType} from "../../action";
-import {offerList, comments} from "../../../mocks/mocks";
+import {offerList as mockOffers, comments as mockComments} from "../../../mocks/mocks";
+import {offersByCity} from "../../../offers";
 
 describe(`offerData reduser test`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(offerData(void 0, {})).toEqual({
-      offers: [],
+      selectedCity: `Paris`,
       offerList: [],
       offer: [],
       offerListByCity: [],
+      sortingType: `POPULAR`,
+      offerIdActive: 0,
       comments: [],
       offersNearby: [],
       favoritesOffers: []
@@ -20,9 +23,10 @@ describe(`offerData reduser test`, () => {
       offerList: [],
     }, {
       type: ActionType.LOAD_OFFERS,
-      payload: offerList,
+      payload: mockOffers,
     })).toEqual({
-      offerListByCity: offerList,
+      offerList: mockOffers,
+      offerListByCity: offersByCity(mockOffers, `Paris`)
 
     });
   });
@@ -32,9 +36,9 @@ describe(`offerData reduser test`, () => {
       offersNearby: [],
     }, {
       type: ActionType.LOAD_OFFERS_NEARBY,
-      payload: offerList,
+      payload: mockOffers,
     })).toEqual({
-      offersNearby: offerList
+      offersNearby: mockOffers
     });
   });
 
@@ -43,9 +47,9 @@ describe(`offerData reduser test`, () => {
       favoritesOffers: [],
     }, {
       type: ActionType.LOAD_FAVORITES,
-      payload: offerList,
+      payload: mockOffers,
     })).toEqual({
-      favoritesOffers: offerList
+      favoritesOffers: mockOffers
     });
   });
 
@@ -54,9 +58,9 @@ describe(`offerData reduser test`, () => {
       comments: [],
     }, {
       type: ActionType.LOAD_COMMENTS,
-      payload: comments,
+      payload: mockComments,
     })).toEqual({
-      comments
+      comments: mockComments
     });
   });
 });

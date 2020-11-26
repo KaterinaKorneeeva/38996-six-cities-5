@@ -18,7 +18,7 @@ class FavoritesPage extends PureComponent {
 
   render() {
 
-    const {favoritesOffers, handleLoginClick, _onOfferCardHover, handleFavoriteClick, updateActiveOfferIdAction} = this.props;
+    const {favoritesOffers, handleLoginClick, handleFavoriteClick, updateActiveOfferIdAction} = this.props;
     const citylList = [...new Set(favoritesOffers.map((offer) => offer.city.name))];
     const favoriteOffersCityList = citylList.map((city, index) => {
       const favoriteOffersInCity = favoritesOffers.filter((offer) => offer.city.name === city);
@@ -83,7 +83,7 @@ FavoritesPage.propTypes = {
   loadFavorites: PropTypes.func.isRequired,
   handleLoginClick: PropTypes.func.isRequired,
   handleFavoriteClick: PropTypes.func.isRequired,
-  // onOfferCardHover: PropTypes.func.isRequired,
+  updateActiveOfferIdAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (({DATA}) => ({

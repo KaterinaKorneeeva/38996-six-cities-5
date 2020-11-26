@@ -7,27 +7,26 @@ import Enzyme, {shallow} from "enzyme";
 Enzyme.configure({
   adapter: new Adapter(),
 });
+
 const mockEvent = {
   preventDefault() {}
 };
 
+const noop = () => {};
+
 it(`Should send review click`, () => {
-  const onSubmit = jest.fn();
-  const noop = () => {};
+  const onSubmitMock = jest.fn();
+
   const wrapper = shallow(
       <ReviewsForm
-        // handleSubmit = {noop}
-        // selectedCity = 'Paris'
-        // onSubmit={() => {}}
-
         handleSubmit = {noop}
-        onSubmit= {onSubmit}
+        onSubmit= {onSubmitMock}
         handleFieldChange = {noop}
         comment = {``}
         offerIdActive = {1}
         rating = {`2`}
       />
   );
-  wrapper.find(`.reviews__form`).simulate(`click`, mockEvent);
-  expect(onSubmit).toHaveBeenCalledTimes(1);
+  wrapper.find(`.reviews__form`).simulate(`submit`, mockEvent);
+  expect(onSubmitMock).toHaveBeenCalledTimes(1);
 });

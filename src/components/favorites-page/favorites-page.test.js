@@ -28,6 +28,7 @@ it(`Should FavoritesPage render correctly`, () => {
               handleLoginClick ={noop}
               handleFavoriteClick = {noop}
               favoritesOffers = {offerList}
+              updateActiveOfferIdAction = {noop}
             />
           </MemoryRouter>
         </Provider>

@@ -7,21 +7,20 @@ import Enzyme, {shallow} from "enzyme";
 Enzyme.configure({
   adapter: new Adapter(),
 });
+
 const mockEvent = {
-  preventDefault() {}
+  preventDefault: () => {}
 };
 
 it(`Should click city-tab`, () => {
-  const toggleCity = jest.fn();
-  const noop = () => {};
+  const toggleCityMock = jest.fn();
   const wrapper = shallow(
       <CityList
         selectedCity = {`Paris`}
-        onClick={() => {}}
+        toggleCity = {toggleCityMock}
       />
   );
 
-
   wrapper.find(`.locations__item`).first().simulate(`click`, mockEvent);
-  expect(toggleCity).toHaveBeenCalledTimes(1);
+  expect(toggleCityMock).toHaveBeenCalledTimes(1);
 });

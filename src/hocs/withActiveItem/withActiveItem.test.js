@@ -25,7 +25,7 @@ const MockComponentWrapped = withActiveItem(MockComponent);
 
 it(`withActiveItem is rendered correctly`, () => {
   const tree = renderer.create((
-    <MockComponentWrapped>
+    <MockComponentWrapped updateActiveOfferId={() => {}}>
       <React.Fragment />
     </MockComponentWrapped>
   )).toJSON();
