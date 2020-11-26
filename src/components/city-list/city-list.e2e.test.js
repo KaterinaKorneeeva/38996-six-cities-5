@@ -17,7 +17,7 @@ it(`Should click city-tab`, () => {
   const wrapper = shallow(
       <CityList
         selectedCity = {`Paris`}
-        onClick = {noop}
+        onClick={() => {}}
       />
   );
 

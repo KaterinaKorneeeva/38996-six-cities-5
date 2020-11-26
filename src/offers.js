@@ -6,6 +6,14 @@ export const offerById = (offers = [], id = 6) => {
   return offers.filter((item) => item.id === id)[0];
 };
 
+export const getIndex = (elem, array) => {
+  return array.findIndex((item) => item.id === elem.id);
+};
+
+export const getNewArray = (elem, array, index) => {
+  return [...array.slice(0, index), elem, ...array.slice(index + 1)];
+};
+
 export const getCoordByCity = (city) => {
   switch (city) {
     case `Paris`:

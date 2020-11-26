@@ -1,3 +1,4 @@
+
 import {AuthorizationStatus} from "../../const";
 import {offerList} from "../../mocks/mocks";
 import React from "react";
