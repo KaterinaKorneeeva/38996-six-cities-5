@@ -21,6 +21,7 @@ class ReviewsForm extends PureComponent {
     const {onSubmit, offerIdActive} = this.props;
     evt.preventDefault();
 
+    console.log('offerIdActive',offerIdActive);
     onSubmit({
       comment: this.state.review,
       id: offerIdActive,

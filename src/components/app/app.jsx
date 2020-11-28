@@ -65,6 +65,7 @@ const App = (props) => {
             const offer = offerList.find((it) => it.id === offerId);
             return (
               <OfferPage
+                offerId = {offerId}
                 offer = {offer}
                 history = {history}
                 handleLoginClick={(evt) => handleLoginClick(evt, history)}

@@ -14,7 +14,7 @@ const mockEvent = {
 };
 
 it(`Should offer-card click favorite button`, () => {
-  const updateFavoriteOffer = jest.fn();
+  const updateFavoriteOfferMock = jest.fn();
   const noop = () => {};
   const wrapper = shallow(
       <OfferCard
@@ -27,10 +27,30 @@ it(`Should offer-card click favorite button`, () => {
         offer = {offerList[0]}
         preventDefault = {() => {}}
         handleAddFavoriteClick={() => {}}
-        updateFavoriteOffer= {updateFavoriteOffer}
+        updateFavoriteOffer= {updateFavoriteOfferMock}
       />
   );
   wrapper.find(`.place-card__bookmark-button`).simulate(`click`, mockEvent);
-  expect(updateFavoriteOffer).toHaveBeenCalledTimes(1);
+  expect(updateFavoriteOfferMock).toHaveBeenCalledTimes(1);
 });
 
+it(`Should update offer card id onMouse`, () => {
+  const onOfferCardHoverMock = jest.fn();
+  const noop = () => {};
+  const wrapper = shallow(
+      <OfferCard
+        type = {`cities__places`}
+        id = {1}
+        handleFavoriteClick = {noop}
+        addFavorite = {noop}
+        authorizationStatus = {AuthorizationStatus.AUTH}
+        offer = {offerList[0]}
+        updateFavoriteOffer = {() => {}}
+        preventDefault = {() => {}}
+        handleAddFavoriteClick={() => {}}
+        onOfferCardHover= {onOfferCardHoverMock}
+      />
+  );
+  wrapper.find(`.place-card`).simulate(`mouseover`, mockEvent);
+  expect(onOfferCardHoverMock).toHaveBeenCalledTimes(1);
+});

@@ -30,14 +30,13 @@ it(`Should OfferPage render correctly`, () => {
           <MemoryRouter>
             <OfferPage
               offer = {offerList[0]}
+              offerId = {3}
               handleLoginClick={noop}
               handleFavoriteClick={noop}
               authorizationStatus = {AuthorizationStatus.AUTH}
               cityCoord = {[48.88, 2.35]}
               type = {`property_map`}
               loadComments ={noop}
-              // loadOffersNearby ={noop}
-              // updateActiveOfferId ={noop}
               updateFavoriteOffer ={noop}
             />
           </MemoryRouter>

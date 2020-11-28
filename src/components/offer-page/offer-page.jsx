@@ -20,9 +20,9 @@ class OfferPage extends PureComponent {
   }
 
   componentDidMount() {
-    const {loadOffersNearby, offerIdActive, loadComments} = this.props;
-    loadOffersNearby(offerIdActive);
-    loadComments(offerIdActive);
+    const {loadOffersNearby, _offerIdActive, offerId, loadComments} = this.props;
+    loadOffersNearby(offerId);
+    loadComments(offerId);
   }
 
   handleAddFavoriteClick(evt) {
