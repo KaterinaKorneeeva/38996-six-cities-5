@@ -58,7 +58,7 @@ const offerData = (state = initialState, action) => {
 
     case ActionType.LOAD_COMMENTS:
       return extend(state, {
-        comments: action.payload,
+        comments: action.payload.sort((firstComment, secondComment) => (new Date(secondComment.date) - new Date(firstComment.date))).slice(0, 10)
       });
 
     case ActionType.LOAD_OFFERS_NEARBY:
