@@ -20,7 +20,7 @@ class OfferPage extends PureComponent {
   }
 
   componentDidMount() {
-    const {loadOffersNearby, _offerIdActive, offerId, loadComments} = this.props;
+    const {loadOffersNearby, offerId, loadComments} = this.props;
     loadOffersNearby(offerId);
     loadComments(offerId);
   }
@@ -205,7 +205,7 @@ OfferPage.propTypes = {
   loadOffersNearby: PropTypes.func.isRequired,
   handleLoginClick: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
-  offerIdActive: PropTypes.number.isRequired,
+  offerId: PropTypes.number.isRequired,
   updateActiveOfferIdAction: PropTypes.func.isRequired,
   updateFavoriteOffer: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,

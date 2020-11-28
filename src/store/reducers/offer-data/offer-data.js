@@ -52,7 +52,6 @@ const offerData = (state = initialState, action) => {
         offerListByCity: state.offerListByCity.slice(0).sort((firstOffer, secondOffer) => firstOffer.rating < secondOffer.rating ? 1 : -1),
       });
     case ActionType.UPDATE_OFFER_ID_ACTIVE:
-      console.log('action.payload',action.payload);
       return extend(state, {
         offerIdActive: action.payload,
       });
