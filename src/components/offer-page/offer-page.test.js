@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import OfferPage from "../offer-page/offer-page";
+import {OfferPage} from "../offer-page/offer-page";
 import {offerList} from "../../mocks/mocks";
 import {AuthorizationStatus} from "../../const";
 import {MemoryRouter} from "react-router-dom";
@@ -37,7 +37,12 @@ it(`Should OfferPage render correctly`, () => {
               cityCoord = {[48.88, 2.35]}
               type = {`property_map`}
               loadComments ={noop}
+              comments = {[]}
+              offersNearby = {[]}
+              loadOffersNearby={noop}
               updateFavoriteOffer ={noop}
+              updateActiveOfferIdAction ={noop}
+              updateActiveOfferId ={noop}
             />
           </MemoryRouter>
         </Provider>)
