@@ -9,7 +9,6 @@ import PrivateRoute from "../private-route/private-route";
 import browserHistory from "../../browser-history";
 import {connect} from "react-redux";
 import {AppRoute, AuthorizationStatus} from "../../const";
-import {updateActiveOfferId} from "../../store/action";
 
 const App = (props) => {
   const {offerList, authorizationStatus} = props;
