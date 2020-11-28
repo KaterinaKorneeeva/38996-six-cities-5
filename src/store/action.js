@@ -9,6 +9,7 @@ export const ActionType = {
   SORT_POPULAR: `SORT_POPULAR`,
   SORT_TOP_RATED: `SORT_TOP_RATED`,
   UPDATE_OFFER_ID_ACTIVE: `UPDATE_OFFER_ID_ACTIVE`,
+  UPDATE_OFFER: `UPDATE_OFFER_ID_ACTIVE`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   UPDATE_USER: `UPDATE_USER`,
@@ -73,6 +74,12 @@ export const updateActiveOfferId = (offerIdActive) => ({
   type: ActionType.UPDATE_OFFER_ID_ACTIVE,
   payload: offerIdActive,
 });
+
+export const updateOffer = (offer) => ({
+  type: ActionType.UPDATE_OFFER,
+  payload: offer,
+});
+
 
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,

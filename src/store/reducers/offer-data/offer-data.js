@@ -56,6 +56,11 @@ const offerData = (state = initialState, action) => {
         offerIdActive: action.payload,
       });
 
+    case ActionType.UPDATE_OFFER:
+      return extend(state, {
+        offer: action.payload,
+      });
+
     case ActionType.LOAD_COMMENTS:
       return extend(state, {
         comments: action.payload.sort((firstComment, secondComment) => (new Date(secondComment.date) - new Date(firstComment.date))).slice(0, 10)
