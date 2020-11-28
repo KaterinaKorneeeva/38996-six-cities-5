@@ -47,19 +47,12 @@ class Map extends PureComponent {
     const zoomMap = 12;
 
     const {offers, cityCoord, offerIdActive} = this.props;
-    const offerCords = offers.filter((offer) => offer.id !== offerIdActive).map((offer) => offer.location);
-    const offerCordsActive = offers.filter((offer) => offer.id === offerIdActive).map((offer) => offer.location);
+
     this._map.setView(cityCoord, zoomMap);
 
-    offerCords.forEach((coords) => {
+    offers.forEach((offer) => {
       leaflet
-        .marker([coords.latitude, coords.longitude], {icon})
-        .addTo(this._map);
-    });
-
-    offerCordsActive.forEach((coords) => {
-      leaflet
-        .marker([coords.latitude, coords.longitude], {iconActive})
+        .marker([offer.location.latitude, offer.location.longitude], {icon: offer.id === offerIdActive ? iconActive : icon})
         .addTo(this._map);
     });
     leaflet
