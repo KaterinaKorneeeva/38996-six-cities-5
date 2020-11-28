@@ -1,6 +1,6 @@
 import {extend} from "../../../utils";
 import {ActionType} from "../../action";
-import {offersByCity, adaptData, getIndex, getNewArray} from "../../../offers";
+import {offersByCity, adaptData, replaceItem} from "../../../offers";
 
 
 const initialState = {
@@ -67,26 +67,11 @@ const offerData = (state = initialState, action) => {
       });
 
     case ActionType.UPDATE_FAVORITE_OFFER:
-      const result = [];
-
-      let index = getIndex(action.payload, state.offerListByCity);
-      if (index !== -1) {
-        const adaptOffers = getNewArray(action.payload, state.offerListByCity, index).map((offer) => adaptData(offer));
-        result.offerListByCity = adaptOffers;
-      }
-
-      if (state.offerIdActive === action.payload.id) {
-        result.offer = adaptData(action.payload);
-      }
-
-      index = getIndex(action.payload, state.offersNearby);
-      if (index !== -1) {
-        const adaptOffersNearby = getNewArray(action.payload, state.offersNearby, index).map((offer) => adaptData(offer)).slice(0, 3);
-        result.offersNearby = adaptOffersNearby;
-      }
-
-      result.favoritesOffers = state.favoritesOffers.slice(0).filter((offer) => offer.id !== action.payload.id);
-      return extend(state, result);
+      return extend(state, {
+        offerListByCity: replaceItem(state.offerListByCity, action.payload).map((offer) => adaptData(offer)),
+        offersNearby: replaceItem(state.offersNearby, action.payload).map((offer) => adaptData(offer)).slice(0, 3),
+        favoritesOffers: state.favoritesOffers.slice(0).filter((offer) => offer.id !== action.payload.id),
+      });
 
     case ActionType.LOAD_FAVORITES:
       return extend(state, {

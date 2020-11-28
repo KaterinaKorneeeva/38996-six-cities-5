@@ -6,12 +6,17 @@ export const offerById = (offers = [], id = 6) => {
   return offers.filter((item) => item.id === id)[0];
 };
 
-export const getIndex = (elem, array) => {
-  return array.findIndex((item) => item.id === elem.id);
+const getIndex = (array, item) => {
+  return array.findIndex((it) => it.id === item.id);
 };
 
-export const getNewArray = (elem, array, index) => {
-  return [...array.slice(0, index), elem, ...array.slice(index + 1)];
+export const replaceItem = (array, item) => {
+  const itemIndex = getIndex(array, item);
+  return [
+    ...array.slice(0, itemIndex),
+    item,
+    ...array.slice(itemIndex + 1)
+  ];
 };
 
 export const getCoordByCity = (city) => {
