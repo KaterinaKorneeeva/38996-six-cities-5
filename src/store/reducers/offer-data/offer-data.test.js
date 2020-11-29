@@ -8,7 +8,6 @@ describe(`offerData reduser test`, () => {
     expect(offerData(void 0, {})).toEqual({
       selectedCity: `Paris`,
       offerList: [],
-      offer: [],
       offerListByCity: [],
       sortingType: `POPULAR`,
       offerIdActive: 0,

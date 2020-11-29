@@ -100,9 +100,9 @@ OfferCard.propTypes = {
   updateFavoriteOffer: PropTypes.func.isRequired,
   handleFavoriteClick: PropTypes.func.isRequired,
 };
+
 const mapStateToProps = (({USER}) => ({
   authorizationStatus: USER.authorizationStatus,
-
 }));
 
 const mapDispatchToProps = ((dispatch) => ({

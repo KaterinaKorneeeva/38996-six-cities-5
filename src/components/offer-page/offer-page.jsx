@@ -9,7 +9,7 @@ import User from "../user/user";
 import {getCoordByCity} from "../../offers";
 import {connect} from 'react-redux';
 import {updateActiveOfferId} from "../../store/action";
-import {getHotelsNearby, getCommentsByHotelId, addFavorite, getOfferByHotelId} from "../../store/api-actions";
+import {getHotelsNearby, getCommentsByHotelId, addFavorite} from "../../store/api-actions";
 const OfferListWrapped = withActiveItem(OfferList);
 import {AuthorizationStatus} from "../../const";
 class OfferPage extends PureComponent {
@@ -20,24 +20,10 @@ class OfferPage extends PureComponent {
   }
 
   componentDidMount() {
-    console.log(1111111);
-    const {offerId, loadComments, loadOffersNearby, loadOfferById, updateActiveOfferIdAction} = this.props;
-    console.log(222222);
+    const {offerId, loadComments, loadOffersNearby, updateActiveOfferIdAction} = this.props;
     updateActiveOfferIdAction(offerId);
-
-    // loadOfferById(offerId);
     loadOffersNearby(offerId);
     loadComments(offerId);
-  }
-
-  componentDidUpdate(prevProps) {
-    const {offerId, loadComments, loadOffersNearby, loadOfferById} = this.props;
-
-    if (prevProps.offerId !== offerId) {
-      loadOfferById(offerId);
-      loadOffersNearby(offerId);
-      loadComments(offerId);
-    }
   }
 
   handleAddFavoriteClick(evt) {
@@ -49,10 +35,8 @@ class OfferPage extends PureComponent {
   }
 
   render() {
-
-    const {offer, offerTest, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction, authorizationStatus, handleFavoriteClick} = this.props;
-    // const cityCoord = getCoordByCity(offer.city.name);
-    console.log(4444);
+    const {offer, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction, authorizationStatus, handleFavoriteClick} = this.props;
+    const cityCoord = getCoordByCity(offer.city.name);
     return (
 
       <Fragment>
@@ -174,7 +158,7 @@ class OfferPage extends PureComponent {
                 </div>
               </div>
               <Map
-                cityCoord = {getCoordByCity(offer.city.name)}
+                cityCoord = {cityCoord}
                 offers={offersNearby}
                 type = "property_map"
               />
@@ -198,29 +182,28 @@ class OfferPage extends PureComponent {
 }
 
 OfferPage.propTypes = {
-  // offer: PropTypes.shape({
-  //   id: PropTypes.number.isRequired,
-  //   rating: PropTypes.number.isRequired,
-  //   images: PropTypes.array.isRequired,
-  //   isFavorite: PropTypes.bool.isRequired,
-  //   isPremium: PropTypes.bool.isRequired,
-  //   title: PropTypes.string.isRequired,
-  //   description: PropTypes.string.isRequired,
-  //   price: PropTypes.number.isRequired,
-  //   type: PropTypes.string.isRequired,
-  //   city: PropTypes.object.isRequired,
-  //   bedrooms: PropTypes.number.isRequired,
-  //   maxAdults: PropTypes.number.isRequired,
-  //   goods: PropTypes.array.isRequired,
-  //   host: PropTypes.shape({
-  //     name: PropTypes.string.isRequired,
-  //     isPro: PropTypes.bool.isRequired,
-  //     avatar: PropTypes.string.isRequired,
-  //   }).isRequired,
-  // }).isRequired,
+  offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    images: PropTypes.array.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    city: PropTypes.object.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    goods: PropTypes.array.isRequired,
+    host: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      avatar: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   offersNearby: PropTypes.array.isRequired,
   loadComments: PropTypes.func.isRequired,
-  loadOfferById: PropTypes.func.isRequired,
   loadOffersNearby: PropTypes.func.isRequired,
   handleLoginClick: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
@@ -234,7 +217,6 @@ OfferPage.propTypes = {
 const mapStateToProps = (({DATA, USER}) => ({
   offersNearby: DATA.offersNearby,
   offerIdActive: DATA.offerIdActive,
-  offerTest: DATA.offerTest,
   comments: DATA.comments,
   authorizationStatus: USER.authorizationStatus,
 }));
@@ -243,19 +225,12 @@ const mapDispatchToProps = ((dispatch) => ({
   updateActiveOfferIdAction(offerIdActive) {
     dispatch(updateActiveOfferId(offerIdActive));
   },
-
-  loadOfferById(offerIdActive) {
-    dispatch(getOfferByHotelId(offerIdActive));
-  },
-
   loadComments(offerIdActive) {
     dispatch(getCommentsByHotelId(offerIdActive));
   },
   loadOffersNearby(offerIdActive) {
     dispatch(getHotelsNearby(offerIdActive));
   },
-
-
   updateFavoriteOffer(favoriteData) {
     dispatch(addFavorite(favoriteData));
   },

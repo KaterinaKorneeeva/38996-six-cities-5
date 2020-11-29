@@ -1,12 +1,11 @@
 import {extend} from "../../../utils";
 import {ActionType} from "../../action";
-import {offersByCity, adaptData, replaceItem} from "../../../offers";
+import {offersByCity, replaceItem} from "../../../offers";
 
 
 const initialState = {
   selectedCity: `Paris`,
   offerList: [],
-  offerTest: [],
   offerListByCity: [],
   sortingType: `POPULAR`,
   offerIdActive: 0,
@@ -73,8 +72,8 @@ const offerData = (state = initialState, action) => {
 
     case ActionType.UPDATE_FAVORITE_OFFER:
       return extend(state, {
-        offerListByCity: replaceItem(state.offerListByCity, action.payload).map((offer) => adaptData(offer)),
-        offersNearby: replaceItem(state.offersNearby, action.payload).map((offer) => adaptData(offer)).slice(0, 3),
+        offerList: replaceItem(state.offerList, action.payload),
+        offersNearby: replaceItem(state.offersNearby, action.payload).slice(0, 3),
         favoritesOffers: state.favoritesOffers.slice(0).filter((offer) => offer.id !== action.payload.id),
       });
 

@@ -75,12 +75,6 @@ export const updateActiveOfferId = (offerIdActive) => ({
   payload: offerIdActive,
 });
 
-export const updateOffer = (offer) => ({
-  type: ActionType.UPDATE_OFFER,
-  payload: offer,
-});
-
-
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,

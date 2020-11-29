@@ -1,4 +1,3 @@
-
 import React from "react";
 import Adapter from "enzyme-adapter-react-16";
 import {ReviewsForm} from "../reviews-form/reviews-form";
@@ -12,9 +11,6 @@ const mockEvent = {
   preventDefault() {}
 };
 
-const mockResetEvent = {
-  reset() {}
-};
 const noop = () => {};
 
 it(`Should send review click`, () => {
@@ -28,10 +24,17 @@ it(`Should send review click`, () => {
         comment = {``}
         offerIdActive = {1}
         rating = {`2`}
-        reset = {mockResetEvent}
         isDisabled={false}
       />
   );
-  wrapper.find(`.reviews__form`).simulate(`submit`, mockEvent);
+
+
+  const form = wrapper.find(`form`).simulate(`change`);
+  const submitMockEvent = {
+    target: form,
+    preventDefault() {}
+  };
+
+  form.simulate(`submit`, mockEvent);
   expect(onSubmitMock).toHaveBeenCalledTimes(1);
 });

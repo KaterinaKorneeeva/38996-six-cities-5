@@ -332,6 +332,7 @@ Array [
                 >
                   <input
                     className="form__rating-input visually-hidden"
+                    disabled={false}
                     id="5-stars"
                     name="rating"
                     onChange={[Function]}
@@ -355,6 +356,7 @@ Array [
                   </label>
                   <input
                     className="form__rating-input visually-hidden"
+                    disabled={false}
                     id="4-stars"
                     name="rating"
                     onChange={[Function]}
@@ -378,6 +380,7 @@ Array [
                   </label>
                   <input
                     className="form__rating-input visually-hidden"
+                    disabled={false}
                     id="3-stars"
                     name="rating"
                     onChange={[Function]}
@@ -401,6 +404,7 @@ Array [
                   </label>
                   <input
                     className="form__rating-input visually-hidden"
+                    disabled={false}
                     id="2-stars"
                     name="rating"
                     onChange={[Function]}
@@ -424,6 +428,7 @@ Array [
                   </label>
                   <input
                     className="form__rating-input visually-hidden"
+                    disabled={false}
                     id="1-star"
                     name="rating"
                     onChange={[Function]}
@@ -448,7 +453,10 @@ Array [
                 </div>
                 <textarea
                   className="reviews__textarea form__textarea"
+                  disabled={false}
                   id="review"
+                  maxLength="300"
+                  minLength="50"
                   name="review"
                   onChange={[Function]}
                   placeholder="Tell how was your stay, what you like and what can be improved"

@@ -55,7 +55,6 @@ export const getOfferByHotelId = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.HOTELS}/${id}`)
     .then(({data}) => {
       const adaptOffer = adaptData(data);
-      console.log('id',id);
       dispatch(loadOfferById(adaptOffer));
     })
 );
@@ -63,7 +62,8 @@ export const getOfferByHotelId = (id) => (dispatch, _getState, api) => (
 export const addFavorite = ({status, id}) => (dispatch, _getState, api) => (
   api.post(`favorite/${id}/${status}`)
     .then(({data}) => {
-      dispatch(updateFavoriteOffer(data));
+      const adaptOffer = adaptData(data);
+      dispatch(updateFavoriteOffer(adaptOffer));
     })
 );
 

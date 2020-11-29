@@ -42,8 +42,7 @@ const App = (props) => {
             handleFavoriteClick={(evt) => handleFavoriteClick(evt, history)} />
         )}>
         </Route>
-        <Route exact
-          path = {AppRoute.LOGIN}>
+        <Route exact path={AppRoute.LOGIN}>
           <AuthPage />
         </Route>
         <PrivateRoute
@@ -61,7 +60,8 @@ const App = (props) => {
         />
         <Route exact path="/offer/:id"
           render={(data) => {
-            const offerId = +data.match.params.id;
+            const {match, history} = data;
+            const offerId = +match.params.id;
             const offer = offerList.find((it) => it.id === offerId);
             return (
               <OfferPage

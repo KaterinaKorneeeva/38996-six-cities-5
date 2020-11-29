@@ -40,6 +40,7 @@ it(`Should OfferPage render correctly`, () => {
               comments = {[]}
               offersNearby = {[]}
               loadOffersNearby={noop}
+              loadOfferById={noop}
               updateFavoriteOffer ={noop}
               updateActiveOfferIdAction ={noop}
               updateActiveOfferId ={noop}
