@@ -9,7 +9,7 @@ export const ActionType = {
   SORT_POPULAR: `SORT_POPULAR`,
   SORT_TOP_RATED: `SORT_TOP_RATED`,
   UPDATE_OFFER_ID_ACTIVE: `UPDATE_OFFER_ID_ACTIVE`,
-  UPDATE_OFFER: `UPDATE_OFFER_ID_ACTIVE`,
+  LOAD_OFFER: `LOAD_OFFER`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   UPDATE_USER: `UPDATE_USER`,
@@ -94,4 +94,9 @@ export const loadComments = (comments) => ({
 export const loadOffersNearby = (offersNearby) => ({
   type: ActionType.LOAD_OFFERS_NEARBY,
   payload: offersNearby,
+});
+
+export const loadOfferById = (offerTest) => ({
+  type: ActionType.LOAD_OFFER,
+  payload: offerTest,
 });

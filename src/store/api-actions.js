@@ -1,4 +1,4 @@
-import {loadOffers, requireAuthorization, redirectToRoute, updateUser, loadComments, loadOffersNearby, updateFavoriteOffer, loadFavorites} from "./action";
+import {loadOffers, requireAuthorization, redirectToRoute, updateUser, loadComments, loadOffersNearby, updateFavoriteOffer, loadFavorites, loadOfferById} from "./action";
 import {adaptData, adaptCommentData} from "../offers";
 import {AuthorizationStatus, AppRoute, APIRoute} from "../const";
 
@@ -48,6 +48,15 @@ export const getHotelsNearby = (id) => (dispatch, _getState, api) => (
     .then(({data}) => {
       const adaptOffers = data.map((offer) => adaptData(offer));
       dispatch(loadOffersNearby(adaptOffers));
+    })
+);
+
+export const getOfferByHotelId = (id) => (dispatch, _getState, api) => (
+  api.get(`${APIRoute.HOTELS}/${id}`)
+    .then(({data}) => {
+      const adaptOffer = adaptData(data);
+      console.log('id',id);
+      dispatch(loadOfferById(adaptOffer));
     })
 );
 

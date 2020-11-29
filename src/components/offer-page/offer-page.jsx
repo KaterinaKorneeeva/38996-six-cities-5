@@ -9,7 +9,7 @@ import User from "../user/user";
 import {getCoordByCity} from "../../offers";
 import {connect} from 'react-redux';
 import {updateActiveOfferId} from "../../store/action";
-import {getHotelsNearby, getCommentsByHotelId, addFavorite} from "../../store/api-actions";
+import {getHotelsNearby, getCommentsByHotelId, addFavorite, getOfferByHotelId} from "../../store/api-actions";
 const OfferListWrapped = withActiveItem(OfferList);
 import {AuthorizationStatus} from "../../const";
 class OfferPage extends PureComponent {
@@ -20,12 +20,25 @@ class OfferPage extends PureComponent {
   }
 
   componentDidMount() {
-    const {loadOffersNearby, offerId, loadComments, updateActiveOfferIdAction} = this.props;
+    console.log(1111111);
+    const {offerId, loadComments, loadOffersNearby, loadOfferById, updateActiveOfferIdAction} = this.props;
+    console.log(222222);
     updateActiveOfferIdAction(offerId);
+
+    // loadOfferById(offerId);
     loadOffersNearby(offerId);
     loadComments(offerId);
   }
 
+  componentDidUpdate(prevProps) {
+    const {offerId, loadComments, loadOffersNearby, loadOfferById} = this.props;
+
+    if (prevProps.offerId !== offerId) {
+      loadOfferById(offerId);
+      loadOffersNearby(offerId);
+      loadComments(offerId);
+    }
+  }
 
   handleAddFavoriteClick(evt) {
     evt.preventDefault();
@@ -36,9 +49,12 @@ class OfferPage extends PureComponent {
   }
 
   render() {
-    const {offer, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction, authorizationStatus, handleFavoriteClick} = this.props;
-    const cityCoord = getCoordByCity(offer.city.name);
+
+    const {offer, offerTest, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction, authorizationStatus, handleFavoriteClick} = this.props;
+    // const cityCoord = getCoordByCity(offer.city.name);
+    console.log(4444);
     return (
+
       <Fragment>
         <div style={{display: `none`}}>
           <svg xlinkHref="http://www.w3.org/2000/svg"><symbol id="icon-arrow-select" viewBox="0 0 7 4"><path fillRule="evenodd" clipRule="evenodd" d="M0 0l3.5 2.813L7 0v1.084L3.5 4 0 1.084V0z"></path></symbol><symbol id="icon-bookmark" viewBox="0 0 17 18"><path d="M3.993 2.185l.017-.092V2c0-.554.449-1 .99-1h10c.522 0 .957.41.997.923l-2.736 14.59-4.814-2.407-.39-.195-.408.153L1.31 16.44 3.993 2.185z"></path></symbol><symbol id="icon-star" viewBox="0 0 13 12"><path fillRule="evenodd" clipRule="evenodd" d="M6.5 9.644L10.517 12 9.451 7.56 13 4.573l-4.674-.386L6.5 0 4.673 4.187 0 4.573 3.549 7.56 2.483 12 6.5 9.644z"></path></symbol></svg>
@@ -158,7 +174,7 @@ class OfferPage extends PureComponent {
                 </div>
               </div>
               <Map
-                cityCoord = {cityCoord}
+                cityCoord = {getCoordByCity(offer.city.name)}
                 offers={offersNearby}
                 type = "property_map"
               />
@@ -182,28 +198,29 @@ class OfferPage extends PureComponent {
 }
 
 OfferPage.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    images: PropTypes.array.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    city: PropTypes.object.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    goods: PropTypes.array.isRequired,
-    host: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      avatar: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
+  // offer: PropTypes.shape({
+  //   id: PropTypes.number.isRequired,
+  //   rating: PropTypes.number.isRequired,
+  //   images: PropTypes.array.isRequired,
+  //   isFavorite: PropTypes.bool.isRequired,
+  //   isPremium: PropTypes.bool.isRequired,
+  //   title: PropTypes.string.isRequired,
+  //   description: PropTypes.string.isRequired,
+  //   price: PropTypes.number.isRequired,
+  //   type: PropTypes.string.isRequired,
+  //   city: PropTypes.object.isRequired,
+  //   bedrooms: PropTypes.number.isRequired,
+  //   maxAdults: PropTypes.number.isRequired,
+  //   goods: PropTypes.array.isRequired,
+  //   host: PropTypes.shape({
+  //     name: PropTypes.string.isRequired,
+  //     isPro: PropTypes.bool.isRequired,
+  //     avatar: PropTypes.string.isRequired,
+  //   }).isRequired,
+  // }).isRequired,
   offersNearby: PropTypes.array.isRequired,
   loadComments: PropTypes.func.isRequired,
+  loadOfferById: PropTypes.func.isRequired,
   loadOffersNearby: PropTypes.func.isRequired,
   handleLoginClick: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
@@ -217,12 +234,19 @@ OfferPage.propTypes = {
 const mapStateToProps = (({DATA, USER}) => ({
   offersNearby: DATA.offersNearby,
   offerIdActive: DATA.offerIdActive,
+  offerTest: DATA.offerTest,
   comments: DATA.comments,
   authorizationStatus: USER.authorizationStatus,
 }));
 
 const mapDispatchToProps = ((dispatch) => ({
+  updateActiveOfferIdAction(offerIdActive) {
+    dispatch(updateActiveOfferId(offerIdActive));
+  },
 
+  loadOfferById(offerIdActive) {
+    dispatch(getOfferByHotelId(offerIdActive));
+  },
 
   loadComments(offerIdActive) {
     dispatch(getCommentsByHotelId(offerIdActive));
@@ -230,9 +254,8 @@ const mapDispatchToProps = ((dispatch) => ({
   loadOffersNearby(offerIdActive) {
     dispatch(getHotelsNearby(offerIdActive));
   },
-  updateActiveOfferIdAction(offerIdActive) {
-    dispatch(updateActiveOfferId(offerIdActive));
-  },
+
+
   updateFavoriteOffer(favoriteData) {
     dispatch(addFavorite(favoriteData));
   },

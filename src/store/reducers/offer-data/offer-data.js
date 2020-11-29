@@ -6,7 +6,7 @@ import {offersByCity, adaptData, replaceItem} from "../../../offers";
 const initialState = {
   selectedCity: `Paris`,
   offerList: [],
-  offer: [],
+  offerTest: [],
   offerListByCity: [],
   sortingType: `POPULAR`,
   offerIdActive: 0,
@@ -56,9 +56,9 @@ const offerData = (state = initialState, action) => {
         offerIdActive: action.payload,
       });
 
-    case ActionType.UPDATE_OFFER:
+    case ActionType.LOAD_OFFER:
       return extend(state, {
-        offer: action.payload,
+        offerTest: action.payload,
       });
 
     case ActionType.LOAD_COMMENTS:

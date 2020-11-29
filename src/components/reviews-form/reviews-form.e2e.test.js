@@ -12,6 +12,9 @@ const mockEvent = {
   preventDefault() {}
 };
 
+const mockResetEvent = {
+  reset() {}
+};
 const noop = () => {};
 
 it(`Should send review click`, () => {
@@ -25,6 +28,8 @@ it(`Should send review click`, () => {
         comment = {``}
         offerIdActive = {1}
         rating = {`2`}
+        reset = {mockResetEvent}
+        isDisabled={false}
       />
   );
   wrapper.find(`.reviews__form`).simulate(`submit`, mockEvent);
