@@ -28,7 +28,9 @@ class ReviewsForm extends PureComponent {
       id: offerIdActive,
       rating: this.state.rating,
     });
+
     this._formRef.current.reset();
+
     this.setState((state) => {
       return {
         isDisabled: !state.isDisabled,
@@ -44,7 +46,7 @@ class ReviewsForm extends PureComponent {
   render() {
     return (
       <form
-        ref ={this._formRef}
+        ref= {this._formRef}
         className="reviews__form form"
         action="#" method="post"
         onSubmit={this.handleSubmit}>
