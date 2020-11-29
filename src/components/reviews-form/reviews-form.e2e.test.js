@@ -29,12 +29,12 @@ it(`Should send review click`, () => {
   );
 
 
-  const form = wrapper.find(`form`).simulate(`change`);
+  const form = wrapper.find(`form`);
   const submitMockEvent = {
     target: form,
     preventDefault() {}
   };
 
-  form.simulate(`submit`, mockEvent);
+  form.simulate(`submit`, submitMockEvent);
   expect(onSubmitMock).toHaveBeenCalledTimes(1);
 });
