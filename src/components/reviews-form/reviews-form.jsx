@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {addReview} from "../../store/api-actions";
@@ -16,6 +16,7 @@ class ReviewsForm extends PureComponent {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
+    this._formRef = createRef();
   }
 
   handleSubmit(evt) {
@@ -27,7 +28,7 @@ class ReviewsForm extends PureComponent {
       id: offerIdActive,
       rating: this.state.rating,
     });
-    evt.target.reset();
+    this._formRef.current.reset();
     this.setState((state) => {
       return {
         isDisabled: !state.isDisabled,
@@ -43,9 +44,11 @@ class ReviewsForm extends PureComponent {
   render() {
     return (
       <form
+        ref ={this._formRef}
         className="reviews__form form"
         action="#" method="post"
         onSubmit={this.handleSubmit}>
+
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <div className="reviews__rating-form form__rating">
           <input

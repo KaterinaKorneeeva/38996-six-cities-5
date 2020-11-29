@@ -21,6 +21,7 @@ it(`Should send review click`, () => {
         handleSubmit = {noop}
         onSubmit= {onSubmitMock}
         handleFieldChange = {noop}
+        reset= {noop}
         comment = {``}
         offerIdActive = {1}
         rating = {`2`}
@@ -30,11 +31,6 @@ it(`Should send review click`, () => {
 
 
   const form = wrapper.find(`form`);
-  const submitMockEvent = {
-    target: form,
-    preventDefault() {}
-  };
-
-  form.simulate(`submit`, submitMockEvent);
+  form.simulate(`submit`, mockEvent);
   expect(onSubmitMock).toHaveBeenCalledTimes(1);
 });
