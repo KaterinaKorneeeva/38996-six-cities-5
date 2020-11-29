@@ -15,7 +15,7 @@ const ReviewsList = (props) => {
             review = {review}
             id = {review.id}
           />
-        ))}
+        )).slice(0, 5)}
       </ul>
     </Fragment>
   );

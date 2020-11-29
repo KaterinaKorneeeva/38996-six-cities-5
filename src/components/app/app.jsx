@@ -22,37 +22,54 @@ const App = (props) => {
 
   };
 
+  const handleFavoriteClick = (evt, history) => {
+    evt.preventDefault();
+    return (
+      authorizationStatus === AuthorizationStatus.NO_AUTH
+        ? history.push(AppRoute.LOGIN)
+        : ``
+    );
+
+  };
   return (
+
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.ROOT} render={({history}) => (
           <MainPage
             history = {history}
-            handleLoginClick={(evt) => handleLoginClick(evt, history)} />
+            handleLoginClick={(evt) => handleLoginClick(evt, history)}
+            handleFavoriteClick={(evt) => handleFavoriteClick(evt, history)} />
         )}>
         </Route>
-        <Route exact
-          path = {AppRoute.LOGIN}>
+        <Route exact path={AppRoute.LOGIN}>
           <AuthPage />
         </Route>
         <PrivateRoute
           exact
           path={AppRoute.FAVORITES}
-          render={({_history}) => {
+          render={({history}) => {
             return (
               <FavoritesPage
                 offers={offerList}
+                handleLoginClick={(evt) => handleLoginClick(evt, history)}
+                handleFavoriteClick={(evt) => handleFavoriteClick(evt, history)}
               />
             );
           }}
         />
         <Route exact path="/offer/:id"
           render={(data) => {
-            const offerId = +data.match.params.id;
+            const {match, history} = data;
+            const offerId = +match.params.id;
             const offer = offerList.find((it) => it.id === offerId);
             return (
               <OfferPage
+                offerId = {offerId}
                 offer = {offer}
+                history = {history}
+                handleLoginClick={(evt) => handleLoginClick(evt, history)}
+                handleFavoriteClick={(evt) => handleFavoriteClick(evt, history)}
               />
             );
           }}
@@ -71,7 +88,6 @@ App.propTypes = {
 const mapStateToProps = ({DATA, USER}) => ({
   offerList: DATA.offerList,
   authorizationStatus: USER.authorizationStatus,
-  offerIdActive: DATA.offerIdActive,
 });
 
 

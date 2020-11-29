@@ -1,17 +1,17 @@
 import {extend} from "../../../utils";
 import {ActionType} from "../../action";
-import {offersByCity} from "../../../offers";
+import {offersByCity, replaceItem} from "../../../offers";
+
 
 const initialState = {
   selectedCity: `Paris`,
   offerList: [],
-  offer: [],
-  offerId: 6,
   offerListByCity: [],
   sortingType: `POPULAR`,
   offerIdActive: 0,
   comments: [],
   offersNearby: [],
+  favoritesOffers: []
 };
 
 const offerData = (state = initialState, action) => {
@@ -26,7 +26,7 @@ const offerData = (state = initialState, action) => {
     case ActionType.LOAD_OFFERS:
       return extend(state, {
         offerList: action.payload,
-        offerListByCity: offersByCity(action.payload, `Paris`),
+        offerListByCity: offersByCity(action.payload, state.selectedCity),
       });
 
     case ActionType.UPDATE_SORTING_TYPE:
@@ -55,9 +55,14 @@ const offerData = (state = initialState, action) => {
         offerIdActive: action.payload,
       });
 
+    case ActionType.LOAD_OFFER:
+      return extend(state, {
+        offerTest: action.payload,
+      });
+
     case ActionType.LOAD_COMMENTS:
       return extend(state, {
-        comments: action.payload,
+        comments: action.payload.sort((firstComment, secondComment) => (new Date(secondComment.date) - new Date(firstComment.date))).slice(0, 10)
       });
 
     case ActionType.LOAD_OFFERS_NEARBY:
@@ -65,6 +70,17 @@ const offerData = (state = initialState, action) => {
         offersNearby: action.payload,
       });
 
+    case ActionType.UPDATE_FAVORITE_OFFER:
+      return extend(state, {
+        offerList: replaceItem(state.offerList, action.payload),
+        offersNearby: replaceItem(state.offersNearby, action.payload).slice(0, 3),
+        favoritesOffers: state.favoritesOffers.slice(0).filter((offer) => offer.id !== action.payload.id),
+      });
+
+    case ActionType.LOAD_FAVORITES:
+      return extend(state, {
+        favoritesOffers: action.payload,
+      });
   }
 
   return state;

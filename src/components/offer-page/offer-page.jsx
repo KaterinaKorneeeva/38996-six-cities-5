@@ -9,21 +9,36 @@ import User from "../user/user";
 import {getCoordByCity} from "../../offers";
 import {connect} from 'react-redux';
 import {updateActiveOfferId} from "../../store/action";
-import {getHotelsNearby, getCommentsByHotelId} from "../../store/api-actions";
+import {getHotelsNearby, getCommentsByHotelId, addFavorite} from "../../store/api-actions";
 const OfferListWrapped = withActiveItem(OfferList);
-
+import {AuthorizationStatus} from "../../const";
 class OfferPage extends PureComponent {
 
+  constructor(props) {
+    super(props);
+    this.handleAddFavoriteClick = this.handleAddFavoriteClick.bind(this);
+  }
+
   componentDidMount() {
-    const {loadOffersNearby, offerIdActive, loadComments} = this.props;
-    loadOffersNearby(offerIdActive);
-    loadComments(offerIdActive);
+    const {offerId, loadComments, loadOffersNearby, updateActiveOfferIdAction} = this.props;
+    updateActiveOfferIdAction(offerId);
+    loadOffersNearby(offerId);
+    loadComments(offerId);
+  }
+
+  handleAddFavoriteClick(evt) {
+    evt.preventDefault();
+    this.props.updateFavoriteOffer({
+      id: this.props.offer.id,
+      status: this.props.offer.isFavorite ? 0 : 1,
+    });
   }
 
   render() {
-    const {offer, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction} = this.props;
+    const {offer, offersNearby, handleLoginClick, comments, updateActiveOfferIdAction, authorizationStatus, handleFavoriteClick} = this.props;
     const cityCoord = getCoordByCity(offer.city.name);
     return (
+
       <Fragment>
         <div style={{display: `none`}}>
           <svg xlinkHref="http://www.w3.org/2000/svg"><symbol id="icon-arrow-select" viewBox="0 0 7 4"><path fillRule="evenodd" clipRule="evenodd" d="M0 0l3.5 2.813L7 0v1.084L3.5 4 0 1.084V0z"></path></symbol><symbol id="icon-bookmark" viewBox="0 0 17 18"><path d="M3.993 2.185l.017-.092V2c0-.554.449-1 .99-1h10c.522 0 .957.41.997.923l-2.736 14.59-4.814-2.407-.39-.195-.408.153L1.31 16.44 3.993 2.185z"></path></symbol><symbol id="icon-star" viewBox="0 0 13 12"><path fillRule="evenodd" clipRule="evenodd" d="M6.5 9.644L10.517 12 9.451 7.56 13 4.573l-4.674-.386L6.5 0 4.673 4.187 0 4.573 3.549 7.56 2.483 12 6.5 9.644z"></path></symbol></svg>
@@ -33,7 +48,7 @@ class OfferPage extends PureComponent {
             <div className="container">
               <div className="header__wrapper">
                 <div className="header__left">
-                  <a className="header__logo-link" href="main.html">
+                  <a className="header__logo-link" href="/">
                     <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
                   </a>
                 </div>
@@ -71,7 +86,10 @@ class OfferPage extends PureComponent {
                     <h1 className="property__name">
                       {offer.title}
                     </h1>
-                    <button className="property__bookmark-button button" type="button">
+                    <button
+                      className= {offer.isFavorite ? `property__bookmark-button--active button` : `property__bookmark-button button`}
+                      type="button"
+                      onClick= {authorizationStatus === AuthorizationStatus.NO_AUTH ? handleFavoriteClick : this.handleAddFavoriteClick}>
                       <svg className="property__bookmark-icon" width="31" height="33">
                         <use xlinkHref="#icon-bookmark"></use>
                       </svg>
@@ -152,6 +170,7 @@ class OfferPage extends PureComponent {
                   offers={offersNearby}
                   type = "near-places"
                   updateActiveOfferId= {updateActiveOfferIdAction}
+                  handleFavoriteClick = {handleFavoriteClick}
                 />
               </section>
             </div>
@@ -164,8 +183,10 @@ class OfferPage extends PureComponent {
 
 OfferPage.propTypes = {
   offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     images: PropTypes.array.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     isPremium: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -175,8 +196,6 @@ OfferPage.propTypes = {
     bedrooms: PropTypes.number.isRequired,
     maxAdults: PropTypes.number.isRequired,
     goods: PropTypes.array.isRequired,
-    // reviews: PropTypes.array.isRequired,
-
     host: PropTypes.shape({
       name: PropTypes.string.isRequired,
       isPro: PropTypes.bool.isRequired,
@@ -188,28 +207,32 @@ OfferPage.propTypes = {
   loadOffersNearby: PropTypes.func.isRequired,
   handleLoginClick: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
-  offerIdActive: PropTypes.number.isRequired,
+  offerId: PropTypes.number.isRequired,
   updateActiveOfferIdAction: PropTypes.func.isRequired,
+  updateFavoriteOffer: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  handleFavoriteClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (({DATA}) => ({
+const mapStateToProps = (({DATA, USER}) => ({
   offersNearby: DATA.offersNearby,
   offerIdActive: DATA.offerIdActive,
   comments: DATA.comments,
-
+  authorizationStatus: USER.authorizationStatus,
 }));
 
 const mapDispatchToProps = ((dispatch) => ({
-
-
+  updateActiveOfferIdAction(offerIdActive) {
+    dispatch(updateActiveOfferId(offerIdActive));
+  },
   loadComments(offerIdActive) {
     dispatch(getCommentsByHotelId(offerIdActive));
   },
   loadOffersNearby(offerIdActive) {
     dispatch(getHotelsNearby(offerIdActive));
   },
-  updateActiveOfferIdAction(offerIdActive) {
-    dispatch(updateActiveOfferId(offerIdActive));
+  updateFavoriteOffer(favoriteData) {
+    dispatch(addFavorite(favoriteData));
   },
 }));
 
