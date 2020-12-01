@@ -73,6 +73,7 @@ const offerData = (state = initialState, action) => {
     case ActionType.UPDATE_FAVORITE_OFFER:
       return extend(state, {
         offerList: replaceItem(state.offerList, action.payload),
+        offerListByCity: replaceItem(state.offerListByCity, action.payload),
         offersNearby: replaceItem(state.offersNearby, action.payload).slice(0, 3),
         favoritesOffers: state.favoritesOffers.slice(0).filter((offer) => offer.id !== action.payload.id),
       });
