@@ -28,7 +28,6 @@ class AuthPage extends PureComponent {
 
   render() {
 
-
     return (
       <Fragment>
         <div style={{display: `none`}}>
