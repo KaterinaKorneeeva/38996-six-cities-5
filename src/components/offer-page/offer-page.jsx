@@ -153,7 +153,10 @@ class OfferPage extends PureComponent {
                     <ReviewsList
                       reviews={comments}
                     />
-                    <ReviewsForm />
+                    {authorizationStatus === AuthorizationStatus.NO_AUTH
+                      ? ``
+                      : <ReviewsForm />
+                    }
                   </section>
                 </div>
               </div>
@@ -202,11 +205,28 @@ OfferPage.propTypes = {
       avatar: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  offersNearby: PropTypes.arrayOf(PropTypes.object),
+  offersNearby: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+  })).isRequired,
   loadComments: PropTypes.func.isRequired,
   loadOffersNearby: PropTypes.func.isRequired,
   handleLoginClick: PropTypes.func.isRequired,
-  comments: PropTypes.arrayOf(PropTypes.object),
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    comment: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
+    }).isRequired,
+  })).isRequired,
   offerId: PropTypes.number.isRequired,
   updateActiveOfferIdAction: PropTypes.func.isRequired,
   updateFavoriteOffer: PropTypes.func.isRequired,

@@ -22,7 +22,15 @@ const ReviewsList = (props) => {
 };
 
 ReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.object),
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    comment: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
+    }).isRequired,
+  })).isRequired,
 };
 
 

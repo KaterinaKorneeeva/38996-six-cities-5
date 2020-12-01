@@ -21,7 +21,9 @@ const User = ({authorizationStatus, handleLoginClick, userInfo}) => {
 User.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   handleLoginClick: PropTypes.func.isRequired,
-  userInfo: PropTypes.object.isRequired,
+  userInfo: PropTypes.shape({
+    email: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = (({USER}) => ({
