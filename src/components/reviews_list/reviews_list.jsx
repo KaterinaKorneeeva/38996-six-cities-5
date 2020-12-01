@@ -22,7 +22,7 @@ const ReviewsList = (props) => {
 };
 
 ReviewsList.propTypes = {
-  reviews: PropTypes.array.isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.object),
 };
 
 

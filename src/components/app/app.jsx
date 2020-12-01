@@ -81,7 +81,9 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  offerList: PropTypes.array.isRequired,
+  offerList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  })).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
 };
 

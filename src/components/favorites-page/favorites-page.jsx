@@ -79,7 +79,10 @@ class FavoritesPage extends PureComponent {
 }
 
 FavoritesPage.propTypes = {
-  favoritesOffers: PropTypes.array.isRequired,
+  favoritesOffers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.object.isRequired,
+  })).isRequired,
   loadFavorites: PropTypes.func.isRequired,
   handleLoginClick: PropTypes.func.isRequired,
   handleFavoriteClick: PropTypes.func.isRequired,

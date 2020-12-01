@@ -22,7 +22,9 @@ const OfferList = (props) => {
 };
 
 OfferList.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  })).isRequired,
   onOfferCardHover: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   handleFavoriteClick: PropTypes.func.isRequired,

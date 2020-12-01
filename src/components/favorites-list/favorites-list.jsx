@@ -30,7 +30,9 @@ const FavoritesList = (props) => {
 };
 
 FavoritesList.propTypes = {
-  favoriteOffersInCity: PropTypes.array.isRequired,
+  favoriteOffersInCity: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  })).isRequired,
   city: PropTypes.string.isRequired,
   handleFavoriteClick: PropTypes.func.isRequired,
   onOfferCardHover: PropTypes.func.isRequired,

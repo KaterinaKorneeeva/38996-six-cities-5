@@ -87,7 +87,7 @@ const MainPage = (props) => {
 MainPage.propTypes = {
   toggleCityAction: PropTypes.func.isRequired,
   updateActiveOfferIdAction: PropTypes.func.isRequired,
-  offerList: PropTypes.array.isRequired,
+  offerList: PropTypes.arrayOf(PropTypes.object),
   selectedCity: PropTypes.string.isRequired,
   handleLoginClick: PropTypes.func.isRequired,
   handleFavoriteClick: PropTypes.func.isRequired,
